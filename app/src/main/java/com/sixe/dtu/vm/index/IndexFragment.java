@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 首页
  * Created by liu on 17/2/25.
  */
 
@@ -101,7 +102,7 @@ public class IndexFragment extends BaseFragment {
     public void httpMenu(UserLoginResp userLoginResp) {
 
         if (userLoginResp != null) {
-            if (userLoginResp.getState() == 0) {
+            if (userLoginResp.getState() == 200) {
 
                 //用户等级-  10：公司管理员，11：高级用户，12：普通用户
                 int user_level = userLoginResp.getResult().getUser_level();
@@ -125,6 +126,13 @@ public class IndexFragment extends BaseFragment {
                 }
                 IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);
                 elvMenu.setAdapter(adapter);
+
+                adapter.setOnClickMenuItem(new IndexMenuListAdapter.OnClickMenuItem() {
+                    @Override
+                    public void onClickMenuItem() {
+                        drawerLayout.closeDrawers();
+                    }
+                });
             }
         }
     }

@@ -112,11 +112,13 @@ public class UserLoginActivity extends BaseActivity {
                     @Override
                     public void onResponse(UserLoginResp response) {
                         if (response != null) {
-                            if (response.getResult().getState() == 0) {
+                            if (response.getState() == 200) {
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable(Constant.USER_INFO, response);
                                 startActivity(MainActivity.class, bundle);
                                 finish();
+                            } else {
+                                showToast(response.getState());
                             }
                         }
                         httpLoadingDialog.dismiss();

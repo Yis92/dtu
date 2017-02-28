@@ -1,6 +1,7 @@
 package com.sixe.dtu.vm.adapter.index;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sixe.dtu.R;
+import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -106,8 +108,9 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
         }
         view.setTag(R.layout.parent_item, parentPos);
         view.setTag(R.layout.child_item, childPos);
-        TextView text = (TextView) view.findViewById(R.id.child_title);
+        final TextView text = (TextView) view.findViewById(R.id.child_title);
         ImageView ivMenu = (ImageView) view.findViewById(R.id.iv_menu);
+
         if (childPos == 0) {
             ivMenu.setBackgroundResource(R.mipmap.menu_user);
         } else if (childPos == 1) {
@@ -115,12 +118,27 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
         } else {
             ivMenu.setBackgroundResource(R.mipmap.menu_shebei);
         }
+
         LinearLayout llChildContent = (LinearLayout) view.findViewById(R.id.ll_ciled_content);
         text.setText(dataset.get(parentList[parentPos]).get(childPos));
+
         llChildContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "点到了内置的textview", Toast.LENGTH_SHORT).show();
+                String childName = text.getText().toString();
+                switch (childName) {
+                    case "单位信息维护":
+                        Intent intent = new Intent(context, UserCompanyInfoActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    case "用户信息维护":
+                        break;
+                    case "dtu维护":
+                        break;
+                }
+
+                //关闭DrawLayout
+                onClickMenuItem.onClickMenuItem();
             }
         });
         return view;
@@ -130,5 +148,16 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return false;
+    }
+
+
+    private OnClickMenuItem onClickMenuItem;
+
+    public void setOnClickMenuItem(OnClickMenuItem onClickMenuItem) {
+        this.onClickMenuItem = onClickMenuItem;
+    }
+
+    public interface OnClickMenuItem {
+        void onClickMenuItem();
     }
 }

@@ -12,19 +12,10 @@ import java.util.List;
 
 public class UserLoginResp extends CommonResponse<UserLoginResp> implements Serializable {
 
-    private int state;//返回登录状态 0：成功 -1：失败--用户名或者密码错误
     private String user_id;//用户id
     private int user_level;//用户等级，其中，10：公司管理员，11：高级用户，12：普通用户
     private String unit_num;//关联公司个数，最大10个
     private List<Company> units;//关联的公司的数组
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
 
     public String getUser_id() {
         return user_id;
