@@ -7,8 +7,8 @@
     <!--返回-->
     <RelativeLayout
         android:id="@+id/rl_back"
-        android:layout_width="@dimen/dimen_45"
-        android:layout_height="@dimen/dimen_45"
+        android:layout_width="@dimen/dimen_50"
+        android:layout_height="@dimen/dimen_50"
         android:layout_alignParentLeft="true"
         android:background="@drawable/select_back_bg"
         android:visibility="gone">
@@ -31,6 +31,24 @@
         android:gravity="center_vertical"
         android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_18" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_set"
+        android:layout_width="@dimen/dimen_50"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/select_back_bg"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_set"
+            android:layout_width="@dimen/dimen_25"
+            android:layout_height="@dimen/dimen_25"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical" />
+
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"

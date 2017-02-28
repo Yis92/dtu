@@ -111,17 +111,28 @@ public class IndexFragment extends BaseFragment {
                 tvName.setText("欢迎" + userLoginResp.getResult().getUser_id());
 
                 //单位信息
-                Map<String, List<String>> dataset = new HashMap<>();
+                Map<String, List<UserLoginResp.Company>> dataset = new HashMap<>();
                 List<UserLoginResp.Company> company = userLoginResp.getResult().getUnits();
                 String[] parentList = new String[company.size()];
+
                 for (int i = 0; i < company.size(); i++) {
-                    List<String> childrenList = new ArrayList<>();
+                    List<UserLoginResp.Company> childrenList = new ArrayList<>();
+
+                    UserLoginResp.Company company1 = new UserLoginResp().new Company();
+
+                    List<String> childMenu = new ArrayList<>();
                     parentList[i] = company.get(i).getUnit_name();
-                    childrenList.add("单位信息维护");
+
+                    childMenu.add("单位信息维护");
                     if (user_level == 10) {
-                        childrenList.add("用户信息维护");
+                        childMenu.add("用户信息维护");
                     }
-                    childrenList.add("dtu维护");
+                    childMenu.add("dtu维护");
+
+                    company1.setChildMenuName(childMenu);
+                    company1.setUnit_no(company.get(i).getUnit_no());//公司编号
+                    childrenList.add(company1);
+
                     dataset.put(parentList[i], childrenList);
                 }
                 IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);

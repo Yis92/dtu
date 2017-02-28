@@ -51,10 +51,19 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
 
     public class Company implements Serializable{
 
+        private List<String> childMenuName;//二级菜单名称,非接口传来的指
         private String unit_no;//公司编号：注意，此编号唯一
         private String unit_name;//公司名
         private String dtu_num;//公司名下的dtu数量最大64个
         private List<DtuName> dtu;//dtu信息
+
+        public List<String> getChildMenuName() {
+            return childMenuName;
+        }
+
+        public void setChildMenuName(List<String> childMenuName) {
+            this.childMenuName = childMenuName;
+        }
 
         public List<DtuName> getDtu() {
             return dtu;

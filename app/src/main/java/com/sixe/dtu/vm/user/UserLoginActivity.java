@@ -113,6 +113,9 @@ public class UserLoginActivity extends BaseActivity {
                     public void onResponse(UserLoginResp response) {
                         if (response != null) {
                             if (response.getState() == 200) {
+                                //将用户等级存在本地
+                                getPreferenceHelper().putInt(Constant.USER_LEVEL, response.getResult().getUser_level());
+
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable(Constant.USER_INFO, response);
                                 startActivity(MainActivity.class, bundle);

@@ -12,4 +12,7 @@ public class Constant {
     //登录返回的用户信息
     public static final String USER_INFO = "user_info";
 
+    //登录等级
+    public static final String USER_LEVEL = "user_level";
+
 }

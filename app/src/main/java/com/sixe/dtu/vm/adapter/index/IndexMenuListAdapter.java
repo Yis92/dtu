@@ -2,6 +2,8 @@ package com.sixe.dtu.vm.adapter.index;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sixe.dtu.R;
+import com.sixe.dtu.http.entity.user.UserLoginResp;
 import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
 
 import java.util.List;
@@ -26,10 +29,10 @@ import java.util.Map;
 public class IndexMenuListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private Map<String, List<String>> dataset;
+    private Map<String, List<UserLoginResp.Company>> dataset;
     private String[] parentList;
 
-    public IndexMenuListAdapter(Context context, Map<String, List<String>> dataset, String[] parentList) {
+    public IndexMenuListAdapter(Context context, Map<String, List<UserLoginResp.Company>> dataset, String[] parentList) {
         this.context = context;
         this.dataset = dataset;
         this.parentList = parentList;
@@ -50,7 +53,7 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的子项数目
     @Override
     public int getChildrenCount(int parentPos) {
-        return dataset.get(parentList[parentPos]).size();
+        return dataset.get(parentList[parentPos]).get(0).getChildMenuName().size();
     }
 
     //  获得某个父项
@@ -101,7 +104,7 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
 
     //  获得子项显示的view
     @Override
-    public View getChildView(int parentPos, int childPos, boolean b, View view, ViewGroup viewGroup) {
+    public View getChildView(final int parentPos, final int childPos, boolean b, View view, ViewGroup viewGroup) {
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.child_item, null);
@@ -120,7 +123,9 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
         }
 
         LinearLayout llChildContent = (LinearLayout) view.findViewById(R.id.ll_ciled_content);
-        text.setText(dataset.get(parentList[parentPos]).get(childPos));
+//        Log.i("http",dataset.get(parentList[parentPos]).size()+"@111");
+//        Log.i("http",dataset.get(parentList[parentPos]).get(childPos).getChildMenuName().size()+"@"+parentPos+"="+childPos);
+        text.setText(dataset.get(parentList[parentPos]).get(0).getChildMenuName().get(childPos));
 
         llChildContent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +134,8 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
                 switch (childName) {
                     case "单位信息维护":
                         Intent intent = new Intent(context, UserCompanyInfoActivity.class);
+                        intent.putExtra("unit_id", dataset.get(parentList[parentPos]).get(0).getUnit_no());
+
                         context.startActivity(intent);
                         break;
                     case "用户信息维护":
