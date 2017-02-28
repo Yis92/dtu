@@ -11,7 +11,7 @@
         android:id="@+id/tb_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50"
-        android:background=""
+        android:background="@color/color_1196db"
         toolbar:title="迪辉科技"
         toolbar:titleTextColor="@color/color_white"
         toolbar:titleTextAppearance="@dimen/dimen_18"

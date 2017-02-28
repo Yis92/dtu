@@ -49,9 +49,6 @@
             android:name=".vm.user.UserUpdateCompanyActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
-        <activity
-            android:name=".vm.user.UserinfoActivity"
-            android:theme="@style/ColorTranslucentTheme"></activity>
 
     </application>
 
