@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="province_line_border">#C7C7C7</color>
+
+
+    <!--默认深戏线颜色-->
+    <color name="color_d3d3d3">#d3d3d3</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <!--默认浅戏线颜色-->
+    <color name="color_e7e7e7">#e7e7e7</color>
+    <!--浅色背景颜色-->
+    <color name="color_ebebeb">#ebebeb</color>
+    <color name="color_f7182d">#f7182d</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
+    <color name="gray_background">#dddddd</color>
+    <color name="btn_green">#19b02e</color>
+    <color name="light_green">#FF396B40</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="color_FFBC59">#FFBC59</color>
+    <color name="dark_grey">#60605D</color>
+    <color name="blue_sky">#8db8f4</color>
+    <color name="orange">#FC5A08</color>
+    <color name="translucent">#77000000</color>
+    <color name="color_eeeeee">#eeeeee</color>
+    <color name="color_D1D1D1">#D1D1D1</color>
+    <color name="color_D6D6D6">#D6D6D6</color>
+    <color name="color_464b4b">#464B4B</color>
+    <color name="color_FFF8F9ED">#FFF8F9ED</color>
+    <color name="color_FF00C3F4">#FF00C3F4</color>
+    <color name="color_c42b2b">#c42b2b</color>
+    <!--排行榜背景色-->
+    <color name="color_344144">#344144</color>
+    <color name="color_222628">#222628</color>
+    <color name="color_161a1c">#161a1c</color>
+
+    <!--首页新闻内容-->
+    <!--导航栏字体颜色-->
+    <color name="color_45c717">#00CCFF</color>
+    <!--导航栏背景色-->
+    <color name="color_22292c">#22292c</color>
+    <!--首页推荐tab下的四个分类字体色-->
+    <color name="color_909090">#909090</color>
+    <!--新闻标题字体色-->
+    <color name="color_323232">#323232</color>
+    <!--专题字体色-->
+    <color name="color_50a5fa">#50a5fa</color>
+    <!--发布者与阅读次数-->
+    <color name="color_a8a8a8">#a8a8a8</color>
+    <!--热点字体色-->
+    <color name="color_ff1817">#ff1817</color>
+
+    <!--微号榜好评颜色-->
+    <color name="color_ffa41b">#ffa41b</color>
+    <!--微号榜名次背景色-->
+    <color name="color_ff3333">#ff3333</color>
+    <color name="color_ff6600">#ff6600</color>
+    <color name="color_ff9900">#ff9900</color>
+    <color name="color_cccccc">#cccccc</color>
+
+    <!--更多频道-->
+    <color name="color_839bb9">#839bb9</color>
+    <!--添加频道背景色-->
+    <color name="color_b0211a1b">#b0211a1b</color>
+
+    <!--添加兴趣-->
+    <color name="color_dd4868">#dd4868</color>
+    <color name="color_e16638">#e16638</color>
+    <color name="color_929bcf">#929bcf</color>
+    <color name="color_5fa84d">#5fa84d</color>
+    <color name="color_e5c746">#e5c746</color>
+
+    <!--绿色背景false-->
+    <color name="color_5daa3e">#5daa3e</color>
+    <!--登录背景-->
+    <color name="color_45c018">#45c018</color>
+
+    <!--反馈聊天文字-->
+    <color name="color_333333">#333333</color>
+
+    <color name="color_f8fcff">#f8fcff</color>
+
+    <!--首页搜索栏目-->
+    <color name="color_00b9e9">#00b9e9</color>
+    <!--首页搜索栏目输入框-->
+    <color name="color_00a3cc">#00a3cc</color>
+    <!--首页选项卡悲剧-->
+    <color name="color_f7f7f7">#f7f7f7</color>
+    <!--我的总收入,今日收入,收徒奖励-->
+    <color name="color_ff7100">#ff7100</color>
+    <!--支付宝提现,收支明细-->
+    <color name="color_ff6300">#FF6300</color>
+    <!--自定义水平进度条-->
+    <color name="color_e54048">#e54048</color>
+
+
+    <color name="color_1196db">#1196db</color>
+    <color name="color_84cef4">#84cef4</color>
+    <color name="color_94f35f">#94f35f</color>
+
+
+</resources>
