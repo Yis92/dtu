@@ -14,7 +14,7 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
 
     private int state;//返回登录状态 0：成功 -1：失败--用户名或者密码错误
     private String user_id;//用户id
-    private String user_level;//用户等级，其中，10：公司管理员，11：高级用户，12：普通用户
+    private int user_level;//用户等级，其中，10：公司管理员，11：高级用户，12：普通用户
     private String unit_num;//关联公司个数，最大10个
     private List<Company> units;//关联的公司的数组
 
@@ -34,11 +34,11 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
         this.user_id = user_id;
     }
 
-    public String getUser_level() {
+    public int getUser_level() {
         return user_level;
     }
 
-    public void setUser_level(String user_level) {
+    public void setUser_level(int user_level) {
         this.user_level = user_level;
     }
 
@@ -58,7 +58,7 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
         this.units = units;
     }
 
-    public class Company {
+    public class Company implements Serializable{
 
         private String unit_no;//公司编号：注意，此编号唯一
         private String unit_name;//公司名
@@ -97,7 +97,7 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
             this.dtu_num = dtu_num;
         }
 
-        class DtuName {
+        class DtuName implements Serializable{
             private String dtu1_name;//dtu名字
             private String dtu1_sn;//dtu编号
 

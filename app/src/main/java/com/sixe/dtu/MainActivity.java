@@ -11,9 +11,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sixe.dtu.base.BaseActivity;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
 import com.sixe.dtu.utils.RuntimeHelper;
 import com.sixe.dtu.vm.index.IndexFragment;
+import com.sixe.dtu.vm.test.UserResp;
 import com.sixe.dtu.vm.user.UserFragment;
 
 import java.util.ArrayList;
@@ -55,7 +57,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData(Intent intent) {
         fragments = new ArrayList<>();
-        fragments.add(new IndexFragment());
+        IndexFragment indexFragment = new IndexFragment();
+        Bundle bundle = new Bundle();
+        UserLoginResp resp = (UserLoginResp) intent.getExtras().getSerializable(Constant.USER_INFO);
+
+        bundle.putSerializable(Constant.USER_INFO, resp);
+        indexFragment.setArguments(bundle);
+        fragments.add(indexFragment);
         fragments.add(new UserFragment());
 
         textViews = new ArrayList<>();

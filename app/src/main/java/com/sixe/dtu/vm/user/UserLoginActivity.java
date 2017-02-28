@@ -15,6 +15,7 @@ import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.MainActivity;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
@@ -111,8 +112,10 @@ public class UserLoginActivity extends BaseActivity {
                     @Override
                     public void onResponse(UserLoginResp response) {
                         if (response != null) {
-                            if (response.getState() == 0) {
-                                startActivity(MainActivity.class);
+                            if (response.getResult().getState() == 0) {
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable(Constant.USER_INFO, response);
+                                startActivity(MainActivity.class, bundle);
                                 finish();
                             }
                         }

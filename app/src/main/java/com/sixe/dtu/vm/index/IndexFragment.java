@@ -21,10 +21,13 @@ import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.MainActivity;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.index.IndexMenuListAdapter;
+import com.sixe.dtu.vm.test.UserResp;
+import com.sixe.dtu.vm.user.UserLoginActivity;
 import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
@@ -38,11 +41,12 @@ import java.util.Map;
 
 public class IndexFragment extends BaseFragment {
 
-    private SimpleDraweeView sdvHead;
-    private TextView tvName;
-    private ImageView ivMenu;
+    private SimpleDraweeView sdvHead;//用户头像
+    private TextView tvName;//用户名
+    private ImageView ivMenu;//用于手动点击打开菜单
     private DrawerLayout drawerLayout;
     private ExpandableListView elvMenu;
+    private TextView tvExit;//退出登录
 
     private HttpLoadingDialog httpLoadingDialog;
 
@@ -63,73 +67,65 @@ public class IndexFragment extends BaseFragment {
         ivMenu = findView(R.id.iv_menu);
         drawerLayout = findView(R.id.drawer_layout);
         elvMenu = findView(R.id.elv_menu);
-
+        tvExit = findView(R.id.tv_exit);
     }
 
     @Override
     public void initData(Bundle bundle) {
-
+        UserLoginResp userLoginResp = (UserLoginResp) bundle.getSerializable(Constant.USER_INFO);
         sdvHead.setImageURI(Uri.parse("http://img9.3lian.com/c1/vec2015/34/13.jpg"));
-        httpMenu();
-
+        httpMenu(userLoginResp);
     }
 
 
     @Override
     public void initEvents() {
+        //打开菜单
         ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+        //退出登录
+        tvExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(UserLoginActivity.class);
+                activity.finish();
+            }
+        });
     }
 
-    public void httpMenu() {
-        if (hasNetWork()) {
 
-            HashMap<String, String> map = new HashMap<>();
+    public void httpMenu(UserLoginResp userLoginResp) {
 
-            map.put("user_id", "dhmaster");
-            map.put("pwd", "123456");
+        if (userLoginResp != null) {
+            if (userLoginResp.getState() == 0) {
 
-            httpLoadingDialog.visible("加载中...");
+                //用户等级-  10：公司管理员，11：高级用户，12：普通用户
+                int user_level = userLoginResp.getResult().getUser_level();
 
-            HttpManager.postAsyn(HttpConstant.LOGIN, new HttpManager.ResultCallback<UserLoginResp>() {
-                @Override
-                public void onError(Request request, Exception e) {
-                    httpLoadingDialog.dismiss();
-                }
+                //用户名
+                tvName.setText("欢迎" + userLoginResp.getResult().getUser_id());
 
-                @Override
-                public void onResponse(UserLoginResp response) {
-                    if (response != null) {
-                        if (response.getState() == 0) {
-
-                            //
-                            tvName.setText("欢迎" + response.getResult().getUser_id());
-                            
-                            //单位信息
-                            Map<String, List<String>> dataset = new HashMap<>();
-                            List<UserLoginResp.Company> company = response.getResult().getUnits();
-                            String[] parentList = new String[company.size()];
-                            for (int i = 0; i < company.size(); i++) {
-                                List<String> childrenList = new ArrayList<>();
-                                parentList[i] = company.get(i).getUnit_name();
-                                childrenList.add("单位信息维护");
-                                childrenList.add("用户信息维护");
-                                childrenList.add("dtu维护");
-                                dataset.put(parentList[i], childrenList);
-                            }
-                            IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);
-                            elvMenu.setAdapter(adapter);
-                        }
+                //单位信息
+                Map<String, List<String>> dataset = new HashMap<>();
+                List<UserLoginResp.Company> company = userLoginResp.getResult().getUnits();
+                String[] parentList = new String[company.size()];
+                for (int i = 0; i < company.size(); i++) {
+                    List<String> childrenList = new ArrayList<>();
+                    parentList[i] = company.get(i).getUnit_name();
+                    childrenList.add("单位信息维护");
+                    if (user_level == 10) {
+                        childrenList.add("用户信息维护");
                     }
-                    httpLoadingDialog.dismiss();
+                    childrenList.add("dtu维护");
+                    dataset.put(parentList[i], childrenList);
                 }
-            }, map);
-
-
+                IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);
+                elvMenu.setAdapter(adapter);
+            }
         }
     }
 

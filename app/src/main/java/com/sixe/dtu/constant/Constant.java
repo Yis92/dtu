@@ -9,4 +9,7 @@ public class Constant {
     //shared
     public static final String DTU_PRE_NAME = "dtu";
 
+    //登录返回的用户信息
+    public static final String USER_INFO = "user_info";
+
 }
