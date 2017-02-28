@@ -44,10 +44,6 @@
             android:name=".vm.user.UserCompanyInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
-        <activity
-            android:name=".vm.user.UserinfoActivity"
-            android:theme="@style/ColorTranslucentTheme"></activity>
-
     </application>
 
 </manifest>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/update_data"
+        android:showAsAction="never"
+        android:title="修改资料"/>
+    <item
+        android:id="@+id/update_password"
+        android:showAsAction="never"
+        android:title="修改密码"/>
+
+</menu>

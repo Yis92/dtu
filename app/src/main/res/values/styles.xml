@@ -28,4 +28,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorSecondary">@color/color_white</item>
+        <item name="colorPrimary">@color/color_1196db</item>
+    </style>
+
 </resources>
