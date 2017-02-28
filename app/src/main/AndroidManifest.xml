@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sixe.dtu">
+<manifest package="com.sixe.dtu"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 允许程序访问网络连接，可能产生GPRS流量 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 允许程序获取网络信息状态，如当前的网络连接是否有效 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 允许程序获取当前WiFi接入的状态以及WLAN热点的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:name=".AppApplication"
@@ -9,7 +16,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
@@ -17,14 +23,14 @@
             android:theme="@style/ColorTranslucentTheme">
 
         </activity>
-        <!--登录-->
+        <!-- 登录 -->
         <activity
             android:name=".vm.user.UserLoginActivity"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -38,14 +44,10 @@
             android:name=".vm.user.UserCompanyInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
+        <activity
+            android:name=".vm.user.UserinfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
     </application>
-
-    <!--允许程序访问网络连接，可能产生GPRS流量-->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <!--允许程序获取网络信息状态，如当前的网络连接是否有效-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <!--允许程序获取当前WiFi接入的状态以及WLAN热点的信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
 </manifest>
