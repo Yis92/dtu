@@ -15,4 +15,17 @@ public class Constant {
     //登录等级
     public static final String USER_LEVEL = "user_level";
 
+    //公司编号
+    public static final String UNIT_NO = "user_no";
+    public static final String UNIT_NAME = "user_name";
+
+    //用户id
+    public static final String USER_ID = "user_id";
+
+    //员工信息
+    public static final String USER_STAFF_INFO = "user_staff_info";
+
+    //dtu id
+    public static final String DTU_SN = "dtu_sn";
+
 }

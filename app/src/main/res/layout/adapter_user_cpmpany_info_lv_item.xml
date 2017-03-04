@@ -20,6 +20,7 @@
         android:background="@android:color/white"></View>
 
     <TextView
+        android:layout_margin="5dp"
         android:id="@+id/tv_value"
         android:layout_width="0dp"
         android:layout_height="match_parent"

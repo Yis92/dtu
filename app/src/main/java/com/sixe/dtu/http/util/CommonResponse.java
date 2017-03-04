@@ -10,6 +10,15 @@ public class CommonResponse<T> implements Serializable {
     private int state;//200为成功
     private String message;
     private T result;
+    private String dt;
+
+    public String getDt() {
+        return dt;
+    }
+
+    public void setDt(String dt) {
+        this.dt = dt;
+    }
 
     public int getState() {
         return state;

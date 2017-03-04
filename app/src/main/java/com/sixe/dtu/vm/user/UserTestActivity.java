@@ -74,7 +74,8 @@ public class UserTestActivity extends BaseActivity {
                 ImageView imageView = new ImageView(activity);
                 LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT);
                 imageView.setLayoutParams(params2);
-                imageLoader.displayImage(resp.getImages().get(j), imageView);
+                imageView.setBackgroundResource(R.mipmap.caidan);
+//                imageLoader.displayImage(resp.getImages().get(j), imageView);
                 llNews.addView(imageView);
             }
         }

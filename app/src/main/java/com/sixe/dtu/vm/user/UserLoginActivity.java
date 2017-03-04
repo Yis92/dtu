@@ -115,13 +115,15 @@ public class UserLoginActivity extends BaseActivity {
                             if (response.getState() == 200) {
                                 //将用户等级存在本地
                                 getPreferenceHelper().putInt(Constant.USER_LEVEL, response.getResult().getUser_level());
+                                //将用户id存入到本地
+                                getPreferenceHelper().putString(Constant.USER_ID, response.getResult().getUser_id());
 
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable(Constant.USER_INFO, response);
                                 startActivity(MainActivity.class, bundle);
                                 finish();
                             } else {
-                                showToast(response.getState());
+                                showToast(response.getMessage());
                             }
                         }
                         httpLoadingDialog.dismiss();

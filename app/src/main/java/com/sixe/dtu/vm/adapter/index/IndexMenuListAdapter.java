@@ -15,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sixe.dtu.R;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
+import com.sixe.dtu.vm.dtu.info.DtuAllInfoActivity;
 import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
+import com.sixe.dtu.vm.user.UserStaffManagerActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -118,13 +121,13 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
             ivMenu.setBackgroundResource(R.mipmap.menu_user);
         } else if (childPos == 1) {
             ivMenu.setBackgroundResource(R.mipmap.menu_danwei);
-        } else {
+        } else if (childPos == 2) {
             ivMenu.setBackgroundResource(R.mipmap.menu_shebei);
+        }else {
+            ivMenu.setBackgroundResource(R.mipmap.menu_weihu);
         }
 
         LinearLayout llChildContent = (LinearLayout) view.findViewById(R.id.ll_ciled_content);
-//        Log.i("http",dataset.get(parentList[parentPos]).size()+"@111");
-//        Log.i("http",dataset.get(parentList[parentPos]).get(childPos).getChildMenuName().size()+"@"+parentPos+"="+childPos);
         text.setText(dataset.get(parentList[parentPos]).get(0).getChildMenuName().get(childPos));
 
         llChildContent.setOnClickListener(new View.OnClickListener() {
@@ -134,11 +137,19 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
                 switch (childName) {
                     case "单位信息维护":
                         Intent intent = new Intent(context, UserCompanyInfoActivity.class);
-                        intent.putExtra("unit_id", dataset.get(parentList[parentPos]).get(0).getUnit_no());
-
+                        intent.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
                         context.startActivity(intent);
                         break;
                     case "用户信息维护":
+                        Intent intent2 = new Intent(context, UserStaffManagerActivity.class);
+                        intent2.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
+                        context.startActivity(intent2);
+                        break;
+                    case "全部dtu信息":
+                        Intent intent3 = new Intent(context, DtuAllInfoActivity.class);
+                        intent3.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
+                        intent3.putExtra(Constant.UNIT_NAME, parentList[parentPos]);
+                        context.startActivity(intent3);
                         break;
                     case "dtu维护":
                         break;

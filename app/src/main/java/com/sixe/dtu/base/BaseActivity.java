@@ -3,9 +3,14 @@ package com.sixe.dtu.base;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.sixe.dtu.AppApplication;
+import com.sixe.dtu.R;
 
 import cn.trinea.android.common.base.CommonCompatActivity;
 import cn.trinea.android.common.util.PreferenceHelper;
@@ -17,6 +22,11 @@ import cn.trinea.android.common.util.PreferenceHelper;
 public abstract class BaseActivity extends CommonCompatActivity {
 
     private PreferenceHelper preferenceHelper;
+
+    public RelativeLayout rlBack;
+    public TextView tvTitle;
+    public RelativeLayout rlSet;
+    public ImageView ivSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState, int layoutResID) {
@@ -35,7 +45,10 @@ public abstract class BaseActivity extends CommonCompatActivity {
     @Override
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
-
+        rlBack = findView(R.id.rl_back);
+        tvTitle = findView(R.id.tv_title);
+        rlSet = findView(R.id.rl_set);
+        ivSet = findView(R.id.iv_set);
     }
 
     public boolean isEmpty(Object obj) {

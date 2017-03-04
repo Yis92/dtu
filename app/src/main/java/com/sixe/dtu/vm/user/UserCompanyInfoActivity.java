@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -14,10 +16,11 @@ import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserCompanyInfoResp;
+import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.user.UserCompanyInfoListAdapter;
-import com.sixe.dtu.vm.adapter.user.UserUpdateCompanyListAdapter;
+import com.sixe.dtu.widget.ScrollListView;
 import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
@@ -36,10 +39,24 @@ public class UserCompanyInfoActivity extends BaseActivity {
     private ImageView ivSet;
     private RelativeLayout rlSet;
 
-    private ListView lvContent;
-    private String uint_id;//公司编号
+    private TextView tvBianhao;//公司编号
+    private EditText etName;//公司名称
+    private EditText etJingdu;//公司地理经度
+    private EditText etWeidu;//公司地理纬度
+    private EditText etWeizhi;//公司地理位置
+    private EditText etDianhua1;//公司电话1
+    private EditText etDianhua2;//公司电话2
+    private EditText etDianhua3;//公司电话3
+    private EditText etDianhua4;//公司电话4
+    private EditText etDianhua5;//公司电话5
+    private EditText etDianhua6;//公司电话6
+    private TextView tvDtuNum;//dtu数量
 
-    UserUpdateCompanyListAdapter adapter;
+    private ScrollListView lvContent;
+    private String uint_no;//公司编号
+
+    private List<EditText> editTextList = new ArrayList<>();
+
     private HttpLoadingDialog httpLoadingDialog;
 
     @Override
@@ -58,6 +75,20 @@ public class UserCompanyInfoActivity extends BaseActivity {
         tvTitle = findView(R.id.tv_title);
         ivSet = findView(R.id.iv_set);
         rlSet = findView(R.id.rl_set);
+
+        tvBianhao = findView(R.id.tv_bianhao);
+        etName = findView(R.id.et_name);
+        etJingdu = findView(R.id.et_jingdu);
+        etWeidu = findView(R.id.et_weidu);
+        etWeizhi = findView(R.id.et_weizhi);
+        etDianhua1 = findView(R.id.et_dianhua1);
+        etDianhua2 = findView(R.id.et_dianhua2);
+        etDianhua3 = findView(R.id.et_dianhua3);
+        etDianhua4 = findView(R.id.et_dianhua4);
+        etDianhua5 = findView(R.id.et_dianhua5);
+        etDianhua6 = findView(R.id.et_dianhua6);
+        tvDtuNum = findView(R.id.tv_dtu_num);
+
         lvContent = findView(R.id.lv_content);
     }
 
@@ -70,26 +101,29 @@ public class UserCompanyInfoActivity extends BaseActivity {
         rlBack.setVisibility(View.VISIBLE);
         tvTitle.setText("单位信息");
 
+        editTextList.add(etName);
+        editTextList.add(etJingdu);
+        editTextList.add(etWeidu);
+        editTextList.add(etWeizhi);
+        editTextList.add(etDianhua1);
+        editTextList.add(etDianhua2);
+        editTextList.add(etDianhua3);
+        editTextList.add(etDianhua4);
+        editTextList.add(etDianhua5);
+        editTextList.add(etDianhua6);
+
         if (user_level == 10) {
             rlSet.setVisibility(View.VISIBLE);
             ivSet.setBackgroundResource(R.mipmap.update);
+        } else {
+            //不能编辑
+            isNotEdit(editTextList);
         }
 
-        List<UserCompanyInfoResp.UserCompanyInfo> dataList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            UserCompanyInfoResp.UserCompanyInfo companyInfo = new UserCompanyInfoResp().new UserCompanyInfo();
-            companyInfo.setName("name");
-            companyInfo.setValue("value" + i);
-            dataList.add(companyInfo);
-        }
-         adapter = new UserUpdateCompanyListAdapter(activity, dataList);
-        lvContent.setAdapter(adapter);
+        uint_no = intent.getStringExtra(Constant.UNIT_NO);
 
-        uint_id = intent.getStringExtra("unit_id");
-
-
-
-//        http(uint_id, user_level);
+        //查询单位信息
+        queryCompanyInfo(uint_no);
     }
 
     @Override
@@ -102,31 +136,34 @@ public class UserCompanyInfoActivity extends BaseActivity {
             }
         });
 
-        //修改单位信息
+        //修改
         rlSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<UserCompanyInfoResp.UserCompanyInfo> temp = adapter.getUpdateData();
-                for (int i = 0; i < temp.size(); i++) {
-                    Log.i("http", "=======" + temp.get(i).getValue() + "=====");
+                boolean isEditNull = isEditNull();
+                if (isEditNull) {
+                    showToast("请确认是否有值未填写!");
+                } else {
+                    update();
                 }
+
             }
         });
     }
 
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-    }
-
-    public void http(String unit_id, final int user_level) {
+    /**
+     * 查询单位信息
+     *
+     * @param unit_no
+     */
+    public void queryCompanyInfo(String unit_no) {
 
         if (hasNetWork()) {
 
             HashMap<String, String> map = new HashMap<>();
-            map.put("unit_no", unit_id);
+            map.put("unit_no", unit_no);
 
-            httpLoadingDialog.visible();
+            httpLoadingDialog.visible("修改中...");
 
             HttpManager.postAsyn(HttpConstant.QUERY_COMPANY, new HttpManager.ResultCallback<UserCompanyInfoResp>() {
                 @Override
@@ -137,19 +174,123 @@ public class UserCompanyInfoActivity extends BaseActivity {
                 @Override
                 public void onResponse(UserCompanyInfoResp response) {
                     if (response != null && response.getState() == 200) {
-                        if (user_level == 10) {
-                            UserUpdateCompanyListAdapter adapter = new UserUpdateCompanyListAdapter(activity, response.getResult().getCompany());
-                            lvContent.setAdapter(adapter);
-                        } else {
-                            UserCompanyInfoListAdapter adapter = new UserCompanyInfoListAdapter(activity, response.getResult().getCompany());
-                            lvContent.setAdapter(adapter);
-                        }
+                        UserCompanyInfoResp companyInfo = response.getResult();
+                        tvBianhao.setText(companyInfo.getUnit_no());
+                        etName.setText(companyInfo.getUnit_name());
+                        etJingdu.setText(companyInfo.getUnit_long());
+                        etWeidu.setText(companyInfo.getUnit_lat());
+                        etWeizhi.setText(companyInfo.getAddress());
+                        etDianhua1.setText(companyInfo.getUnit_tel1());
+                        etDianhua2.setText(companyInfo.getUnit_tel2());
+                        etDianhua3.setText(companyInfo.getUnit_tel3());
+                        etDianhua4.setText(companyInfo.getUnit_tel4());
+                        etDianhua5.setText(companyInfo.getUnit_tel5());
+                        etDianhua6.setText(companyInfo.getUnit_tel6());
+                        tvDtuNum.setText(companyInfo.getDtu_num());
+
+                        UserCompanyInfoListAdapter adapter = new UserCompanyInfoListAdapter(activity, response.getResult().getDtu());
+                        lvContent.setAdapter(adapter);
+
                     }
                     httpLoadingDialog.dismiss();
                 }
             }, map);
 
         }
+    }
+
+    /**
+     * 修改单位信息
+     */
+    public void update() {
+        if (hasNetWork()) {
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("unit_name", getText(etName));
+            map.put("unit_address", getText(etWeizhi));
+            map.put("unit_long", getText(etJingdu));
+            map.put("unit_lat", getText(etWeidu));
+            map.put("unit_tel1", getText(etDianhua1));
+            map.put("unit_tel2", getText(etDianhua2));
+            map.put("unit_tel3", getText(etDianhua3));
+            map.put("unit_tel4", getText(etDianhua4));
+            map.put("unit_tel5", getText(etDianhua5));
+            map.put("unit_tel6", getText(etDianhua6));
+
+            httpLoadingDialog.visible();
+
+            HttpManager.postAsyn(HttpConstant.UPDATE_COMPANY, new HttpManager.ResultCallback<CommonResponse>() {
+                @Override
+                public void onError(Request request, Exception e) {
+                    httpLoadingDialog.dismiss();
+                }
+
+                @Override
+                public void onResponse(CommonResponse response) {
+                    if (response.getState() == 200) {
+                        showToast("修改成功");
+                    }
+                    httpLoadingDialog.dismiss();
+                }
+            }, map);
+
+        }
+    }
+
+
+    /**
+     * 是否可以编辑
+     *
+     * @param editText
+     */
+    public void isNotEdit(List<EditText> editText) {
+        for (int i = 0; i < editText.size(); i++) {
+            editText.get(i).setFocusable(false);
+            editText.get(i).setBackgroundResource(0);
+        }
+    }
+
+    /**
+     * 是否为空 true 表示有空值
+     */
+    public boolean isEditNull() {
+        if (isEmpty(etName)) {
+            return true;
+        }
+
+        if (isEmpty(etWeizhi)) {
+            return true;
+        }
+
+        if (isEmpty(etJingdu)) {
+            return true;
+        }
+
+        if (isEmpty(etWeidu)) {
+            return true;
+        }
+
+        if (isEmpty(etDianhua1)) {
+            return true;
+        }
+
+        if (isEmpty(etDianhua2)) {
+            return true;
+        }
+        if (isEmpty(etDianhua3)) {
+            return true;
+        }
+        if (isEmpty(etDianhua4)) {
+            return true;
+        }
+        if (isEmpty(etDianhua5)) {
+            return true;
+        }
+
+        if (isEmpty(etDianhua6)) {
+            return true;
+        }
+        return false;
     }
 
     @Override

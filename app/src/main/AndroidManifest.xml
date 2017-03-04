@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.sixe.dtu"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sixe.dtu">
 
     <!-- 允许程序访问网络连接，可能产生GPRS流量 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 允许程序获取网络信息状态，如当前的网络连接是否有效 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许程序获取当前WiFi接入的状态以及WLAN热点的信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".AppApplication"
@@ -28,25 +28,76 @@
             android:name=".vm.user.UserLoginActivity"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <!--测试类-->
         <activity
             android:name=".vm.user.UserTestActivity"
-            android:theme="@style/ColorTranslucentTheme"></activity>
+            android:theme="@style/ColorTranslucentTheme">
+        </activity>
 
         <!--单位信息-->
         <activity
             android:name=".vm.user.UserCompanyInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
-        <!--修改单位信息-->
+        <!--我的信息-->
         <activity
-            android:name=".vm.user.UserUpdateCompanyActivity"
+            android:name=".vm.user.UserPersonActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--修改我的信息-->
+        <activity
+            android:name=".vm.user.UserUpdatePersonActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--修改密码-->
+        <activity
+            android:name=".vm.user.UserUpdatePasswordActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--单位用户管理-->
+        <activity
+            android:name=".vm.user.UserStaffManagerActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--员工详情-->
+        <activity
+            android:name=".vm.user.UserStaffInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--修改员工详情-->
+        <activity
+            android:name=".vm.user.UserUpdateStaffInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--修改员工密码-->
+        <activity
+            android:name=".vm.user.UserUpdateStaffPwdActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--添加员工信息-->
+        <activity
+            android:name=".vm.user.UserAddStaffActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--查看所有dtu信息-->
+        <activity
+            android:name=".vm.dtu.info.DtuAllInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--dtu数据-->
+        <activity
+            android:name=".vm.dtu.info.DtuDataInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--dtu状态-->
+        <activity
+            android:name=".vm.dtu.info.DtuStatusActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
 

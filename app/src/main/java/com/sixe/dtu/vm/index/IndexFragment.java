@@ -28,12 +28,15 @@ import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.index.IndexMenuListAdapter;
 import com.sixe.dtu.vm.test.UserResp;
 import com.sixe.dtu.vm.user.UserLoginActivity;
+import com.sixe.dtu.vm.user.UserPersonActivity;
 import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.media.CamcorderProfile.get;
 
 /**
  * 首页
@@ -96,9 +99,21 @@ public class IndexFragment extends BaseFragment {
                 activity.finish();
             }
         });
+        //我的信息
+        sdvHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(UserPersonActivity.class);
+            }
+        });
     }
 
 
+    /**
+     * 初始化菜单栏数据
+     *
+     * @param userLoginResp
+     */
     public void httpMenu(UserLoginResp userLoginResp) {
 
         if (userLoginResp != null) {
@@ -115,6 +130,7 @@ public class IndexFragment extends BaseFragment {
                 List<UserLoginResp.Company> company = userLoginResp.getResult().getUnits();
                 String[] parentList = new String[company.size()];
 
+
                 for (int i = 0; i < company.size(); i++) {
                     List<UserLoginResp.Company> childrenList = new ArrayList<>();
 
@@ -127,6 +143,8 @@ public class IndexFragment extends BaseFragment {
                     if (user_level == 10) {
                         childMenu.add("用户信息维护");
                     }
+
+                    childMenu.add("全部dtu信息");
                     childMenu.add("dtu维护");
 
                     company1.setChildMenuName(childMenu);
@@ -135,6 +153,7 @@ public class IndexFragment extends BaseFragment {
 
                     dataset.put(parentList[i], childrenList);
                 }
+
                 IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);
                 elvMenu.setAdapter(adapter);
 

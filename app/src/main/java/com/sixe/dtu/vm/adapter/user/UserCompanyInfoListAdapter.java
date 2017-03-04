@@ -20,13 +20,13 @@ import cn.trinea.android.common.adapter.CommonAdapter;
  * Created by liu on 17/2/28.
  */
 
-public class UserCompanyInfoListAdapter extends CommonAdapter<UserCompanyInfoResp.UserCompanyInfo> {
+public class UserCompanyInfoListAdapter extends CommonAdapter<UserCompanyInfoResp.DtuInfo> {
 
     private TextView tvName;
     private TextView tvValue;
     private LinearLayout llContent;
 
-    public UserCompanyInfoListAdapter(Activity activity, List<UserCompanyInfoResp.UserCompanyInfo> list) {
+    public UserCompanyInfoListAdapter(Activity activity, List<UserCompanyInfoResp.DtuInfo> list) {
         super(activity, list);
     }
 
@@ -41,15 +41,14 @@ public class UserCompanyInfoListAdapter extends CommonAdapter<UserCompanyInfoRes
         tvValue = findView(convertView, R.id.tv_value);
         llContent = findView(convertView, R.id.ll_content);
 
-        tvName.setText(list.get(position).getName());
-        tvValue.setText(list.get(position).getValue());
+        tvName.setText("dtu" + (position + 1));
+        tvValue.setText(list.get(position).getDtu_sn());
 
         if (position % 2 == 0) {
             llContent.setBackgroundColor(getColor(R.color.color_d5edf8));
         } else {
             llContent.setBackgroundColor(getColor(R.color.color_f5f5f5));
         }
-
 
         return convertView;
     }

@@ -15,11 +15,85 @@ public class HttpConstant {
      */
     public static final String LOGIN = BASE_URL + "/php/check_usr.php";
 
+    /**
+     * 2.	查看用户个人信息
+     */
+    public static final String QUERY_USER_INFO = BASE_URL + "/php/querry_user_info.php";
+
+    /**
+     * 3.	修改用户个人信息
+     */
+    public static final String UPDATE_USER_INFO = BASE_URL + "/php/update_user_info.php";
+
+    /**
+     * 4.	用户密码修改
+     */
+    public static final String UPDATE_USER_PWD = BASE_URL + "/php/update_user_pwd.php";
 
     /**
      * 5.	单位信息查询
      */
     public static final String QUERY_COMPANY = BASE_URL + "/php/querry_unit_info.php";
+
+    /**
+     * 6.	修改单位信息（管理员操作）
+     */
+    public static final String UPDATE_COMPANY = BASE_URL + "/php/update_unit_info.php";
+
+    /**
+     * 7.	查询本单位所有用户信息(管理员操作)
+     */
+    public static final String QUERRY_ALL_USERS_INFO = BASE_URL + "/php/querry_all_users_info.php";
+
+    /**
+     * 8.	查询本单位所有用户信息(管理员操作)
+     */
+    public static final String UPDATE_USER_INFO_BY_HOST = BASE_URL + "/php/update_user_info_by_host.php";
+
+    /**
+     * 9.	修改本单位用户密码(管理员操作)
+     */
+    public static final String UPDATE_USER_PWD_BY_HOST = BASE_URL + "/php/update_user_pwd_by_host.php";
+
+    /**
+     * 10.	添新增单位用户(管理员操作)
+     */
+    public static final String ADD_USER = BASE_URL + "/php/add_user.php";
+
+    /**
+     * 11.	删除用户(管理员操作)
+     */
+    public static final String DEL_USER = BASE_URL + "/php/del_user.php";
+
+    /**
+     * 12.	查询单位信息 - 添加员工的时候所用
+     */
+    public static final String QUERT_COMPANY_INFO = BASE_URL + "/php/querry_user_info2.php";
+
+    /**
+     * 13.	查询dtu信息
+     */
+    public static final String QUERRY_UNIT_INFO2 = BASE_URL + "/php/querry_unit_info2.php";
+
+    /**
+     * 14.	实时查询dtu数据
+     */
+    public static final String QUERRY_DTU_REALDATA = BASE_URL + "/php/querry_dtu_realdata.php";
+
+    /**
+     * 15.	分组数据
+     */
+    public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_groupdata.php";
+
+    /**
+     * 16.	分组数据
+     */
+    public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_groupinfo.php";
+
+    /**
+     * 17.	dtu状态
+     */
+    public static final String QUERRY_DTU_STATE = BASE_URL + "/php/querry_dtu_state.php";
 
 
 }

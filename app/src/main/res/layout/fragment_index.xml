@@ -87,24 +87,38 @@
 
         </LinearLayout>
 
-        <ExpandableListView
-            android:groupIndicator="@null"
-            android:id="@+id/elv_menu"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="vertical">
 
+            <ExpandableListView
+                android:id="@+id/elv_menu"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:groupIndicator="@null" />
 
-        <TextView
-            android:id="@+id/tv_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
-            android:text="退出登录"
-            android:textColor="@color/color_1196db"
-            android:textSize="16sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_eeeeee"></View>
 
+            <TextView
+                android:id="@+id/tv_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="15dp"
+                android:drawableLeft="@mipmap/out"
+                android:gravity="center"
+                android:text="  退出登录"
+                android:textColor="@color/color_323232"
+                android:textSize="14sp" />
 
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -3,10 +3,11 @@ package com.sixe.dtu.http.entity.user;
 import com.sixe.dtu.http.util.CommonResponse;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用户登录返回
+ * 用户登录 - 返回
  * Created by liu on 17/2/25.
  */
 
@@ -55,7 +56,7 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
         private String unit_no;//公司编号：注意，此编号唯一
         private String unit_name;//公司名
         private String dtu_num;//公司名下的dtu数量最大64个
-        private List<DtuName> dtu;//dtu信息
+        private ArrayList<DtuName> dtu;//dtu信息
 
         public List<String> getChildMenuName() {
             return childMenuName;
@@ -65,11 +66,11 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
             this.childMenuName = childMenuName;
         }
 
-        public List<DtuName> getDtu() {
+        public ArrayList<DtuName> getDtu() {
             return dtu;
         }
 
-        public void setDtu(List<DtuName> dtu) {
+        public void setDtu(ArrayList<DtuName> dtu) {
             this.dtu = dtu;
         }
 
@@ -97,24 +98,24 @@ public class UserLoginResp extends CommonResponse<UserLoginResp> implements Seri
             this.dtu_num = dtu_num;
         }
 
-        class DtuName implements Serializable{
-            private String dtu1_name;//dtu名字
-            private String dtu1_sn;//dtu编号
+        public class DtuName implements Serializable{
+            private String dtu_name;//dtu名字
+            private String dtu_sn;//dtu编号
 
-            public String getDtu1_name() {
-                return dtu1_name;
+            public String getDtu_name() {
+                return dtu_name;
             }
 
-            public void setDtu1_name(String dtu1_name) {
-                this.dtu1_name = dtu1_name;
+            public void setDtu_name(String dtu_name) {
+                this.dtu_name = dtu_name;
             }
 
-            public String getDtu1_sn() {
-                return dtu1_sn;
+            public String getDtu_sn() {
+                return dtu_sn;
             }
 
-            public void setDtu1_sn(String dtu1_sn) {
-                this.dtu1_sn = dtu1_sn;
+            public void setDtu_sn(String dtu_sn) {
+                this.dtu_sn = dtu_sn;
             }
         }
     }
