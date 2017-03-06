@@ -45,6 +45,8 @@ public class UserAddStaffActivity extends BaseActivity {
     private String selectUnitId;//选中的单位id
     private String selectUserLevel;//选中的用户等级
 
+    private String unit_no;//单位编号
+
     private HttpLoadingDialog httpLoadingDialog;
 
     @Override
@@ -72,6 +74,8 @@ public class UserAddStaffActivity extends BaseActivity {
     @Override
     public void initData(Intent intent) {
         toolbar.setNavigationIcon(R.mipmap.white_back);
+
+        unit_no = intent.getExtras().getString(Constant.UNIT_NO);
 
         String[] userLevelList = new String[]{"高级用户", "普通用户"};
         UserStaffSpinnerAdapter adapter = new UserStaffSpinnerAdapter(activity, userLevelList);
@@ -113,10 +117,10 @@ public class UserAddStaffActivity extends BaseActivity {
         user_level.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position==0) {
-                    selectUserLevel ="11";
-                }else {
-                    selectUserLevel ="12";
+                if (position == 0) {
+                    selectUserLevel = "11";
+                } else {
+                    selectUserLevel = "12";
                 }
 
             }
@@ -190,10 +194,10 @@ public class UserAddStaffActivity extends BaseActivity {
                     return;
                 }
 
-                if (isEmpty(selectUnitId)) {
-                    showToast("请选择所属单位");
-                    return;
-                }
+//                if (isEmpty(selectUnitId)) {
+//                    showToast("请选择所属单位");
+//                    return;
+//                }
 
                 if (isEmpty(selectUserLevel)) {
                     showToast("请选择用户等级");
@@ -214,7 +218,7 @@ public class UserAddStaffActivity extends BaseActivity {
                 map.put("host_user_id", host_user_id);
                 map.put("user_id", getText(user_id));
                 map.put("pwd", getText(pwd));
-                map.put("unit_no", selectUnitId);
+                map.put("unit_no", unit_no);
                 map.put("user_level", selectUserLevel);
                 map.put("user_full_name", getText(user_full_name));
                 map.put("user_describ", getText(user_describ));

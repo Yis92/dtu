@@ -25,24 +25,33 @@
         </activity>
         <!-- 登录 -->
         <activity
+            android:launchMode="singleTask"
             android:name=".vm.user.UserLoginActivity"
             android:theme="@style/ColorTranslucentTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <!--测试类-->
         <activity
             android:name=".vm.user.UserTestActivity"
             android:theme="@style/ColorTranslucentTheme">
+
         </activity>
 
         <!--单位信息-->
         <activity
             android:name=".vm.user.UserCompanyInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
+        <!--修改单位信息-->
+        <activity
+            android:name=".vm.user.UserUpdateCompanyInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--我的信息-->

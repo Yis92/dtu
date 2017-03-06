@@ -85,7 +85,9 @@ public class UserStaffManagerActivity extends BaseActivity {
         rlSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(UserAddStaffActivity.class,1);
+                Bundle bundle = new Bundle();
+                bundle.putString(Constant.UNIT_NO,unit_no);
+                startActivity(UserAddStaffActivity.class,bundle,1);
             }
         });
     }

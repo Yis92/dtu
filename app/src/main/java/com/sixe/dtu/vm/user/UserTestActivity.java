@@ -1,13 +1,21 @@
 package com.sixe.dtu.vm.user;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
@@ -71,11 +79,30 @@ public class UserTestActivity extends BaseActivity {
             llNews.addView(textView);
 
             for (int j = 0; j < resp.getImages().size(); j++) {
-                ImageView imageView = new ImageView(activity);
+                final ImageView imageView = new ImageView(activity);
                 LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(ListView.LayoutParams.MATCH_PARENT, ListView.LayoutParams.WRAP_CONTENT);
                 imageView.setLayoutParams(params2);
-                imageView.setBackgroundResource(R.mipmap.caidan);
+//                imageView.setImageBitmap(imageLoader.loadImageSync(resp.getImages().get(j)));
 //                imageLoader.displayImage(resp.getImages().get(j), imageView);
+
+                Glide.with(activity).load(resp.getImages().get(j)).asBitmap().into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+
+                        WindowManager wm = (WindowManager) activity
+                                .getSystemService(Context.WINDOW_SERVICE);
+
+                        int width = wm.getDefaultDisplay().getWidth();
+
+                        int height = width * resource.getHeight() / resource.getWidth();
+                        ViewGroup.LayoutParams para = imageView.getLayoutParams();
+                        para.height = height;
+                        imageView.setLayoutParams(para);
+
+                        imageView.setImageBitmap(resource);
+                    }
+                });
+
                 llNews.addView(imageView);
             }
         }
@@ -88,7 +115,7 @@ public class UserTestActivity extends BaseActivity {
         textData.add("qweee");
         textData.add("qweee");
 
-        UserTestAdapter adapter = new UserTestAdapter(activity,textData);
+        UserTestAdapter adapter = new UserTestAdapter(activity, textData);
         listView.setAdapter(adapter);
     }
 

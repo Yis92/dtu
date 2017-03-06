@@ -51,10 +51,10 @@
 
 
         <EditText
-            android:layout_margin="5dp"
             android:id="@+id/user_id"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"
@@ -85,10 +85,10 @@
             android:background="@android:color/white" />
 
         <EditText
-            android:layout_margin="5dp"
             android:id="@+id/pwd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"
@@ -102,7 +102,8 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/color_f5f5f5"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="0dp"
@@ -119,24 +120,24 @@
             android:background="@android:color/white" />
 
         <!--<EditText-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:id="@+id/unit_id"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/shape_et_bg"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="@color/color_666666"-->
-            <!--android:textSize="14sp" />-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/unit_id"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/shape_et_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="@color/color_666666"-->
+        <!--android:textSize="14sp" />-->
 
         <Spinner
-            android:foregroundGravity="center"
             android:id="@+id/unit_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:foregroundGravity="center"
             android:gravity="center" />
 
     </LinearLayout>
@@ -145,7 +146,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/color_d5edf8"
+        android:background="@color/color_f5f5f5"
         android:orientation="horizontal">
 
         <TextView
@@ -163,24 +164,24 @@
             android:background="@android:color/white" />
 
         <!--<EditText-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:id="@+id/user_level"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/shape_et_bg"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="@color/color_666666"-->
-            <!--android:textSize="14sp" />-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/user_level"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/shape_et_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="@color/color_666666"-->
+        <!--android:textSize="14sp" />-->
 
         <Spinner
-            android:foregroundGravity="center"
             android:id="@+id/user_level"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:foregroundGravity="center"
             android:gravity="center" />
 
     </LinearLayout>
@@ -189,7 +190,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/color_f5f5f5"
+        android:background="@color/color_d5edf8"
         android:orientation="horizontal">
 
         <TextView
@@ -207,10 +208,10 @@
             android:background="@android:color/white" />
 
         <EditText
-            android:layout_margin="5dp"
             android:id="@+id/user_full_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"
@@ -223,7 +224,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/color_d5edf8"
+        android:background="@color/color_f5f5f5"
         android:orientation="horizontal">
 
         <TextView
@@ -241,10 +242,10 @@
             android:background="@android:color/white" />
 
         <EditText
-            android:layout_margin="5dp"
             android:id="@+id/user_describ"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape_et_bg"
             android:gravity="center"

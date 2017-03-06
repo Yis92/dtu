@@ -3,40 +3,29 @@ package com.sixe.dtu.vm.index;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
-import com.sixe.dtu.MainActivity;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
+import com.sixe.dtu.http.entity.index.IndexMenu;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
-import com.sixe.dtu.http.util.HttpConstant;
-import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.index.IndexMenuListAdapter;
-import com.sixe.dtu.vm.test.UserResp;
 import com.sixe.dtu.vm.user.UserLoginActivity;
 import com.sixe.dtu.vm.user.UserPersonActivity;
-import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.media.CamcorderProfile.get;
 
 /**
  * 首页
@@ -81,7 +70,6 @@ public class IndexFragment extends BaseFragment {
         httpMenu(userLoginResp);
     }
 
-
     @Override
     public void initEvents() {
         //打开菜单
@@ -108,7 +96,6 @@ public class IndexFragment extends BaseFragment {
         });
     }
 
-
     /**
      * 初始化菜单栏数据
      *
@@ -117,6 +104,7 @@ public class IndexFragment extends BaseFragment {
     public void httpMenu(UserLoginResp userLoginResp) {
 
         if (userLoginResp != null) {
+
             if (userLoginResp.getState() == 200) {
 
                 //用户等级-  10：公司管理员，11：高级用户，12：普通用户
@@ -126,37 +114,60 @@ public class IndexFragment extends BaseFragment {
                 tvName.setText("欢迎" + userLoginResp.getResult().getUser_id());
 
                 //单位信息
-                Map<String, List<UserLoginResp.Company>> dataset = new HashMap<>();
+                Map<String, IndexMenu> dataset = new HashMap<>();
+
+                //获取接口返回的单位信息
                 List<UserLoginResp.Company> company = userLoginResp.getResult().getUnits();
+
+                //父菜单集合
                 String[] parentList = new String[company.size()];
 
-
                 for (int i = 0; i < company.size(); i++) {
-                    List<UserLoginResp.Company> childrenList = new ArrayList<>();
-
-                    UserLoginResp.Company company1 = new UserLoginResp().new Company();
-
-                    List<String> childMenu = new ArrayList<>();
+                    //父菜单名字
                     parentList[i] = company.get(i).getUnit_name();
 
-                    childMenu.add("单位信息维护");
+                    //子菜单信息
+                    IndexMenu chileMenu = new IndexMenu();
+
+                    //dtu信息
+                    List<UserLoginResp.Company.DtuName> dtuNames = company.get(i).getDtu();
+
+                    List<String> childName = new ArrayList<>();//子菜单名字
+                    List<String> childId = new ArrayList<>();//子菜单id
+
+                    //单位编号
+                    String unit_no = company.get(i).getUnit_no();
+
+                    childName.add("单位信息维护");
+                    childId.add(company.get(i).getUnit_no());
+
                     if (user_level == 10) {
-                        childMenu.add("用户信息维护");
+                        childName.add("用户信息维护");
+                        childId.add(unit_no);
                     }
 
-                    childMenu.add("全部dtu信息");
-                    childMenu.add("dtu维护");
+                    childName.add("dtu维护");
+                    childId.add(unit_no);
 
-                    company1.setChildMenuName(childMenu);
-                    company1.setUnit_no(company.get(i).getUnit_no());//公司编号
-                    childrenList.add(company1);
+                    childName.add("全部dtu信息");
+                    childId.add(unit_no);
 
-                    dataset.put(parentList[i], childrenList);
+                    //循环遍历出子菜单中dtu的名字与编号
+                    for (int j = 0; j < dtuNames.size(); j++) {
+                        childName.add(dtuNames.get(j).getDtu_name());
+                        childId.add(dtuNames.get(j).getDtu_name());
+                    }
+
+                    chileMenu.setName(childName);//公司名称
+                    chileMenu.setId(childId);//公司编号
+
+                    dataset.put(parentList[i], chileMenu);
                 }
 
                 IndexMenuListAdapter adapter = new IndexMenuListAdapter(activity, dataset, parentList);
                 elvMenu.setAdapter(adapter);
 
+                //点击子菜单关闭DrawLayout
                 adapter.setOnClickMenuItem(new IndexMenuListAdapter.OnClickMenuItem() {
                     @Override
                     public void onClickMenuItem() {

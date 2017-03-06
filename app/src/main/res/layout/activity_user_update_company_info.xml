@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_public_title" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:background="@color/color_1196db"
+        android:theme="@style/Theme.ToolBar.ZhiHu"
+        toolbar:titleTextAppearance="@dimen/dimen_18"
+        toolbar:titleTextColor="@color/color_white">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="修改单位信息"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,75 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="项目"
-                    android:textColor="@color/color_666666"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"></View>
-
-                <TextView
-                    android:id="@+id/tv_value"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:text="数值"
-                    android:textColor="@color/color_666666"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <include layout="@layout/layout_divider_tint"></include>
-
-            <!--公司编号-->
-            <LinearLayout
-                android:id="@+id/ll_content"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/color_d5edf8"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="公司编号"
-                    android:textColor="@color/color_666666"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"></View>
-
-                <TextView
-                    android:id="@+id/tv_bianhao"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:textColor="@color/color_666666"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
 
             <!--公司名称-->
             <LinearLayout
@@ -107,15 +57,15 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="12333"
                     android:textColor="@color/color_666666"
                     android:textSize="14sp" />
 
@@ -142,12 +92,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_jingdu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -177,12 +128,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_weidu"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -212,12 +164,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_weizhi"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -247,12 +200,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -282,12 +236,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -317,12 +272,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -352,12 +308,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -387,12 +344,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -422,12 +380,13 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"></View>
 
-                <TextView
+                <EditText
                     android:id="@+id/et_dianhua6"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="3"
+                    android:background="@drawable/shape_et_bg"
                     android:gravity="center"
                     android:singleLine="true"
                     android:text="12333"
@@ -436,45 +395,20 @@
 
             </LinearLayout>
 
-            <!--dtu数量-->
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/color_f5f5f5"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="dtu数量"
-                    android:textColor="@color/color_666666"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/white"></View>
-
-                <TextView
-                    android:id="@+id/tv_dtu_num"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:textColor="@color/color_666666"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <com.sixe.dtu.widget.ScrollListView
-                android:id="@+id/lv_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_marginRight="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="@drawable/selector_bg_green"
+                android:text="提交"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_16" />
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

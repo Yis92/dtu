@@ -2,28 +2,22 @@ package com.sixe.dtu.vm.adapter.index;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.constant.Constant;
-import com.sixe.dtu.http.entity.user.UserLoginResp;
+import com.sixe.dtu.http.entity.index.IndexMenu;
 import com.sixe.dtu.vm.dtu.info.DtuAllInfoActivity;
 import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
 import com.sixe.dtu.vm.user.UserStaffManagerActivity;
 
-import java.util.List;
 import java.util.Map;
-
 /**
  * 菜单
  * Created by liu on 17/2/27.
@@ -32,10 +26,10 @@ import java.util.Map;
 public class IndexMenuListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private Map<String, List<UserLoginResp.Company>> dataset;
+    private Map<String, IndexMenu> dataset;
     private String[] parentList;
 
-    public IndexMenuListAdapter(Context context, Map<String, List<UserLoginResp.Company>> dataset, String[] parentList) {
+    public IndexMenuListAdapter(Context context, Map<String, IndexMenu> dataset, String[] parentList) {
         this.context = context;
         this.dataset = dataset;
         this.parentList = parentList;
@@ -44,7 +38,7 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的某个子项
     @Override
     public Object getChild(int parentPos, int childPos) {
-        return dataset.get(parentList[parentPos]).get(childPos);
+        return dataset.get(parentList[parentPos]);
     }
 
     //  获得父项的数量
@@ -56,7 +50,7 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
     //  获得某个父项的子项数目
     @Override
     public int getChildrenCount(int parentPos) {
-        return dataset.get(parentList[parentPos]).get(0).getChildMenuName().size();
+        return dataset.get(parentList[parentPos]).getName().size();
     }
 
     //  获得某个父项
@@ -123,12 +117,12 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
             ivMenu.setBackgroundResource(R.mipmap.menu_danwei);
         } else if (childPos == 2) {
             ivMenu.setBackgroundResource(R.mipmap.menu_shebei);
-        }else {
+        } else {
             ivMenu.setBackgroundResource(R.mipmap.menu_weihu);
         }
 
         LinearLayout llChildContent = (LinearLayout) view.findViewById(R.id.ll_ciled_content);
-        text.setText(dataset.get(parentList[parentPos]).get(0).getChildMenuName().get(childPos));
+        text.setText(dataset.get(parentList[parentPos]).getName().get(childPos));
 
         llChildContent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,17 +131,17 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
                 switch (childName) {
                     case "单位信息维护":
                         Intent intent = new Intent(context, UserCompanyInfoActivity.class);
-                        intent.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
+                        intent.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
                         context.startActivity(intent);
                         break;
                     case "用户信息维护":
                         Intent intent2 = new Intent(context, UserStaffManagerActivity.class);
-                        intent2.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
+                        intent2.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
                         context.startActivity(intent2);
                         break;
                     case "全部dtu信息":
                         Intent intent3 = new Intent(context, DtuAllInfoActivity.class);
-                        intent3.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).get(0).getUnit_no());
+                        intent3.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
                         intent3.putExtra(Constant.UNIT_NAME, parentList[parentPos]);
                         context.startActivity(intent3);
                         break;

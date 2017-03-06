@@ -13,7 +13,8 @@ public class HttpConstant {
     /**
      * 1.	登录
      */
-    public static final String LOGIN = BASE_URL + "/php/check_usr.php";
+//    public static final String LOGIN = BASE_URL + "/php/check_usr.php";
+    public static final String LOGIN = BASE_URL + "/php/check_user.php";
 
     /**
      * 2.	查看用户个人信息
@@ -78,17 +79,20 @@ public class HttpConstant {
     /**
      * 14.	实时查询dtu数据
      */
-    public static final String QUERRY_DTU_REALDATA = BASE_URL + "/php/querry_dtu_realdata.php";
+//    public static final String QUERRY_DTU_REALDATA = BASE_URL + "/php/querry_dtu_realdata.php";
+    public static final String QUERRY_DTU_REALDATA = BASE_URL + "/php/querry_dtu_real_data.php";
 
     /**
      * 15.	分组数据
      */
-    public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_groupdata.php";
+//    public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_groupdata.php";
+    public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_group_data.php";
 
     /**
      * 16.	分组数据
      */
-    public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_groupinfo.php";
+//    public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_groupinfo.php";
+    public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_group_info.php";
 
     /**
      * 17.	dtu状态
