@@ -18,6 +18,7 @@ import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
 import com.sixe.dtu.vm.user.UserStaffManagerActivity;
 
 import java.util.Map;
+
 /**
  * 菜单
  * Created by liu on 17/2/27.
@@ -124,6 +125,9 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
         LinearLayout llChildContent = (LinearLayout) view.findViewById(R.id.ll_ciled_content);
         text.setText(dataset.get(parentList[parentPos]).getName().get(childPos));
 
+        //dtu id或者是单位编号
+        final String id = dataset.get(parentList[parentPos]).getId().get(childPos);
+
         llChildContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,26 +135,38 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
                 switch (childName) {
                     case "单位信息维护":
                         Intent intent = new Intent(context, UserCompanyInfoActivity.class);
-                        intent.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
+                        intent.putExtra(Constant.UNIT_NO, id);
                         context.startActivity(intent);
+
+                        //关闭DrawLayout
+                        onClickMenuItem.onClickMenuItem(false,"");
                         break;
                     case "用户信息维护":
                         Intent intent2 = new Intent(context, UserStaffManagerActivity.class);
-                        intent2.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
+                        intent2.putExtra(Constant.UNIT_NO, id);
                         context.startActivity(intent2);
+
+                        //关闭DrawLayout
+                        onClickMenuItem.onClickMenuItem(false,"");
                         break;
                     case "全部dtu信息":
                         Intent intent3 = new Intent(context, DtuAllInfoActivity.class);
-                        intent3.putExtra(Constant.UNIT_NO, dataset.get(parentList[parentPos]).getId().get(childPos));
+                        intent3.putExtra(Constant.UNIT_NO, id);
                         intent3.putExtra(Constant.UNIT_NAME, parentList[parentPos]);
                         context.startActivity(intent3);
+
+                        //关闭DrawLayout
+                        onClickMenuItem.onClickMenuItem(false,"");
                         break;
                     case "dtu维护":
                         break;
+                    default:
+                        //关闭DrawLayout
+                        onClickMenuItem.onClickMenuItem(true,id);
+                        break;
                 }
 
-                //关闭DrawLayout
-                onClickMenuItem.onClickMenuItem();
+
             }
         });
         return view;
@@ -170,6 +186,6 @@ public class IndexMenuListAdapter extends BaseExpandableListAdapter {
     }
 
     public interface OnClickMenuItem {
-        void onClickMenuItem();
+        void onClickMenuItem(boolean isDtu,String id);
     }
 }

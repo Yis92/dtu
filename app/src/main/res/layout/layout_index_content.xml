@@ -1,7 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <!--加载进度-->
+    <RelativeLayout
+        android:id="@+id/rl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/load" />
+
+    </RelativeLayout>
+
+    <!--公司介绍-->
+    <LinearLayout
+        android:id="@+id/ll_company_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="公司介绍"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <!--dtu详情-->
+    <LinearLayout
+        android:id="@+id/ll_dtu_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_45"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/color_45c717"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/color_45c717"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearanceInverse"
+            app:tabTextColor="@color/color_666666" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>

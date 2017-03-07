@@ -2,6 +2,11 @@ package com.sixe.dtu.vm.index;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -18,6 +25,7 @@ import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.index.IndexMenu;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
+import com.sixe.dtu.vm.adapter.dtu.DtuDataInfoTabLayoutAdapter;
 import com.sixe.dtu.vm.adapter.index.IndexMenuListAdapter;
 import com.sixe.dtu.vm.user.UserLoginActivity;
 import com.sixe.dtu.vm.user.UserPersonActivity;
@@ -41,7 +49,18 @@ public class IndexFragment extends BaseFragment {
     private ExpandableListView elvMenu;
     private TextView tvExit;//退出登录
 
-    private HttpLoadingDialog httpLoadingDialog;
+    //加载进度、公司详情、dtu详情、三选一展示
+    private RelativeLayout rlLoad;
+    private LinearLayout llCompanyDetail;
+    private LinearLayout llDtuDetail;
+
+    //导航栏、dtu内容详情
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+
+    private String dtu_sn;//dtu编号
+
+    private Handler handler = new Handler();
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -50,7 +69,6 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     public void initBoot() {
-        httpLoadingDialog = new HttpLoadingDialog(activity);
     }
 
     @Override
@@ -61,13 +79,32 @@ public class IndexFragment extends BaseFragment {
         drawerLayout = findView(R.id.drawer_layout);
         elvMenu = findView(R.id.elv_menu);
         tvExit = findView(R.id.tv_exit);
+
+        rlLoad = findView(R.id.rl_load);
+        llCompanyDetail = findView(R.id.ll_company_detail);
+        llDtuDetail = findView(R.id.ll_dtu_detail);
+
+        mTabLayout = findView(R.id.tab_layout);
+        mViewPager = findView(R.id.view_pager);
     }
 
     @Override
     public void initData(Bundle bundle) {
+        //获取登录后传递来的数据,用于菜单栏展示
         UserLoginResp userLoginResp = (UserLoginResp) bundle.getSerializable(Constant.USER_INFO);
         sdvHead.setImageURI(Uri.parse("http://img9.3lian.com/c1/vec2015/34/13.jpg"));
-        httpMenu(userLoginResp);
+
+        //加载菜单栏
+        loadMenu(userLoginResp);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rlLoad.setVisibility(View.GONE);
+                llCompanyDetail.setVisibility(View.VISIBLE);
+                llDtuDetail.setVisibility(View.GONE);
+            }
+        }, 2000);
     }
 
     @Override
@@ -94,6 +131,24 @@ public class IndexFragment extends BaseFragment {
                 startActivity(UserPersonActivity.class);
             }
         });
+
+        //切换导航栏更新viewpager内容
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition(), false);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     /**
@@ -101,7 +156,7 @@ public class IndexFragment extends BaseFragment {
      *
      * @param userLoginResp
      */
-    public void httpMenu(UserLoginResp userLoginResp) {
+    public void loadMenu(UserLoginResp userLoginResp) {
 
         if (userLoginResp != null) {
 
@@ -170,11 +225,81 @@ public class IndexFragment extends BaseFragment {
                 //点击子菜单关闭DrawLayout
                 adapter.setOnClickMenuItem(new IndexMenuListAdapter.OnClickMenuItem() {
                     @Override
-                    public void onClickMenuItem() {
+                    public void onClickMenuItem(boolean isDtu, String id) {
+                        if (isDtu) {
+                            dtu_sn = id;
+                            loadCompanyDtu();
+                        }
                         drawerLayout.closeDrawers();
                     }
                 });
             }
+        }
+    }
+
+    /**
+     * 加载公司dtu详情信息
+     */
+    public void loadCompanyDtu() {
+
+        if (isNotEmpty(dtu_sn)) {
+
+            rlLoad.setVisibility(View.GONE);
+            llCompanyDetail.setVisibility(View.GONE);
+            llDtuDetail.setVisibility(View.VISIBLE);
+
+            //fragment信息
+            List<Fragment> fragments = new ArrayList<>();
+
+            //dtu信息
+            IndexDtuInfoFragment indexDtuInfoFragment = new IndexDtuInfoFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(indexDtuInfoFragment);
+
+            //传感器节点信息
+            IndexSensorInfoFragment sensorInfoFragment = new IndexSensorInfoFragment();
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(sensorInfoFragment);
+
+            //控制节点信息
+            IndexControlPointFragment controlPointFragment = new IndexControlPointFragment();
+            Bundle bundle3 = new Bundle();
+            bundle3.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(controlPointFragment);
+
+            //报警信息
+            IndexAlarmInfoFragment alarmInfoFragment = new IndexAlarmInfoFragment();
+            Bundle bundle4 = new Bundle();
+            bundle4.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(alarmInfoFragment);
+
+            //分组信息
+            IndexGroupInfoFragment groupInfoFragment = new IndexGroupInfoFragment();
+            Bundle bundle5 = new Bundle();
+            bundle5.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(groupInfoFragment);
+
+            //数据显示
+            IndexDataShowFragment dataShowFragment = new IndexDataShowFragment();
+            Bundle bundle6 = new Bundle();
+            bundle6.putString(Constant.DTU_SN, dtu_sn);
+            fragments.add(dataShowFragment);
+
+            List<String> tabNames = new ArrayList<>();
+            tabNames.add("dtu信息");
+            tabNames.add("传感器节点信息");
+            tabNames.add("控制节点信息");
+            tabNames.add("报警信息");
+            tabNames.add("分组信息");
+            tabNames.add("数据显示");
+
+            FragmentManager fragmentManager = getFragmentManager();
+            DtuDataInfoTabLayoutAdapter adapter = new DtuDataInfoTabLayoutAdapter(fragmentManager, fragments, tabNames);
+            mViewPager.setAdapter(adapter);
+            mViewPager.setOffscreenPageLimit(2);
+            mTabLayout.setupWithViewPager(mViewPager);
         }
     }
 
