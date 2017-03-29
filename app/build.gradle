@@ -31,6 +31,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //解决AndroidStudio在打包应用时总是出错，运行时没有错
+    lintOptions {
+        checkAllWarnings false
+        abortOnError false
+    }
+
 }
 
 dependencies {

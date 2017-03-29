@@ -70,7 +70,6 @@ public class DtuTimeShowFragment extends BaseFragment {
             @Override
             public void onLoadMore() {
                 //上拉加载更多
-
             }
         });
     }
@@ -123,11 +122,12 @@ public class DtuTimeShowFragment extends BaseFragment {
 
                             if (!isRefresh) {
                                 dataList = response.getResult();
-                                adapter = new DtuTimeShowListAdapter(activity, response.getResult());
+                                adapter = new DtuTimeShowListAdapter(activity, dataList);
                                 listView.setAdapter(adapter);
                             } else {
                                 dataList = response.getResult();
-                                adapter.notifyDataSetChanged();
+                                adapter = new DtuTimeShowListAdapter(activity, dataList);
+                                listView.setAdapter(adapter);
                                 Snackbar snackbar = Snackbar.make(view, "已经是最新数据了哦~~~", Snackbar.LENGTH_SHORT);
 
                                 snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);

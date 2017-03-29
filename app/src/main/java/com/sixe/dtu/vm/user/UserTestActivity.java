@@ -19,8 +19,11 @@ import com.bumptech.glide.request.target.Target;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
+import com.sixe.dtu.http.util.CommonResponse;
+import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.test.UserResp;
 import com.sixe.dtu.vm.test.UserTestAdapter;
+import com.squareup.okhttp.Request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,27 @@ public class UserTestActivity extends BaseActivity {
 
     @Override
     public void initData(Intent intent) {
+
+        HttpManager.getAsyn("http://101.201.234.246:3000/v1/comment?titleNo=1&episodeNo=2", new HttpManager.ResultCallback<CommonResponse>() {
+            @Override
+            public void onError(Request request, Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(CommonResponse response) {
+            }
+        });
+
+    }
+
+    @Override
+    public void initEvents() {
+
+    }
+
+
+    public void paibanTuWen() {
         //伪造数据
         List<UserResp> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
@@ -117,11 +141,6 @@ public class UserTestActivity extends BaseActivity {
 
         UserTestAdapter adapter = new UserTestAdapter(activity, textData);
         listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void initEvents() {
-
     }
 
     @Override

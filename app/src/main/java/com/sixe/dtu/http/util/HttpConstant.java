@@ -99,5 +99,15 @@ public class HttpConstant {
      */
     public static final String QUERRY_DTU_STATE = BASE_URL + "/php/querry_dtu_state.php";
 
+    /**
+     * 18.	dtu信息
+     */
+    public static final String QUERRY_DTU_INFO = BASE_URL + "/php/querry_dtu_info.php";
+
+    /**
+     * 20.	查询dtu节点信息
+     */
+    public static final String QUERRY_DTU_NODE_INFO = BASE_URL + "/php/querry_dtu_node_info.php";
+
 
 }
