@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,8 @@ public class IndexFragment extends BaseFragment {
     private String dtu_sn;//dtu编号
 
     private Handler handler = new Handler();
+
+    IndexDtuInfoFragment indexDtuInfoFragment;
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -210,7 +213,7 @@ public class IndexFragment extends BaseFragment {
                     //循环遍历出子菜单中dtu的名字与编号
                     for (int j = 0; j < dtuNames.size(); j++) {
                         childName.add(dtuNames.get(j).getDtu_name());
-                        childId.add(dtuNames.get(j).getDtu_name());
+                        childId.add(dtuNames.get(j).getDtu_sn());
                     }
 
                     chileMenu.setName(childName);//公司名称
@@ -227,6 +230,7 @@ public class IndexFragment extends BaseFragment {
                     @Override
                     public void onClickMenuItem(boolean isDtu, String id) {
                         if (isDtu) {
+                            Log.i("http","id:::"+id);
                             dtu_sn = id;
                             loadCompanyDtu();
                         }
@@ -255,36 +259,42 @@ public class IndexFragment extends BaseFragment {
             IndexDtuInfoFragment indexDtuInfoFragment = new IndexDtuInfoFragment();
             Bundle bundle = new Bundle();
             bundle.putString(Constant.DTU_SN, dtu_sn);
+            indexDtuInfoFragment.setArguments(bundle);
             fragments.add(indexDtuInfoFragment);
 
             //传感器节点信息
             IndexSensorInfoFragment sensorInfoFragment = new IndexSensorInfoFragment();
             Bundle bundle2 = new Bundle();
             bundle2.putString(Constant.DTU_SN, dtu_sn);
+            sensorInfoFragment.setArguments(bundle2);
             fragments.add(sensorInfoFragment);
 
             //控制节点信息
             IndexControlPointFragment controlPointFragment = new IndexControlPointFragment();
             Bundle bundle3 = new Bundle();
             bundle3.putString(Constant.DTU_SN, dtu_sn);
+            controlPointFragment.setArguments(bundle3);
             fragments.add(controlPointFragment);
 
             //报警信息
             IndexAlarmInfoFragment alarmInfoFragment = new IndexAlarmInfoFragment();
             Bundle bundle4 = new Bundle();
             bundle4.putString(Constant.DTU_SN, dtu_sn);
+            alarmInfoFragment.setArguments(bundle4);
             fragments.add(alarmInfoFragment);
 
             //分组信息
             IndexGroupInfoFragment groupInfoFragment = new IndexGroupInfoFragment();
             Bundle bundle5 = new Bundle();
             bundle5.putString(Constant.DTU_SN, dtu_sn);
+            groupInfoFragment.setArguments(bundle5);
             fragments.add(groupInfoFragment);
 
             //数据显示
             IndexDataShowFragment dataShowFragment = new IndexDataShowFragment();
             Bundle bundle6 = new Bundle();
             bundle6.putString(Constant.DTU_SN, dtu_sn);
+            dataShowFragment.setArguments(bundle6);
             fragments.add(dataShowFragment);
 
             List<String> tabNames = new ArrayList<>();
@@ -296,6 +306,8 @@ public class IndexFragment extends BaseFragment {
             tabNames.add("数据显示");
 
             FragmentManager fragmentManager = getFragmentManager();
+//            FragmentManager fragmentManager = getChildFragmentManager();
+
             DtuDataInfoTabLayoutAdapter adapter = new DtuDataInfoTabLayoutAdapter(fragmentManager, fragments, tabNames);
             mViewPager.setAdapter(adapter);
             mViewPager.setOffscreenPageLimit(2);

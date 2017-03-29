@@ -3,15 +3,17 @@ package com.sixe.dtu.vm.adapter.dtu;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
 /**
  * dtu数据展示
  * Created by liu on 17/3/2.
+ * 注意：不能使用FragmentPagerAdapter 不然嵌套的fragment传递参数永远会是第一次传递的
  */
 
-public class DtuDataInfoTabLayoutAdapter extends FragmentPagerAdapter {
+public class DtuDataInfoTabLayoutAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> list_fragment;//fragment列表
     private List<String> list_Title;//tab名的列表

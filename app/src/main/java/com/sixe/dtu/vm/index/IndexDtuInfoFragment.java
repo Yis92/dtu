@@ -1,17 +1,24 @@
 package com.sixe.dtu.vm.index;
 
+import android.content.pm.ProviderInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.index.IndexDtuInfoResp;
 import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
+import com.sixe.dtu.vm.index.child.UpdateDtuInfoActivity;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
@@ -32,6 +39,10 @@ public class IndexDtuInfoFragment extends BaseFragment {
     private TextView dtu_sim_no;//sim卡号
     private TextView dtu_warning_type;//报警类型
     private TextView dtu_upfreq;//上传频率
+
+    private ImageView ivUpdate;//修改dtu信息：管理员和高级员工操作
+
+    private String dtu_sn;//dtu编号
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -54,16 +65,34 @@ public class IndexDtuInfoFragment extends BaseFragment {
         dtu_sim_no = findView(R.id.dtu_sim_no);
         dtu_warning_type = findView(R.id.dtu_warning_type);
         dtu_upfreq = findView(R.id.dtu_upfreq);
+        ivUpdate = findView(R.id.iv_update);
     }
 
     @Override
     public void initData(Bundle bundle) {
+
+        dtu_sn = bundle.getString(Constant.DTU_SN);
+        showToast(bundle.getString(Constant.DTU_SN));
+
+        //普通用户不可以修改dtu信息
+        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL,12);
+        if (user_level!=12) {
+            ivUpdate.setVisibility(View.VISIBLE);
+        }
         http();
     }
 
     @Override
     public void initEvents() {
-
+        //修改dtu信息
+        ivUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString(Constant.DTU_SN,dtu_sn);
+                startActivity(UpdateDtuInfoActivity.class,bundle);
+            }
+        });
     }
 
     /**
@@ -74,7 +103,8 @@ public class IndexDtuInfoFragment extends BaseFragment {
         if (hasNetWork()) {
 
             HashMap<String, String> map = new HashMap<>();
-            map.put("dtu_sn", "1512110003000001");
+//            map.put("dtu_sn", "1512110003000001");
+            map.put("dtu_sn", dtu_sn);
 
             HttpManager.postAsyn(HttpConstant.QUERRY_DTU_INFO, new HttpManager.ResultCallback<IndexDtuInfoResp>() {
                 @Override
@@ -90,7 +120,15 @@ public class IndexDtuInfoFragment extends BaseFragment {
                         dtu_address.setText(response.getResult().getDtu_address());
                         dtu_long.setText(response.getResult().getDtu_long());
                         dtu_lat.setText(response.getResult().getDtu_lat());
-                        dtu_comm_type.setText(response.getResult().getDtu_comm_type());
+
+                        // dtu_comm_type  通信方式 0：gprs，1：wifi
+                        String type = response.getResult().getDtu_comm_type();
+                        if (type.equals("0")) {
+                            dtu_comm_type.setText("GRPS");
+                        }else {
+                            dtu_comm_type.setText("WIFI");
+                        }
+
                         dtu_sim_no.setText(response.getResult().getDtu_sim_no());
                         dtu_warning_type.setText(response.getResult().getDtu_warning_type());
                         dtu_upfreq.setText(response.getResult().getDtu_upfreq());

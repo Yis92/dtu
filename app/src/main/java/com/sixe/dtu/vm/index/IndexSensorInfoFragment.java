@@ -39,7 +39,7 @@ public class IndexSensorInfoFragment extends BaseFragment {
 
     @Override
     public void initData(Bundle bundle) {
-        http();
+//        http();
     }
 
     @Override

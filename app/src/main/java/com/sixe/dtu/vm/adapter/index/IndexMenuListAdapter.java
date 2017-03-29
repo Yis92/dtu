@@ -2,6 +2,7 @@ package com.sixe.dtu.vm.adapter.index;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.sixe.dtu.vm.dtu.info.DtuAllInfoActivity;
 import com.sixe.dtu.vm.user.UserCompanyInfoActivity;
 import com.sixe.dtu.vm.user.UserStaffManagerActivity;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**

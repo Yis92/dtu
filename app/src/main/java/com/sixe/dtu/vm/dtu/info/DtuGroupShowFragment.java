@@ -112,8 +112,8 @@ public class DtuGroupShowFragment extends BaseFragment {
 
             HashMap<String, String> map = new HashMap<>();
             map.put("dtu_sn", dtu_sh);
-            map.put("dtu_sn", "1512110003000001");
-//            map.put("group_id", "" + group_id);
+//            map.put("dtu_sn", "1512110003000001");
+            map.put("group_id", "" + group_id);
 
             httpLoadingDialog.visible();
 
@@ -163,8 +163,8 @@ public class DtuGroupShowFragment extends BaseFragment {
         if (hasNetWork()) {
 
             HashMap<String, String> map = new HashMap<>();
-//            map.put("dtu_sn", dtu_sh);
-            map.put("dtu_sn", "1512110003000001");
+            map.put("dtu_sn", dtu_sh);
+//            map.put("dtu_sn", "1512110003000001");
 
             HttpManager.postAsyn(HttpConstant.QUERRY_DTU_GROUPINFO, new HttpManager.ResultCallback<DtuGroupShowResp>() {
                 @Override

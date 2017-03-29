@@ -110,6 +110,10 @@
             android:name=".vm.dtu.info.DtuStatusActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
+        <!--修改dtu信息-->
+        <activity
+            android:name=".vm.index.child.UpdateDtuInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
 
     </application>
 

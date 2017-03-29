@@ -83,15 +83,13 @@ public class HttpConstant {
     public static final String QUERRY_DTU_REALDATA = BASE_URL + "/php/querry_dtu_real_data.php";
 
     /**
-     * 15.	分组数据
+     * 15.	分组数据-根据分组id查询
      */
-//    public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_groupdata.php";
     public static final String QUERRY_DTU_GROUPDATA = BASE_URL + "/php/querry_dtu_group_data.php";
 
     /**
-     * 16.	分组数据
+     * 16.	分组数据-默认情况
      */
-//    public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_groupinfo.php";
     public static final String QUERRY_DTU_GROUPINFO = BASE_URL + "/php/querry_dtu_group_info.php";
 
     /**
@@ -108,6 +106,11 @@ public class HttpConstant {
      * 20.	查询dtu节点信息
      */
     public static final String QUERRY_DTU_NODE_INFO = BASE_URL + "/php/querry_dtu_node_info.php";
+
+    /**
+     * 21.  设置dtu信息(管理员和高级员工操作)
+     */
+    public static final String UPDATE_DTU_INFO = BASE_URL + "/php/update_dtu_info.php";
 
 
 }

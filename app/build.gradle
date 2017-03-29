@@ -5,7 +5,7 @@ repositories {
     flatDir {
         dirs 'libs'
     }
-    maven { url "http://124.248.32.103:8081/nexus/content/repositories/thirdparty/" }
+    maven { url "http://103.17.43.247:8081/nexus/content/repositories/thirdparty/" }
 }
 
 allprojects {
@@ -17,7 +17,7 @@ allprojects {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.sixe.dtu"
         minSdkVersion 15
