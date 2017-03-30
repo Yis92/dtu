@@ -38,12 +38,13 @@ public class UpdateDtuInfoActivity extends BaseActivity {
     private EditText dtu_lat;
     private Spinner dtu_comm_type;
     private EditText sim_no;
-    private EditText dtu_warning_type;
+    private Spinner dtu_warning_type;
     private EditText dtu_upfreq;
     private Button btnSubmit;
 
     private String dtu_sn;
     private String selectorType = "0";//选择的通信类型
+    private String selectorWarn = "0";//选择的报警类型
 
     private HttpLoadingDialog httpLoadingDialog;
 
@@ -81,6 +82,10 @@ public class UpdateDtuInfoActivity extends BaseActivity {
         UserStaffSpinnerAdapter adapter = new UserStaffSpinnerAdapter(activity, list);
         dtu_comm_type.setAdapter(adapter);
 
+        String[] list2 = {"app", "短信"};
+        UserStaffSpinnerAdapter adapter2 = new UserStaffSpinnerAdapter(activity, list2);
+        dtu_warning_type.setAdapter(adapter2);
+
         dtu_sn = intent.getExtras().getString(Constant.DTU_SN);
 
         queryDtuInfo();
@@ -103,6 +108,22 @@ public class UpdateDtuInfoActivity extends BaseActivity {
                     selectorType = "0";
                 } else {
                     selectorType = "1";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //监听报警类型设置结果
+        dtu_warning_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    selectorWarn = "0";
+                } else {
+                    selectorWarn = "1";
                 }
             }
 
@@ -155,8 +176,15 @@ public class UpdateDtuInfoActivity extends BaseActivity {
                             dtu_comm_type.setSelection(1);
                         }
 
+                        //报警类型 0：app 1：短信warnType
+                        String warnType = response.getResult().getDtu_warning_type();
+                        if (warnType.equals("0")) {
+                            dtu_warning_type.setSelection(0);
+                        } else {
+                            dtu_warning_type.setSelection(1);
+                        }
+
                         sim_no.setText(response.getResult().getDtu_sim_no());
-                        dtu_warning_type.setText(response.getResult().getDtu_warning_type());
                         dtu_upfreq.setText(response.getResult().getDtu_upfreq());
                     }
 
@@ -218,7 +246,7 @@ public class UpdateDtuInfoActivity extends BaseActivity {
             map.put("dtu_comm_type", selectorType);
             map.put("dtu_upfreq", getText(dtu_upfreq));
             map.put("dtu_sim_no", getText(sim_no));
-            map.put("dtu_warning_type", getText(dtu_warning_type));
+            map.put("dtu_warning_type", selectorWarn);
 
             HttpManager.postAsyn(HttpConstant.UPDATE_DTU_INFO, new HttpManager.ResultCallback<CommonResponse>() {
                 @Override

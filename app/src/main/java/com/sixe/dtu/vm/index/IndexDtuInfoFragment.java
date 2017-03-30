@@ -91,7 +91,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString(Constant.DTU_SN, dtu_sn);
-                startActivity(UpdateDtuInfoActivity.class, bundle);
+                startActivity(UpdateDtuInfoActivity.class, bundle,100);
             }
         });
     }
@@ -130,8 +130,15 @@ public class IndexDtuInfoFragment extends BaseFragment {
                             dtu_comm_type.setText("WIFI");
                         }
 
+                        //报警类型 0：app 1：短信warnType
+                        String warnType = response.getResult().getDtu_warning_type();
+                        if (warnType.equals("0")) {
+                            dtu_warning_type.setText("app");
+                        } else {
+                            dtu_warning_type.setText("短信");
+                        }
+
                         dtu_sim_no.setText(response.getResult().getDtu_sim_no());
-                        dtu_warning_type.setText(response.getResult().getDtu_warning_type());
                         dtu_upfreq.setText(response.getResult().getDtu_upfreq());
                     }
                 }

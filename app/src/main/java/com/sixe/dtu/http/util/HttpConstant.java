@@ -112,5 +112,15 @@ public class HttpConstant {
      */
     public static final String UPDATE_DTU_INFO = BASE_URL + "/php/update_dtu_info.php";
 
+    /**
+     * 22.  查询dtu所有要素的报警信息
+     */
+    public static final String QUERRY_DTU_SENSOR_WARNING_INFO = BASE_URL + "/php/querry_dtu_sensor_warning_info.php";
+
+    /**
+     * 23.  查询dtu所有要素的报警信息
+     */
+    public static final String UPDATE_DTU_SENSOR_WARNING_INFO = BASE_URL + "/php/update_dtu_sensor_warning_info.php";
+
 
 }

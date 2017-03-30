@@ -4,10 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:src="@mipmap/baojing" />
+
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="报警信息" />
+        android:layout_margin="10dp"
+        android:background="@android:color/white"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
 
 </LinearLayout>

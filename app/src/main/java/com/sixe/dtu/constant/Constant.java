@@ -28,4 +28,7 @@ public class Constant {
     //dtu id
     public static final String DTU_SN = "dtu_sn";
 
+    //报警设置id
+    public static final String ALARM_INFO = "alarm_info";
+
 }

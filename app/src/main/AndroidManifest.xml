@@ -115,6 +115,11 @@
             android:name=".vm.index.child.UpdateDtuInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
+        <!--修改报警信息-->
+        <activity
+            android:name=".vm.index.child.UpdateAlarmInfoActivity"
+            android:theme="@style/ColorTranslucentTheme"></activity>
+
     </application>
 
     <!--允许程序写入外部存储,如SD卡上写文件-->
