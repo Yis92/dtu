@@ -208,17 +208,17 @@ public class UpdateDtuInfoActivity extends BaseActivity {
             }
 
             HashMap<String, String> map = new HashMap<>();
-            map.put("dtu_sn",dtu_sn);
-            map.put("dtu_address",getText(dtu_address));
-            map.put("dtu_type","3");
-            map.put("dtu_name",getText(dtu_name));
-            map.put("dtu_describ",getText(dtu_describ));
-            map.put("dtu_long",getText(dtu_long));
-            map.put("dtu_lat",getText(dtu_lat));
-            map.put("dtu_comm_type",selectorType);
-            map.put("dtu_upfreq",getText(dtu_upfreq));
-            map.put("sim_no",getText(sim_no));
-            map.put("dtu_warning_type",getText(dtu_warning_type));
+            map.put("dtu_sn", dtu_sn);
+            map.put("dtu_address", getText(dtu_address));
+            map.put("dtu_type", "3");
+            map.put("dtu_name", getText(dtu_name));
+            map.put("dtu_describ", getText(dtu_describ));
+            map.put("dtu_long", getText(dtu_long));
+            map.put("dtu_lat", getText(dtu_lat));
+            map.put("dtu_comm_type", selectorType);
+            map.put("dtu_upfreq", getText(dtu_upfreq));
+            map.put("dtu_sim_no", getText(sim_no));
+            map.put("dtu_warning_type", getText(dtu_warning_type));
 
             HttpManager.postAsyn(HttpConstant.UPDATE_DTU_INFO, new HttpManager.ResultCallback<CommonResponse>() {
                 @Override
@@ -229,12 +229,15 @@ public class UpdateDtuInfoActivity extends BaseActivity {
                 @Override
                 public void onResponse(CommonResponse response) {
                     if (response != null && response.getState() == 200) {
-                            showToast("修改成功");
+                        showToast("修改成功");
+                        setResult(200);
+                        finish();
                     }
                 }
             }, map);
         }
     }
+
 
     @Override
     public Class<?> getClazz() {

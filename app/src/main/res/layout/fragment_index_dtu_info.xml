@@ -298,15 +298,19 @@
     </LinearLayout>
 
     <!--修改dtu信息-->
-    <ImageView
+    <Button
+        android:background="@drawable/shape_all_circle_blue"
+        android:text="修改"
         android:visibility="gone"
-        android:id="@+id/iv_update"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/btn_update"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="10dp"
-        android:background="@mipmap/ic_launcher" />
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+         />
 </RelativeLayout>
 

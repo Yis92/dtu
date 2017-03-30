@@ -1,5 +1,6 @@
 package com.sixe.dtu.vm.index;
 
+import android.content.Intent;
 import android.content.pm.ProviderInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,7 +42,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
     private TextView dtu_warning_type;//报警类型
     private TextView dtu_upfreq;//上传频率
 
-    private ImageView ivUpdate;//修改dtu信息：管理员和高级员工操作
+    private Button btnUpdate;//修改dtu信息：管理员和高级员工操作
 
     private String dtu_sn;//dtu编号
 
@@ -65,32 +67,31 @@ public class IndexDtuInfoFragment extends BaseFragment {
         dtu_sim_no = findView(R.id.dtu_sim_no);
         dtu_warning_type = findView(R.id.dtu_warning_type);
         dtu_upfreq = findView(R.id.dtu_upfreq);
-        ivUpdate = findView(R.id.iv_update);
+        btnUpdate = findView(R.id.btn_update);
     }
 
     @Override
     public void initData(Bundle bundle) {
 
         dtu_sn = bundle.getString(Constant.DTU_SN);
-        showToast(bundle.getString(Constant.DTU_SN));
 
         //普通用户不可以修改dtu信息
-        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL,12);
-        if (user_level!=12) {
-            ivUpdate.setVisibility(View.VISIBLE);
+        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
+        if (user_level != 12) {
+            btnUpdate.setVisibility(View.VISIBLE);
         }
-        http();
+        queryDtuInfo();
     }
 
     @Override
     public void initEvents() {
         //修改dtu信息
-        ivUpdate.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN,dtu_sn);
-                startActivity(UpdateDtuInfoActivity.class,bundle);
+                bundle.putString(Constant.DTU_SN, dtu_sn);
+                startActivity(UpdateDtuInfoActivity.class, bundle);
             }
         });
     }
@@ -98,7 +99,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
     /**
      * 查询dtu信息
      */
-    public void http() {
+    public void queryDtuInfo() {
 
         if (hasNetWork()) {
 
@@ -125,7 +126,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
                         String type = response.getResult().getDtu_comm_type();
                         if (type.equals("0")) {
                             dtu_comm_type.setText("GRPS");
-                        }else {
+                        } else {
                             dtu_comm_type.setText("WIFI");
                         }
 
@@ -135,6 +136,14 @@ public class IndexDtuInfoFragment extends BaseFragment {
                     }
                 }
             }, map);
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == 200) {
+            queryDtuInfo();
         }
     }
 

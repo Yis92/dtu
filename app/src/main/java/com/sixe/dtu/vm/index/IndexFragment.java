@@ -306,7 +306,6 @@ public class IndexFragment extends BaseFragment {
             tabNames.add("数据显示");
 
             FragmentManager fragmentManager = getFragmentManager();
-//            FragmentManager fragmentManager = getChildFragmentManager();
 
             DtuDataInfoTabLayoutAdapter adapter = new DtuDataInfoTabLayoutAdapter(fragmentManager, fragments, tabNames);
             mViewPager.setAdapter(adapter);

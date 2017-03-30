@@ -105,7 +105,7 @@ public class HttpConstant {
     /**
      * 20.	查询dtu节点信息
      */
-    public static final String QUERRY_DTU_NODE_INFO = BASE_URL + "/php/querry_dtu_node_info.php";
+    public static final String QUERRY_DTU_NODE_INFO = BASE_URL + "/php/querry_dtu_sensor_node_info.php";
 
     /**
      * 21.  设置dtu信息(管理员和高级员工操作)
