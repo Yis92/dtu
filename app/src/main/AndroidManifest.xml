@@ -119,6 +119,7 @@
         <activity
             android:name=".vm.index.child.UpdateAlarmInfoActivity"
             android:theme="@style/ColorTranslucentTheme"></activity>
+        <activity android:name=".vm.index.child.AlarmInfoActivity" />
 
     </application>
 

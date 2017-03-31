@@ -1,23 +1,21 @@
 package com.sixe.dtu.vm.index;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
-import com.sixe.dtu.http.entity.index.IndexAlarmInfoResp;
-import com.sixe.dtu.http.entity.index.IndexSensorInfoResp;
+import com.sixe.dtu.http.entity.index.child.AlarmInfoResp;
+import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
-import com.sixe.dtu.vm.adapter.index.IndexAlarmInfoListAdapter;
-import com.sixe.dtu.vm.adapter.index.IndexSensorInfoListAdapter;
-import com.sixe.dtu.vm.index.child.UpdateAlarmInfoActivity;
+import com.sixe.dtu.vm.adapter.index.child.AlarmInfoListAdapter;
+import com.sixe.dtu.vm.index.child.AlarmInfoActivity;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
@@ -30,11 +28,12 @@ import java.util.List;
 
 public class IndexAlarmInfoFragment extends BaseFragment {
 
+    private Button btnSet;//报警信息
     private ListView listView;
-    private IndexAlarmInfoListAdapter adapter;
-    private List<IndexAlarmInfoResp> dataList;
+    private AlarmInfoListAdapter adapter;
+    private List<AlarmInfoResp> dataList;
 
-    private String dtu_sh;
+    private String dtu_sn;
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -48,59 +47,108 @@ public class IndexAlarmInfoFragment extends BaseFragment {
 
     @Override
     public void initViews() {
+        btnSet = findView(R.id.btn_set);
         listView = findView(R.id.listView);
     }
 
     @Override
     public void initData(Bundle bundle) {
-        dtu_sh = bundle.getString(Constant.DTU_SN);
+        dtu_sn = bundle.getString(Constant.DTU_SN);
+
+        //普通用户不可以修改dtu信息
+        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
+        if (user_level != 12) {
+            btnSet.setVisibility(View.VISIBLE);
+        }
 
         queryAlarmInfo();
     }
 
     @Override
     public void initEvents() {
-        //
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //报警信息
+        btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sh);
-                bundle.putSerializable(Constant.ALARM_INFO, dataList.get(i));
-                startActivity(UpdateAlarmInfoActivity.class, bundle, 100);
+                bundle.putString(Constant.DTU_SN, dtu_sn);
+                startActivity(AlarmInfoActivity.class, bundle);
             }
         });
     }
 
     /**
-     * 查看报警信息，用于设置报警信息参数
+     * 查看报警信息
      */
     public void queryAlarmInfo() {
         if (hasNetWork()) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("dtu_sn", dtu_sh);
 
-            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_SENSOR_WARNING_INFO, new HttpManager.ResultCallback<IndexAlarmInfoResp>() {
+            HashMap<String, String> map = new HashMap<>();
+//            map.put("dtu_sn", "1512110003000001");
+            map.put("dtu_sn", dtu_sn);
+            map.put("warning_type", "0");
+
+            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_SENSOR_WARNING_MSG, new HttpManager.ResultCallback<AlarmInfoResp>() {
                 @Override
                 public void onError(Request request, Exception e) {
+
                 }
 
                 @Override
-                public void onResponse(IndexAlarmInfoResp response) {
-                    if (response != null && response.getState() == 200) {
-                        dataList = response.getResult();
-                        adapter = new IndexAlarmInfoListAdapter(activity, dataList);
-                        listView.setAdapter(adapter);
+                public void onResponse(AlarmInfoResp response) {
+                    if (response != null) {
+                        if (response.getState() == 200) {
+                            dataList = response.getResult();
+                            adapter = new AlarmInfoListAdapter(activity, dataList);
+                            listView.setAdapter(adapter);
+
+                            adapter.setOnClickOperationAlarm(new AlarmInfoListAdapter.OnClickOperationAlarm() {
+                                @Override
+                                public void onClickOperationAlarm(int position) {
+                                    signAlarmInfo(dataList.get(position).getMsgid());
+                                }
+                            });
+                        }
+
+                        if (response.getState() == 202) {
+                            showToastResult("暂时没有报警信息~~~");
+                        }
                     }
+
                 }
             }, map);
+        } else {
+            showNetWorkError();
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100 && resultCode == 200) {
-            queryAlarmInfo();
+
+    /**
+     * 标记已经处理过报警信息
+     */
+    public void signAlarmInfo(String msgid) {
+        if (hasNetWork()) {
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("dtu_sn", dtu_sn);
+            map.put("msgid", msgid);
+
+            HttpManager.postAsyn(HttpConstant.DEAL_DTU_SENSOR_WARNING_MSG, new HttpManager.ResultCallback<CommonResponse>() {
+                @Override
+                public void onError(Request request, Exception e) {
+
+                }
+
+                @Override
+                public void onResponse(CommonResponse response) {
+                    if (response != null && response.getState() == 200) {
+                        queryAlarmInfo();
+                        showToastResult("处理成功");
+                    }
+                }
+            }, map);
+        } else {
+            showNetWorkError();
         }
     }
 

@@ -3,6 +3,7 @@ package com.sixe.dtu.base;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.telephony.TelephonyManager;
+import android.view.View;
 
 import com.sixe.dtu.AppApplication;
 import com.sixe.dtu.R;
@@ -49,6 +50,12 @@ public abstract class BaseFragment extends CommonFragment {
 
     public void showRefreshResult() {
         Snackbar snackbar = Snackbar.make(view, "已经是最新数据了哦~~~", Snackbar.LENGTH_SHORT);
+        snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
+        snackbar.show();
+    }
+
+    public void showToastResult(String text) {
+        Snackbar snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT);
         snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
         snackbar.show();
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,10 +41,13 @@ public class DtuGroupShowFragment extends BaseFragment {
     private ListView lvGroup;//分组
     private ScrollGridView lvContent;
 
+    private LinearLayout llOne;
     private TextView tvNameOne;
     private TextView tvValueOne;
+    private LinearLayout llTwo;
     private TextView tvNameTwo;
     private TextView tvValueTwo;
+    private LinearLayout llThree;
     private TextView tvNameThree;
     private TextView tvValueThree;
 
@@ -72,17 +76,19 @@ public class DtuGroupShowFragment extends BaseFragment {
         lvGroup = findView(R.id.lv_group);
         lvContent = findView(R.id.lv_content);
 
+        llOne = findView(R.id.ll_one);
         tvNameOne = findView(R.id.tv_one_name);
         tvValueOne = findView(R.id.tv_one_value);
+        llTwo = findView(R.id.ll_two);
         tvNameTwo = findView(R.id.tv_two_name);
         tvValueTwo = findView(R.id.tv_two_value);
+        llThree = findView(R.id.ll_three);
         tvNameThree = findView(R.id.tv_three_name);
         tvValueThree = findView(R.id.tv_three_value);
     }
 
     @Override
     public void initData(Bundle bundle) {
-//        bundle = getArguments();
         dtu_sh = bundle.getString(Constant.DTU_SN);
 
         http();
@@ -127,26 +133,51 @@ public class DtuGroupShowFragment extends BaseFragment {
                 public void onResponse(DtuGroupShowResp response) {
                     if (response != null && response.getState() == 200) {
 
-                        tvTime.setText("观测时间:"+response.getDt());
+                        tvTime.setText("观测时间:" + response.getDt());
 
                         List<DtuGroupShowResp.GroupData> datas = response.getResult().getGroupdata();
 
-                        tvNameOne.setText(datas.get(0).getName());
-                        tvValueOne.setText(datas.get(0).getValue());
-                        tvNameTwo.setText(datas.get(1).getName());
-                        tvValueTwo.setText(datas.get(1).getValue());
-                        tvNameThree.setText(datas.get(2).getName());
-                        tvValueThree.setText(datas.get(2).getValue());
+                        if (datas.size() == 1) {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.GONE);
+                            llThree.setVisibility(View.GONE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                        } else if (datas.size() == 2) {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.VISIBLE);
+                            llThree.setVisibility(View.GONE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                        } else if (datas.size() == 3) {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.VISIBLE);
+                            llThree.setVisibility(View.VISIBLE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvNameThree.setText(datas.get(2).getName());
+                            tvValueThree.setText(datas.get(2).getValue());
+                        } else {
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvNameThree.setText(datas.get(2).getName());
+                            tvValueThree.setText(datas.get(2).getValue());
 
-                        groupDatas.clear();
-                        for (int i = 3; i < datas.size(); i++) {
-                            groupDatas.add(datas.get(i));
+                            groupDatas.clear();
+                            for (int i = 3; i < datas.size(); i++) {
+                                groupDatas.add(datas.get(i));
+                            }
+
+                            adapter.notifyDataSetChanged();
                         }
 
-                        adapter.notifyDataSetChanged();
-
                         Snackbar snackbar = Snackbar.make(view, "已经是最新数据了哦~~~", Snackbar.LENGTH_SHORT);
-
                         snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
                         snackbar.show();
                     }
@@ -176,7 +207,7 @@ public class DtuGroupShowFragment extends BaseFragment {
                 public void onResponse(DtuGroupShowResp response) {
                     if (response != null && response.getState() == 200) {
 
-                        tvTime.setText("观测时间:"+response.getDt());
+                        tvTime.setText("观测时间:" + response.getDt());
 
                         groupId = response.getResult().getGroup().get(0).getGroup_id();
 
@@ -197,19 +228,42 @@ public class DtuGroupShowFragment extends BaseFragment {
 
                         groupDatas = new ArrayList<>();
 
-                        tvNameOne.setText(datas.get(0).getName());
-                        tvValueOne.setText(datas.get(0).getValue());
-                        tvNameTwo.setText(datas.get(1).getName());
-                        tvValueTwo.setText(datas.get(1).getValue());
-                        tvNameThree.setText(datas.get(2).getName());
-                        tvValueThree.setText(datas.get(2).getValue());
+                        if (datas.size() == 1) {
+                            llOne.setVisibility(View.VISIBLE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                        } else if (datas.size() == 2) {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.VISIBLE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                        } else if (datas.size() == 3) {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.VISIBLE);
+                            llThree.setVisibility(View.VISIBLE);
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvNameThree.setText(datas.get(2).getName());
+                            tvValueThree.setText(datas.get(2).getValue());
+                        } else {
+                            tvNameOne.setText(datas.get(0).getName());
+                            tvValueOne.setText(datas.get(0).getValue());
+                            tvNameTwo.setText(datas.get(1).getName());
+                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvNameThree.setText(datas.get(2).getName());
+                            tvValueThree.setText(datas.get(2).getValue());
 
-                        for (int i = 3; i < datas.size(); i++) {
-                            groupDatas.add(datas.get(i));
+                            for (int i = 3; i < datas.size(); i++) {
+                                groupDatas.add(datas.get(i));
+                            }
+
+                            adapter = new DtuGroupShowListAdapter(activity, groupDatas);
+                            lvContent.setAdapter(adapter);
                         }
-
-                        adapter = new DtuGroupShowListAdapter(activity, groupDatas);
-                        lvContent.setAdapter(adapter);
                     }
                 }
             }, map);

@@ -6,12 +6,12 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <!--要素名称-->
+        <!--name-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="要素名称"
+                android:text="name"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -42,7 +42,7 @@
 
         </LinearLayout>
 
-        <!--要素说明-->
+        <!--cfg-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -53,7 +53,69 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="要素说明"
+                android:text="cfg"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/cfg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--addr-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="addr"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/addr"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--describ-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="describ"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -73,7 +135,7 @@
 
         </LinearLayout>
 
-        <!--报警上限-->
+        <!--x-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -84,7 +146,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="报警上限"
+                android:text="x"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -94,7 +156,7 @@
                 android:background="@android:color/white"></View>
 
             <TextView
-                android:id="@+id/up"
+                android:id="@+id/x"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -104,7 +166,7 @@
 
         </LinearLayout>
 
-        <!--报警下限-->
+        <!--y-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -115,7 +177,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="报警下限"
+                android:text="y"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -125,7 +187,7 @@
                 android:background="@android:color/white"></View>
 
             <TextView
-                android:id="@+id/low"
+                android:id="@+id/y"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -135,7 +197,7 @@
 
         </LinearLayout>
 
-        <!--持续时间-->
+        <!--tsknum-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -146,7 +208,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="持续时间"
+                android:text="tsknum"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -156,7 +218,7 @@
                 android:background="@android:color/white"></View>
 
             <TextView
-                android:id="@+id/lasting"
+                android:id="@+id/tsknum"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -166,7 +228,7 @@
 
         </LinearLayout>
 
-        <!--报警间隔-->
+        <!--tskdescrib-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -177,7 +239,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="报警间隔"
+                android:text="tskdescrib"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -186,47 +248,16 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/white"></View>
 
-            <TextView
-                android:id="@+id/interval"
+            <LinearLayout
+                android:id="@+id/tskdescrib"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!--是否报警-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="是否报警"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/enable"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
     </LinearLayout>
 
     <ImageView

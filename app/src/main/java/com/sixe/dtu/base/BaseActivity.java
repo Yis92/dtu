@@ -2,6 +2,7 @@ package com.sixe.dtu.base;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.ImageView;
@@ -81,6 +82,12 @@ public abstract class BaseActivity extends CommonCompatActivity {
     public String getIMEI() {
         TelephonyManager TelephonyMgr = (TelephonyManager) activity.getSystemService(activity.TELEPHONY_SERVICE);
         return TelephonyMgr.getDeviceId();
+    }
+
+    public void showToastResult(View view, String text) {
+        Snackbar snackbar = Snackbar.make(view, text, Snackbar.LENGTH_SHORT);
+        snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
+        snackbar.show();
     }
 
 }
