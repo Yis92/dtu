@@ -2,7 +2,7 @@ package com.sixe.dtu.vm.adapter.index;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.text.Html;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,7 +20,7 @@ import cn.trinea.android.common.adapter.CommonAdapter;
  * Created by Administrator on 2017/3/31.
  */
 
-public class ControlPointListAdapter extends CommonAdapter<IndexControlPointResp> {
+public class IndexControlPointListAdapter extends CommonAdapter<IndexControlPointResp> {
 
     private LinearLayout llContent;
     private TextView name;
@@ -30,9 +30,10 @@ public class ControlPointListAdapter extends CommonAdapter<IndexControlPointResp
     private TextView x;
     private TextView y;
     private TextView tsknum;
+    private LinearLayout tskdescrib;
 
 
-    public ControlPointListAdapter(Activity activity, List<IndexControlPointResp> list) {
+    public IndexControlPointListAdapter(Activity activity, List<IndexControlPointResp> list) {
         super(activity, list);
     }
 
@@ -50,6 +51,7 @@ public class ControlPointListAdapter extends CommonAdapter<IndexControlPointResp
         x = findView(view, R.id.x);
         y = findView(view, R.id.y);
         tsknum = findView(view, R.id.tsknum);
+        tskdescrib = findView(view, R.id.tskdescrib);
 
         name.setText(list.get(position).getName());
         cfg.setText(list.get(position).getCfg());
@@ -70,17 +72,18 @@ public class ControlPointListAdapter extends CommonAdapter<IndexControlPointResp
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
             TextView textView = new TextView(activity);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textView.getLayoutParams();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            params.height = 40;
+//            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textView.getLayoutParams();
+            layoutParams.width = layoutParams.MATCH_PARENT;
+            layoutParams.height = 60;
 
             textView.setTextSize(14f);
             textView.setTextColor(Color.parseColor("#666666"));
             textView.setText(list.get(position).getTskdescrib().get(i).getTsk_describ());
+            textView.setGravity(Gravity.CENTER);
             textView.setLineSpacing(0, 1.3f);
             textView.setLayoutParams(layoutParams);
 //            layoutParams.setMargins(0, 20, 0, 20);
-
+            tskdescrib.addView(textView);
         }
 
         return view;

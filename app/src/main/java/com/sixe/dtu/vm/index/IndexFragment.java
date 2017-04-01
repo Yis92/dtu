@@ -230,7 +230,7 @@ public class IndexFragment extends BaseFragment {
                     @Override
                     public void onClickMenuItem(boolean isDtu, String id) {
                         if (isDtu) {
-                            Log.i("http","id:::"+id);
+                            Log.i("http", "id:::" + id);
                             dtu_sn = id;
                             loadCompanyDtu();
                         }
@@ -254,6 +254,13 @@ public class IndexFragment extends BaseFragment {
 
             //fragment信息
             List<Fragment> fragments = new ArrayList<>();
+
+            //数据显示
+            IndexDataShowFragment dataShowFragment = new IndexDataShowFragment();
+            Bundle bundle6 = new Bundle();
+            bundle6.putString(Constant.DTU_SN, dtu_sn);
+            dataShowFragment.setArguments(bundle6);
+            fragments.add(dataShowFragment);
 
             //dtu信息
             IndexDtuInfoFragment indexDtuInfoFragment = new IndexDtuInfoFragment();
@@ -284,26 +291,20 @@ public class IndexFragment extends BaseFragment {
             fragments.add(alarmInfoFragment);
 
             //分组信息
-            IndexGroupInfoFragment groupInfoFragment = new IndexGroupInfoFragment();
-            Bundle bundle5 = new Bundle();
-            bundle5.putString(Constant.DTU_SN, dtu_sn);
-            groupInfoFragment.setArguments(bundle5);
-            fragments.add(groupInfoFragment);
-
-            //数据显示
-            IndexDataShowFragment dataShowFragment = new IndexDataShowFragment();
-            Bundle bundle6 = new Bundle();
-            bundle6.putString(Constant.DTU_SN, dtu_sn);
-            dataShowFragment.setArguments(bundle6);
-            fragments.add(dataShowFragment);
+//            IndexGroupInfoFragment groupInfoFragment = new IndexGroupInfoFragment();
+//            Bundle bundle5 = new Bundle();
+//            bundle5.putString(Constant.DTU_SN, dtu_sn);
+//            groupInfoFragment.setArguments(bundle5);
+//            fragments.add(groupInfoFragment);
 
             List<String> tabNames = new ArrayList<>();
+            tabNames.add("数据显示");
             tabNames.add("dtu信息");
             tabNames.add("传感器节点信息");
             tabNames.add("控制节点信息");
             tabNames.add("报警信息");
-            tabNames.add("分组信息");
-            tabNames.add("数据显示");
+//            tabNames.add("分组信息");
+
 
             FragmentManager fragmentManager = getFragmentManager();
 

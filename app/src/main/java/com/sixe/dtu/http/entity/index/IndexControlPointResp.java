@@ -11,26 +11,14 @@ import java.util.List;
 
 public class IndexControlPointResp extends CommonResponse<List<IndexControlPointResp>> {
 
-
-    /**
-     * name : 无线 8通道控制
-     * cfg : 209
-     * addr : 3
-     * describ : 8通道控制
-     * x : 1
-     * y : 1
-     * tsknum : 2
-     * tskdescrib : [{"tsk_describ":"通风"},{"tsk_describ":"灌溉"}]
-     */
-
-    private String name;
-    private String cfg;
-    private String addr;
-    private String describ;
-    private String x;
-    private String y;
-    private String tsknum;
-    private List<TskdescribBean> tskdescrib;
+    private String name;//控制器名称
+    private String cfg;//控制器类型码
+    private String addr;//控制器地址
+    private String describ;//控制器描述
+    private String x;//控制器站内坐标x
+    private String y;//控制器站内坐标y
+    private String tsknum;//控制器任务数
+    private List<TskdescribBean> tskdescrib;//通道描述
 
     public String getName() {
         return name;

@@ -32,6 +32,7 @@ import java.util.HashMap;
 
 public class IndexDtuInfoFragment extends BaseFragment {
 
+    private TextView tv_dtu_sn;//DTU序列号
     private TextView dtu_name;//DTU设备名称
     private TextView dtu_describ;//设备描述
     private TextView dtu_address;//安装位置
@@ -58,6 +59,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
 
     @Override
     public void initViews() {
+        tv_dtu_sn = findView(R.id.tv_dtu_sn);
         dtu_name = findView(R.id.dtu_name);
         dtu_describ = findView(R.id.dtu_describ);
         dtu_address = findView(R.id.dtu_address);
@@ -91,7 +93,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString(Constant.DTU_SN, dtu_sn);
-                startActivity(UpdateDtuInfoActivity.class, bundle,100);
+                startActivity(UpdateDtuInfoActivity.class, bundle, 100);
             }
         });
     }
@@ -116,6 +118,7 @@ public class IndexDtuInfoFragment extends BaseFragment {
                 @Override
                 public void onResponse(IndexDtuInfoResp response) {
                     if (response != null && response.getState() == 200) {
+                        tv_dtu_sn.setText(dtu_sn);
                         dtu_name.setText(response.getResult().getDtu_name());
                         dtu_describ.setText(response.getResult().getDtu_describ());
                         dtu_address.setText(response.getResult().getDtu_address());

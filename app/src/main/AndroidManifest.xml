@@ -28,6 +28,7 @@
         <activity
             android:name=".vm.user.UserLoginActivity"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme">
 
             <intent-filter>
@@ -41,6 +42,7 @@
         <!--测试类-->
         <activity
             android:name=".vm.user.UserTestActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme">
 
         </activity>
@@ -48,78 +50,116 @@
         <!--单位信息-->
         <activity
             android:name=".vm.user.UserCompanyInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改单位信息-->
         <activity
             android:name=".vm.user.UserUpdateCompanyInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--我的信息-->
         <activity
             android:name=".vm.user.UserPersonActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改我的信息-->
         <activity
             android:name=".vm.user.UserUpdatePersonActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改密码-->
         <activity
             android:name=".vm.user.UserUpdatePasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--单位用户管理-->
         <activity
             android:name=".vm.user.UserStaffManagerActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--员工详情-->
         <activity
             android:name=".vm.user.UserStaffInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改员工详情-->
         <activity
             android:name=".vm.user.UserUpdateStaffInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改员工密码-->
         <activity
             android:name=".vm.user.UserUpdateStaffPwdActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--添加员工信息-->
         <activity
             android:name=".vm.user.UserAddStaffActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--查看所有dtu信息-->
         <activity
             android:name=".vm.dtu.info.DtuAllInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--dtu数据-->
         <activity
             android:name=".vm.dtu.info.DtuDataInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--dtu状态-->
         <activity
             android:name=".vm.dtu.info.DtuStatusActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改dtu信息-->
         <activity
             android:name=".vm.index.child.UpdateDtuInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
 
         <!--修改报警信息-->
         <activity
             android:name=".vm.index.child.UpdateAlarmInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"></activity>
-        <activity android:name=".vm.index.child.AlarmInfoActivity" />
+
+        <!--报警信息- 查看设置报警信息-->
+        <activity
+            android:name=".vm.index.child.AlarmInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
+
+        <!--控制节点任务状态-->
+        <activity
+            android:name=".vm.index.child.ControlPointTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
+
+        <!--设置控制节点任务状态-->
+        <activity
+            android:name=".vm.index.child.UpdateControlPointTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
+
+        <!--分组数据展示-->
+        <activity
+            android:name=".vm.index.child.GroupShowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
 
     </application>
 

@@ -131,10 +131,16 @@ public class HttpConstant {
      * 25.  标记报警消息已处理
      */
     public static final String DEAL_DTU_SENSOR_WARNING_MSG = BASE_URL + "/php/deal_dtu_sensor_warning_msg.php";
+
     /**
      * 26.  查询控制节点的信息
      */
     public static final String QUERRY_DTU_CTRL_NODE_INFO = BASE_URL + "/php/querry_dtu_ctrl_node_info.php";
+
+    /**
+     * 27. 查询控制节点的任务状态
+     */
+    public static final String QUERRY_DTU_CTRL_NODE_TASK = BASE_URL + "/php/querry_dtu_ctrl_node_task.php";
 
 
 }

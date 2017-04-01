@@ -42,13 +42,6 @@ public class AlarmInfoListAdapter extends CommonAdapter<AlarmInfoResp> {
         tm = get(view, R.id.tm);
         btnOperation = get(view, R.id.btn_operation);
 
-
-//        if (i % 2 == 0) {
-//            llContent.setBackgroundResource(R.drawable.shape_sensor_one);
-//        } else {
-//            llContent.setBackgroundResource(R.drawable.shape_sensor_three);
-//        }
-
         if (list.get(i).getDispose().equals("0")) {
             llContent.setBackgroundResource(R.drawable.shape_sensor_one);
             btnOperation.setBackgroundResource(R.drawable.shape_btn_red);

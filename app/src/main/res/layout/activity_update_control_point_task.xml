@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50"
+        android:background="@color/color_1196db"
+        android:theme="@style/Theme.ToolBar.ZhiHu"
+        toolbar:titleTextAppearance="@dimen/dimen_18"
+        toolbar:titleTextColor="@color/color_white">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="控制节点任务状态"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+</LinearLayout>

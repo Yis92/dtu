@@ -6,6 +6,7 @@ repositories {
         dirs 'libs'
     }
     maven { url "http://103.17.43.247:8081/nexus/content/repositories/thirdparty/" }
+    maven { url "https://jitpack.io" }
 }
 
 allprojects {
@@ -59,4 +60,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //gif图片加载
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.15'
+    //曲线展示
+    compile 'com.github.Idtk:SmallChart:v0.1.1'
 }

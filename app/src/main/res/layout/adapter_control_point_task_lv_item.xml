@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!--控制器名称-->
+        <!--任务通道号-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="控制器名称"
+                android:text="任务通道号"
                 android:textColor="@color/color_666666"
                 android:textSize="14sp" />
 
@@ -32,193 +32,7 @@
                 android:background="@android:color/white"></View>
 
             <TextView
-                android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器类型码-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器类型码"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/cfg"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器地址-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器地址"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/addr"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器描述-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器描述"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/describ"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器站内坐标x-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器站内坐标x"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/x"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器站内坐标y-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器站内坐标y"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/y"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-        <!--控制器任务数-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="控制器任务数"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
-
-            <TextView
-                android:id="@+id/tsknum"
+                android:id="@+id/tsk_channel"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -231,7 +45,7 @@
         <!--通道描述-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <TextView
@@ -248,17 +62,140 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/white"></View>
 
-            <LinearLayout
-                android:layout_weight="1"
-                android:id="@+id/tskdescrib"
+            <TextView
+                android:id="@+id/tsk_describ"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
+        <!--任务类型-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务类型"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/tsk_type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--任务执行日期-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务执行日期"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/tsk_dt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--任务执行时间-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务执行时间"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/tsk_tm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--任务执行周期-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务执行周期"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/tsk_second"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <ImageView

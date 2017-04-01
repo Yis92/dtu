@@ -4,37 +4,39 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
-import com.sixe.dtu.http.entity.index.IndexAlarmInfoResp;
+import com.sixe.dtu.http.entity.index.child.ControlPointTaskResp;
+import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
-import com.sixe.dtu.vm.adapter.index.IndexAlarmInfoListAdapter;
+import com.sixe.dtu.vm.adapter.index.child.ControlPointTaskListAdapter;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * 报警信息- 查看设置报警信息参数
+ * 控制节点任务状态
+ * Created by Administrator on 2017/4/1.
  */
 
-public class AlarmInfoActivity extends BaseActivity {
+public class ControlPointTaskActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private ListView listView;
-    private IndexAlarmInfoListAdapter adapter;
-    private List<IndexAlarmInfoResp> dataList;
+    private ControlPointTaskListAdapter adapter;
+    private List<ControlPointTaskResp> dataList;
 
     private String dtu_sn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState, R.layout.activity_alarm_info);
+        super.onCreate(savedInstanceState, R.layout.activity_control_point_task);
     }
 
     @Override
@@ -50,11 +52,13 @@ public class AlarmInfoActivity extends BaseActivity {
 
     @Override
     public void initData(Intent intent) {
-        toolbar.setNavigationIcon(R.mipmap.white_back);
 
         dtu_sn = intent.getExtras().getString(Constant.DTU_SN);
 
-        queryAlarmInfo();
+        toolbar.setNavigationIcon(R.mipmap.white_back);
+
+        queryControlPointTask();
+
     }
 
     @Override
@@ -66,53 +70,40 @@ public class AlarmInfoActivity extends BaseActivity {
                 finish();
             }
         });
-        //修改报警信息
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sn);
-                bundle.putSerializable(Constant.ALARM_INFO, dataList.get(i));
-                startActivity(UpdateAlarmInfoActivity.class, bundle, 100);
-            }
-        });
     }
 
-
     /**
-     * 查看报警信息，用于设置报警信息参数
+     * 查询控制节点任务状态
      */
-    public void queryAlarmInfo() {
+    public void queryControlPointTask() {
         if (hasNetWork()) {
+
             HashMap<String, String> map = new HashMap<>();
             map.put("dtu_sn", dtu_sn);
+            map.put("node_addr", "3");
 
-            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_SENSOR_WARNING_INFO, new HttpManager.ResultCallback<IndexAlarmInfoResp>() {
+            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_CTRL_NODE_TASK, new HttpManager.ResultCallback<ControlPointTaskResp>() {
                 @Override
                 public void onError(Request request, Exception e) {
+
                 }
 
                 @Override
-                public void onResponse(IndexAlarmInfoResp response) {
+                public void onResponse(ControlPointTaskResp response) {
                     if (response != null && response.getState() == 200) {
                         dataList = response.getResult();
-                        adapter = new IndexAlarmInfoListAdapter(activity, dataList);
+                        adapter = new ControlPointTaskListAdapter(activity, dataList);
                         listView.setAdapter(adapter);
                     }
                 }
             }, map);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100 && resultCode == 200) {
-            queryAlarmInfo();
+        } else {
+            showNetWorkError();
         }
     }
 
     @Override
     public Class<?> getClazz() {
-        return AlarmInfoActivity.class;
+        return ControlPointTaskActivity.class;
     }
 }
