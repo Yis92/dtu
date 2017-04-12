@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:toolbar="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
-        toolbar:titleTextAppearance="@dimen/dimen_18"
-        toolbar:titleTextColor="@color/color_white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_50"
         android:background="@color/color_1196db"
-        android:theme="@style/Theme.ToolBar.ZhiHu">
+        android:theme="@style/Theme.ToolBar.ZhiHu"
+        toolbar:titleTextAppearance="@dimen/dimen_18"
+        toolbar:titleTextColor="@color/color_white">
 
         <TextView
             android:id="@+id/tv_title"
@@ -27,9 +28,57 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <RelativeLayout
+        android:layout_width="65dp"
+        android:layout_height="65dp">
+
+        <com.sixe.dtu.widget.RoundProgressbarWithProgress
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:progress="90"
+            app:progress_reach_color="#1e428c"
+            app:progress_reach_height="2dp"
+            app:progress_unreach_color="#deeffa"
+            app:progress_unreach_height="1dp"
+            app:radius="30dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 90"
+                android:textColor="#1e428c"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@id/tv_one"
+                android:text="%"
+                android:textColor="#1e428c"
+                android:textSize="11dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_one"
+                android:layout_centerInParent="true"
+                android:text="已募集"
+                android:textColor="#888"
+                android:textSize="10dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <com.idtk.smallchart.chart.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

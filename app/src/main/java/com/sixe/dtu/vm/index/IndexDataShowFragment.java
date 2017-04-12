@@ -18,6 +18,7 @@ import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.dtu.DtuTimeShowListAdapter;
 import com.sixe.dtu.vm.index.child.GroupShowActivity;
+import com.sixe.dtu.vm.index.child.HistoryDataActivity;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
@@ -78,6 +79,13 @@ public class IndexDataShowFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
+        //
+        tvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(HistoryDataActivity.class);
+            }
+        });
         //监听上下拉加载
         mRefreshLayout.setSuperRefreshLayoutListener(new SuperRefreshLayout.SuperRefreshLayoutListener() {
             @Override
