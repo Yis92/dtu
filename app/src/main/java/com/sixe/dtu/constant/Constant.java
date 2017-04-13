@@ -31,4 +31,11 @@ public class Constant {
     //报警设置id
     public static final String ALARM_INFO = "alarm_info";
 
+    //记住用户名密码
+    public static final String REMEMBER_PASSWORD = "remember_password";
+
+    //用户名 密码
+    public static final String USER_NAME= "user_name";
+    public static final String PASSWORD = "password";
+
 }

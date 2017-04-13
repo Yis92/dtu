@@ -164,13 +164,11 @@
         <!--历史数据展示-->
         <activity
             android:name=".vm.index.child.HistoryDataActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme" />
-
-        <!--dtu状态信息-->
         <activity
-            android:name=".vm.index.child.IndexDtuStatusActivity"
-            android:screenOrientation="portrait"
+            android:name=".vm.index.child.LineChartActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme" />
 
     </application>

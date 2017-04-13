@@ -13,11 +13,9 @@ import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.dtu.DtuTimeShowResp;
-import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.dtu.DtuStatusListAdapter;
-import com.sixe.dtu.vm.adapter.dtu.DtuTimeShowListAdapter;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
@@ -38,7 +36,7 @@ public class DtuStatusActivity extends BaseActivity {
     private DtuStatusListAdapter adapter;
     private List<List<String>> dataList;
 
-    private String dtu_sh;//dtu编号
+    private String dtu_sn;//dtu编号
 
     private HttpLoadingDialog httpLoadingDialog;
 
@@ -68,7 +66,7 @@ public class DtuStatusActivity extends BaseActivity {
 
         toolbar.setNavigationIcon(R.mipmap.white_back);
 
-        dtu_sh = intent.getExtras().getString(Constant.DTU_SN);
+        dtu_sn = intent.getExtras().getString(Constant.DTU_SN);
 
         mRefreshLayout.setColorSchemeResources(
                 R.color.swiperefresh_color1, R.color.swiperefresh_color2,
@@ -115,7 +113,7 @@ public class DtuStatusActivity extends BaseActivity {
 
             HashMap<String, String> map = new HashMap<>();
 //            map.put("dtu_sn", "1703030003000001");
-            map.put("dtu_sn", dtu_sh);
+            map.put("dtu_sn", dtu_sn);
 
             if (!isRefresh) {
                 httpLoadingDialog.visible();

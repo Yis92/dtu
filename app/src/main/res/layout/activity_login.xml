@@ -31,7 +31,6 @@
                 android:scaleType="fitXY" />
 
             <EditText
-                android:text="dhmaster  "
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,7 +55,7 @@
                 android:visibility="gone" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_1"
             android:layout_marginLeft="@dimen/dimen_20"
@@ -81,7 +80,6 @@
                 android:scaleType="fitXY" />
 
             <EditText
-                android:text="123456"
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -97,6 +95,42 @@
 
         </RelativeLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginLeft="@dimen/dimen_30"
+        android:layout_marginRight="@dimen/dimen_30"
+        android:background="@color/gray_background" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:layout_marginTop="@dimen/dimen_15">
+
+        <CheckBox
+            android:id="@+id/cb_agree"
+            android:layout_width="@dimen/dimen_15"
+            android:layout_height="@dimen/dimen_15"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_agree_checkbox"
+            android:button="@null" />
+
+        <TextView
+            android:id="@+id/tv_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_toRightOf="@+id/cb_agree"
+            android:clickable="true"
+            android:text="记住用户名密码"
+            android:textColor="@color/color_323232"
+            android:textSize="@dimen/text_size_small" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_login"

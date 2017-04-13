@@ -1,11 +1,14 @@
 package com.sixe.dtu.vm.user;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,6 +36,7 @@ public class UserLoginActivity extends BaseActivity {
     private TextView tvTitle;
     private Button btnLogin;
     private EditText etPhone, etPassword;
+    private CheckBox cbAgree;
     private ImageView ivClear1;
     private String password, mobile;
     private HttpLoadingDialog httpLoadingDialog;//加载进度
@@ -53,6 +57,7 @@ public class UserLoginActivity extends BaseActivity {
         tvTitle = findView(R.id.tv_title);
         btnLogin = findView(R.id.btn_login);
         etPassword = findView(R.id.et_password);
+        cbAgree = findView(R.id.cb_agree);
         etPhone = findView(R.id.et_phone);
         ivClear1 = findView(R.id.iv_clear1);
     }
@@ -60,6 +65,13 @@ public class UserLoginActivity extends BaseActivity {
     @Override
     public void initData(Intent intent) {
         tvTitle.setText("登录");
+
+        boolean isRemember = getPreferenceHelper().getBoolean(Constant.REMEMBER_PASSWORD, false);
+        if (isRemember) {
+            cbAgree.setChecked(true);
+            etPhone.setText(getPreferenceHelper().getString(Constant.USER_NAME, ""));
+            etPassword.setText(getPreferenceHelper().getString(Constant.PASSWORD, ""));
+        }
     }
 
     @Override
@@ -70,6 +82,18 @@ public class UserLoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        //CheckedB监听是否选中
+        cbAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    getPreferenceHelper().putBoolean(Constant.REMEMBER_PASSWORD, true);
+                } else {
+                    getPreferenceHelper().putBoolean(Constant.REMEMBER_PASSWORD, false);
+                }
             }
         });
 
@@ -94,6 +118,13 @@ public class UserLoginActivity extends BaseActivity {
                 if (isEmpty(password)) {
                     showToast("请输入密码");
                     return;
+                }
+
+                //记住用户名密码
+                if (cbAgree.isChecked()) {
+                    getPreferenceHelper().putBoolean(Constant.REMEMBER_PASSWORD, true);
+                    getPreferenceHelper().putString(Constant.USER_NAME, mobile);
+                    getPreferenceHelper().putString(Constant.PASSWORD, password);
                 }
 
                 HashMap<String, String> map = new HashMap<>();

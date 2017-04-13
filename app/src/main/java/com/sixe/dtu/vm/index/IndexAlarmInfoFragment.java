@@ -111,7 +111,7 @@ public class IndexAlarmInfoFragment extends BaseFragment {
                         }
 
                         if (response.getState() == 202) {
-                            showToastResult("暂时没有报警信息~~~");
+//                            showToastResult("暂时没有报警信息~~~");
                         }
                     }
 
@@ -121,7 +121,6 @@ public class IndexAlarmInfoFragment extends BaseFragment {
             showNetWorkError();
         }
     }
-
 
     /**
      * 标记已经处理过报警信息

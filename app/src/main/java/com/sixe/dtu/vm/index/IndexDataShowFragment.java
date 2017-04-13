@@ -1,7 +1,6 @@
 package com.sixe.dtu.vm.index;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,10 @@ import com.sixe.dtu.http.entity.dtu.DtuTimeShowResp;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.vm.adapter.dtu.DtuTimeShowListAdapter;
+import com.sixe.dtu.vm.dtu.info.DtuStatusActivity;
 import com.sixe.dtu.vm.index.child.GroupShowActivity;
 import com.sixe.dtu.vm.index.child.HistoryDataActivity;
+import com.sixe.dtu.vm.index.child.LineChartActivity;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
@@ -33,13 +34,14 @@ import java.util.List;
 public class IndexDataShowFragment extends BaseFragment {
 
     private TextView tvTime;
+    private TextView tvStatus;
     private SuperRefreshLayout mRefreshLayout;
     private ListView listView;
     private Button btnGroup;//分组数据展示
     private DtuTimeShowListAdapter adapter;
     private List<List<String>> dataList;
 
-    private String dtu_sh;//dtu编号
+    private String dtu_sn;//dtu编号
 
     private HttpLoadingDialog httpLoadingDialog;
 
@@ -58,6 +60,7 @@ public class IndexDataShowFragment extends BaseFragment {
     @Override
     public void initViews() {
         tvTime = findView(R.id.tv_time);
+        tvStatus = findView(R.id.tv_status);
         mRefreshLayout = findView(R.id.superRefreshLayout);
         listView = findView(R.id.listView);
         btnGroup = findView(R.id.btn_group);
@@ -66,7 +69,7 @@ public class IndexDataShowFragment extends BaseFragment {
 
     @Override
     public void initData(Bundle bundle) {
-        dtu_sh = bundle.getString(Constant.DTU_SN);
+        dtu_sn = bundle.getString(Constant.DTU_SN);
 
         mRefreshLayout.setColorSchemeResources(
                 R.color.swiperefresh_color1, R.color.swiperefresh_color2,
@@ -79,11 +82,19 @@ public class IndexDataShowFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
-        //
+        //dtu状态
+        tvStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("dtu_sn",dtu_sn);
+                startActivity(DtuStatusActivity.class,bundle);
+            }
+        });
         tvTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(HistoryDataActivity.class);
+                startActivity(LineChartActivity.class);
             }
         });
         //监听上下拉加载
@@ -105,7 +116,7 @@ public class IndexDataShowFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sh);
+                bundle.putString(Constant.DTU_SN, dtu_sn);
                 startActivity(GroupShowActivity.class, bundle);
             }
         });
@@ -117,10 +128,10 @@ public class IndexDataShowFragment extends BaseFragment {
     public void queryTimeData() {
         if (hasNetWork()) {
 
-            if (isNotEmpty(dtu_sh)) {
+            if (isNotEmpty(dtu_sn)) {
 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("dtu_sn", dtu_sh);
+                map.put("dtu_sn", dtu_sn);
 
                 if (!isRefresh) {
                     httpLoadingDialog.visible();

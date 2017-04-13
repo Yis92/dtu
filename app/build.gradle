@@ -62,4 +62,5 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.15'
     //曲线展示
     compile 'com.github.Idtk:SmallChart:v0.1.1'
+    compile 'com.github.lecho:hellocharts-android:v1.5.8'
 }
