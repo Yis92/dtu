@@ -55,7 +55,17 @@ public class DtuGroupShowResp extends CommonResponse<DtuGroupShowResp> {
     public class GroupData {
         private String name;
         private String value;
+        private String unit;
         private String id;
+
+        public String getUnit() {
+            return unit;
+        }
+
+        public void setUnit(String unit) {
+            this.unit = unit;
+        }
+
         private int type;
 
         public int getType() {

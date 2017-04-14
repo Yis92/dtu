@@ -102,17 +102,17 @@ public class DtuGroupShowListAdapter extends BaseAdapter {
             case 1:
 
                 viewHolderOne.tvNameOne.setText(list.get(0).getName());
-                viewHolderOne.tvValueOne.setText(list.get(0).getValue());
+                viewHolderOne.tvValueOne.setText(list.get(0).getValue()+list.get(0).getUnit());
 
                 viewHolderOne.tvNameTwo.setText(list.get(1).getName());
-                viewHolderOne.tvValueTwo.setText(list.get(1).getValue());
+                viewHolderOne.tvValueTwo.setText(list.get(1).getValue()+list.get(1).getUnit());
 
                 viewHolderOne.tvNameThree.setText(list.get(2).getName());
-                viewHolderOne.tvValueThree.setText(list.get(2).getValue());
+                viewHolderOne.tvValueThree.setText(list.get(2).getValue()+list.get(2).getUnit());
                 break;
             case 0:
                 viewHolderTwo.tvName.setText(list.get(position).getName());
-                viewHolderTwo.tvValue.setText(list.get(position).getValue());
+                viewHolderTwo.tvValue.setText(list.get(position).getValue()+list.get(position).getUnit());
                 break;
         }
 
