@@ -171,6 +171,12 @@
             android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme" />
 
+        <!--dtu信息-->
+        <activity
+            android:name=".vm.user.UserDtuInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
+
     </application>
 
     <!--允许程序写入外部存储,如SD卡上写文件-->

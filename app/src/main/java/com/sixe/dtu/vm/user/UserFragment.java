@@ -12,7 +12,11 @@ import android.widget.TextView;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
+import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserCompanyInfoResp;
+import com.sixe.dtu.http.entity.user.UserLoginResp;
+import com.sixe.dtu.vm.adapter.user.UserHomeListAdapter;
+import com.sixe.dtu.widget.ScrollListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +24,14 @@ import java.util.List;
 import cn.trinea.android.common.util.ToastUtils;
 
 /**
+ * 所有dtu信息
  * Created by liu on 17/2/25.
  */
 
 public class UserFragment extends BaseFragment {
 
     private Toolbar tbTitle;
-
-    private ListView lvContent;
+    private ScrollListView slvContent;
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -42,23 +46,16 @@ public class UserFragment extends BaseFragment {
     @Override
     public void initViews() {
         tbTitle = findView(R.id.tb_title);
-        lvContent = findView(R.id.lv_content);
+        slvContent = findView(R.id.slv_content);
     }
 
     @Override
     public void initData(Bundle bundle) {
         tbTitle.inflateMenu(R.menu.userinfo);
 
-//        List<UserCompanyInfoResp.UserCompanyInfo> list = new ArrayList<>();
-//
-//        for (int i = 0; i < 30; i++) {
-//            UserCompanyInfoResp.UserCompanyInfo info = new UserCompanyInfoResp().new UserCompanyInfo();
-//            info.setName("name");
-//            info.setValue("value");
-//            list.add(info);
-//        }
-//        UserCompanyInfoListAdapter adapter = new UserCompanyInfoListAdapter(activity, list);
-//        lvContent.setAdapter(adapter);
+        UserLoginResp userLoginResp = (UserLoginResp) bundle.getSerializable(Constant.USER_INFO);
+        UserHomeListAdapter adapter = new UserHomeListAdapter(activity, userLoginResp.getResult().getUnits());
+        slvContent.setAdapter(adapter);
     }
 
     @Override

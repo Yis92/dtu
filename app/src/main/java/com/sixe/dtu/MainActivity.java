@@ -64,7 +64,10 @@ public class MainActivity extends BaseActivity {
         bundle.putSerializable(Constant.USER_INFO, resp);
         indexFragment.setArguments(bundle);
         fragments.add(indexFragment);
-        fragments.add(new UserFragment());
+
+        UserFragment userFragment = new UserFragment();
+        userFragment.setArguments(bundle);
+        fragments.add(userFragment);
 
         textViews = new ArrayList<>();
         textViews.add(tvIndex);

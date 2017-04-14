@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_company_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_eeeeee"
+        android:drawableLeft="@mipmap/left"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp" />
+
+    <com.sixe.dtu.widget.ScrollGridView
+        android:id="@+id/sgv_dtu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:verticalSpacing="15dp"
+        android:numColumns="3" />
+
+</LinearLayout>

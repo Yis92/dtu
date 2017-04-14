@@ -43,6 +43,7 @@ import java.util.Map;
 
 public class IndexFragment extends BaseFragment {
 
+    private ImageView ivShare;//分享
     private SimpleDraweeView sdvHead;//用户头像
     private TextView tvName;//用户名
     private ImageView ivMenu;//用于手动点击打开菜单
@@ -63,8 +64,6 @@ public class IndexFragment extends BaseFragment {
 
     private Handler handler = new Handler();
 
-    IndexDtuInfoFragment indexDtuInfoFragment;
-
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         return layoutInflater.inflate(R.layout.fragment_index, viewGroup, false);
@@ -76,6 +75,7 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     public void initViews() {
+        ivShare = findView(R.id.iv_share);
         sdvHead = findView(R.id.sdv_head);
         tvName = findView(R.id.tv_name);
         ivMenu = findView(R.id.iv_menu);
@@ -112,6 +112,13 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
+        //
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().popBackStack();
+            }
+        });
         //打开菜单
         ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="控制节点任务状态"
+            android:text="分组数据"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 

@@ -22,47 +22,29 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="dihuikeji"
+            android:text="dtu信息"
             android:textColor="@android:color/white" />
-
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="项目"
-            android:textSize="16sp" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"></View>
+            <com.sixe.dtu.widget.ScrollListView
+                android:dividerHeight="20dp"
+                android:divider="@android:color/transparent"
+                android:id="@+id/slv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/tv_value"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="数值"
-            android:textSize="16sp" />
+        </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/layout_divider_tint"></include>
-
-    <ListView
-        android:id="@+id/lv_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+    </ScrollView>
 
 </LinearLayout>

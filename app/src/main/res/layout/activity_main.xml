@@ -20,7 +20,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!--<include layout="@layout/layout_divider_tint" />-->
+        <include layout="@layout/layout_divider_tint" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,8 +28,7 @@
             android:background="@android:color/white"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/dimen_5"
-            android:paddingTop="@dimen/dimen_5"
-            android:visibility="gone">
+            android:paddingTop="@dimen/dimen_5">
 
             <TextView
                 android:id="@+id/tv_index"
