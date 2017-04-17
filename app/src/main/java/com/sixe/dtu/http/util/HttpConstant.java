@@ -142,5 +142,15 @@ public class HttpConstant {
      */
     public static final String QUERRY_DTU_CTRL_NODE_TASK = BASE_URL + "/php/querry_dtu_ctrl_node_task.php";
 
+    /**
+     * 28. 查询dtu控制器任务分组信息
+     */
+    public static final String QUERRY_DTU_CTRL_TASK_GROUP_INFO = BASE_URL + "/php/querry_dtu_ctrl_task_group_info.php";
+
+    /**
+     * 30. 设置控制节点的任务状态
+     */
+    public static final String UPDATE_DTU_CTRL_NODE_TASK = BASE_URL + "/php/update_dtu_ctrl_node_task.php";
+
 
 }

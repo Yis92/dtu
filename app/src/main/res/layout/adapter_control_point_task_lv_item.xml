@@ -196,6 +196,68 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
+
+        <!--任务剩余时间-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="任务剩余时间"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/tsk_surplus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!--状态-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="状态"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"></View>
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_666666"
+                android:textSize="14sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <ImageView

@@ -177,6 +177,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme" />
 
+        <!--设置控制节点任务-->
+        <activity
+            android:name=".vm.index.child.UpdateControlTaskActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme" />
+
     </application>
 
     <!--允许程序写入外部存储,如SD卡上写文件-->
