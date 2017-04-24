@@ -1,51 +1,45 @@
 package com.sixe.dtu.vm.index;
 
-import android.content.Intent;
-import android.content.pm.ProviderInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.Toolbar;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
-import com.sixe.dtu.http.entity.index.IndexDtuInfoResp;
-import com.sixe.dtu.http.util.CommonResponse;
+import com.sixe.dtu.http.entity.dtu.DtuTimeShowResp;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
-import com.sixe.dtu.vm.index.child.UpdateDtuInfoActivity;
+import com.sixe.dtu.vm.adapter.dtu.DtuStatusListAdapter;
+import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
- * dtu信息 详情
+ * dtu信息 详情 - 改为dtu状态
  * Created by liu on 17/3/6.
  */
 
 public class IndexDtuInfoFragment extends BaseFragment {
 
-    private TextView tv_dtu_sn;//DTU序列号
-    private TextView dtu_name;//DTU设备名称
-    private TextView dtu_describ;//设备描述
-    private TextView dtu_address;//安装位置
-    private TextView dtu_long;//安装经度
-    private TextView dtu_lat;//安装纬度
-    private TextView dtu_comm_type;//通信类型
-    private TextView dtu_sim_no;//sim卡号
-    private TextView dtu_warning_type;//报警类型
-    private TextView dtu_upfreq;//上传频率
-
-    private Button btnUpdate;//修改dtu信息：管理员和高级员工操作
+    private TextView tvTime;
+    private SuperRefreshLayout mRefreshLayout;
+    private ListView listView;
+    private DtuStatusListAdapter adapter;
+    private List<List<String>> dataList;
 
     private String dtu_sn;//dtu编号
+
+    private HttpLoadingDialog httpLoadingDialog;
+
+    private boolean isRefresh;//是否是下拉刷新操作
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -59,17 +53,10 @@ public class IndexDtuInfoFragment extends BaseFragment {
 
     @Override
     public void initViews() {
-        tv_dtu_sn = findView(R.id.tv_dtu_sn);
-        dtu_name = findView(R.id.dtu_name);
-        dtu_describ = findView(R.id.dtu_describ);
-        dtu_address = findView(R.id.dtu_address);
-        dtu_long = findView(R.id.dtu_long);
-        dtu_lat = findView(R.id.dtu_lat);
-        dtu_comm_type = findView(R.id.dtu_comm_type);
-        dtu_sim_no = findView(R.id.dtu_sim_no);
-        dtu_warning_type = findView(R.id.dtu_warning_type);
-        dtu_upfreq = findView(R.id.dtu_upfreq);
-        btnUpdate = findView(R.id.btn_update);
+        tvTime = findView(R.id.tv_time);
+        mRefreshLayout = findView(R.id.superRefreshLayout);
+        listView = findView(R.id.listView);
+        httpLoadingDialog = new HttpLoadingDialog(activity);
     }
 
     @Override
@@ -77,84 +64,80 @@ public class IndexDtuInfoFragment extends BaseFragment {
 
         dtu_sn = bundle.getString(Constant.DTU_SN);
 
-        //普通用户不可以修改dtu信息
-        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
-        if (user_level != 12) {
-            btnUpdate.setVisibility(View.VISIBLE);
-        }
-        queryDtuInfo();
+        mRefreshLayout.setColorSchemeResources(
+                R.color.swiperefresh_color1, R.color.swiperefresh_color2,
+                R.color.swiperefresh_color3, R.color.swiperefresh_color4);
+
+//        mRefreshLayout.setCanLoadMore(listView);//是否可以加载更多
+
+
+        queryDtuStatus();
     }
 
     @Override
     public void initEvents() {
-        //修改dtu信息
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
+        //监听上下拉加载
+        mRefreshLayout.setSuperRefreshLayoutListener(new SuperRefreshLayout.SuperRefreshLayoutListener() {
             @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sn);
-                startActivity(UpdateDtuInfoActivity.class, bundle, 100);
+            public void onRefreshing() {
+                //下拉刷新
+                isRefresh = true;
+                queryDtuStatus();
+            }
+
+            @Override
+            public void onLoadMore() {
+                //上拉加载更多
+
             }
         });
     }
-
     /**
-     * 查询dtu信息
+     * dtu状态
      */
-    public void queryDtuInfo() {
-
+    public void queryDtuStatus() {
         if (hasNetWork()) {
 
             HashMap<String, String> map = new HashMap<>();
-//            map.put("dtu_sn", "1512110003000001");
+//            map.put("dtu_sn", "1703030003000001");
             map.put("dtu_sn", dtu_sn);
 
-            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_INFO, new HttpManager.ResultCallback<IndexDtuInfoResp>() {
+            if (!isRefresh) {
+                httpLoadingDialog.visible();
+            }
+
+            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_STATE, new HttpManager.ResultCallback<DtuTimeShowResp>() {
                 @Override
                 public void onError(Request request, Exception e) {
-
+                    httpLoadingDialog.dismiss();
+                    mRefreshLayout.onLoadComplete();
                 }
 
                 @Override
-                public void onResponse(IndexDtuInfoResp response) {
+                public void onResponse(DtuTimeShowResp response) {
                     if (response != null && response.getState() == 200) {
-                        tv_dtu_sn.setText(dtu_sn);
-                        dtu_name.setText(response.getResult().getDtu_name());
-                        dtu_describ.setText(response.getResult().getDtu_describ());
-                        dtu_address.setText(response.getResult().getDtu_address());
-                        dtu_long.setText(response.getResult().getDtu_long());
-                        dtu_lat.setText(response.getResult().getDtu_lat());
 
-                        // dtu_comm_type  通信方式 0：gprs，1：wifi
-                        String type = response.getResult().getDtu_comm_type();
-                        if (type.equals("0")) {
-                            dtu_comm_type.setText("GRPS");
+                        tvTime.setText("观测时间:" + response.getDt());
+
+                        if (!isRefresh) {
+                            dataList = response.getResult();
+                            adapter = new DtuStatusListAdapter(activity, response.getResult());
+                            listView.setAdapter(adapter);
                         } else {
-                            dtu_comm_type.setText("WIFI");
+                            dataList = response.getResult();
+                            adapter.notifyDataSetChanged();
+//                            Snackbar snackbar = Snackbar.make(tvTime, "已经是最新数据了哦~~~", Snackbar.LENGTH_SHORT);
+//
+//                            snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
+//                            snackbar.show();
                         }
-
-                        //报警类型 0：app 1：短信warnType
-                        String warnType = response.getResult().getDtu_warning_type();
-                        if (warnType.equals("0")) {
-                            dtu_warning_type.setText("app");
-                        } else {
-                            dtu_warning_type.setText("短信");
-                        }
-
-                        dtu_sim_no.setText(response.getResult().getDtu_sim_no());
-                        dtu_upfreq.setText(response.getResult().getDtu_upfreq());
                     }
+                    mRefreshLayout.onLoadComplete();
+                    httpLoadingDialog.dismiss();
                 }
             }, map);
         }
-    }
 
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 100 && resultCode == 200) {
-            queryDtuInfo();
-        }
     }
 
     @Override

@@ -21,15 +21,6 @@
                 android:textColor="@color/color_e54048"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:text="状态"
-                android:textSize="14sp" />
         </RelativeLayout>
 
         <LinearLayout

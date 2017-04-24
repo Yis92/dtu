@@ -8,12 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.vm.adapter.dtu.DtuDataInfoTabLayoutAdapter;
+import com.sixe.dtu.vm.dtu.info.DtuInfoActivity;
 import com.sixe.dtu.vm.index.IndexAlarmInfoFragment;
 import com.sixe.dtu.vm.index.IndexControlPointFragment;
 import com.sixe.dtu.vm.index.IndexDataShowFragment;
@@ -30,8 +32,9 @@ import java.util.List;
 
 public class UserDtuInfoActivity extends BaseActivity {
 
-    private Toolbar toolbar;
+    private ImageView ivBack;
     private TextView tvTitle;
+    private ImageView ivDtuInfo;
 
     //导航栏、dtu内容详情
     private TabLayout mTabLayout;
@@ -51,8 +54,9 @@ public class UserDtuInfoActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-        toolbar = findView(R.id.tool_bar);
+        ivBack = findView(R.id.iv_back);
         tvTitle = findView(R.id.tv_title);
+        ivDtuInfo = findView(R.id.iv_dtu_info);
 
         mTabLayout = findView(R.id.tab_layout);
         mViewPager = findView(R.id.view_pager);
@@ -63,7 +67,6 @@ public class UserDtuInfoActivity extends BaseActivity {
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             tvTitle.setText(bundle.getString(Constant.DTU_NAME));
-            toolbar.setNavigationIcon(R.mipmap.white_back);
 
             dtu_sn = bundle.getString(Constant.DTU_SN);
             loadCompanyDtu();
@@ -73,10 +76,19 @@ public class UserDtuInfoActivity extends BaseActivity {
     @Override
     public void initEvents() {
         //返回
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        //dtu信息
+        ivDtuInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString(Constant.DTU_SN, dtu_sn);
+                startActivity(DtuInfoActivity.class, bundle);
             }
         });
         //切换导航栏更新viewpager内容

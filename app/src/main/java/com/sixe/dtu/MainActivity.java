@@ -2,12 +2,12 @@ package com.sixe.dtu;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.sixe.dtu.base.BaseActivity;
@@ -15,15 +15,12 @@ import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
 import com.sixe.dtu.utils.RuntimeHelper;
 import com.sixe.dtu.vm.index.IndexFragment;
-import com.sixe.dtu.vm.test.UserResp;
 import com.sixe.dtu.vm.user.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.trinea.android.common.base.CommonFragmentActivity;
 import cn.trinea.android.common.util.ToastUtils;
-import de.greenrobot.event.EventBus;
 
 public class MainActivity extends BaseActivity {
 
@@ -38,7 +35,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvUser;
 
     private long exitTime; //用于点击两次返回退出程序
-
+    IndexFragment indexFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_main);
@@ -57,7 +54,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData(Intent intent) {
         fragments = new ArrayList<>();
-        IndexFragment indexFragment = new IndexFragment();
+        indexFragment = new IndexFragment();
         Bundle bundle = new Bundle();
         UserLoginResp resp = (UserLoginResp) intent.getExtras().getSerializable(Constant.USER_INFO);
 

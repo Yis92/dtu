@@ -155,32 +155,32 @@ public class GroupShowActivity extends BaseActivity {
                             llTwo.setVisibility(View.GONE);
                             llThree.setVisibility(View.GONE);
                             tvNameOne.setText(datas.get(0).getName());
-                            tvValueOne.setText(datas.get(0).getValue());
+                            tvValueOne.setText(datas.get(0).getValue()+datas.get(0).getUnit());
                         } else if (datas.size() == 2) {
                             llOne.setVisibility(View.VISIBLE);
                             llTwo.setVisibility(View.VISIBLE);
                             llThree.setVisibility(View.GONE);
                             tvNameOne.setText(datas.get(0).getName());
-                            tvValueOne.setText(datas.get(0).getValue());
+                            tvValueOne.setText(datas.get(0).getValue()+datas.get(0).getUnit());
                             tvNameTwo.setText(datas.get(1).getName());
-                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvValueTwo.setText(datas.get(1).getValue()+datas.get(1).getUnit());
                         } else if (datas.size() == 3) {
                             llOne.setVisibility(View.VISIBLE);
                             llTwo.setVisibility(View.VISIBLE);
                             llThree.setVisibility(View.VISIBLE);
                             tvNameOne.setText(datas.get(0).getName());
-                            tvValueOne.setText(datas.get(0).getValue());
+                            tvValueOne.setText(datas.get(0).getValue()+datas.get(0).getUnit());
                             tvNameTwo.setText(datas.get(1).getName());
-                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvValueTwo.setText(datas.get(1).getValue()+datas.get(1).getUnit());
                             tvNameThree.setText(datas.get(2).getName());
-                            tvValueThree.setText(datas.get(2).getValue());
+                            tvValueThree.setText(datas.get(2).getValue()+datas.get(2).getUnit());
                         } else {
                             tvNameOne.setText(datas.get(0).getName());
-                            tvValueOne.setText(datas.get(0).getValue());
+                            tvValueOne.setText(datas.get(0).getValue()+datas.get(0).getUnit());
                             tvNameTwo.setText(datas.get(1).getName());
-                            tvValueTwo.setText(datas.get(1).getValue());
+                            tvValueTwo.setText(datas.get(1).getValue()+datas.get(1).getUnit());
                             tvNameThree.setText(datas.get(2).getName());
-                            tvValueThree.setText(datas.get(2).getValue());
+                            tvValueThree.setText(datas.get(2).getValue()+datas.get(2).getUnit());
 
                             groupDatas.clear();
                             for (int i = 3; i < datas.size(); i++) {

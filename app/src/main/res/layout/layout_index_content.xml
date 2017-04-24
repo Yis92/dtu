@@ -27,12 +27,19 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <TextView
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="公司介绍"
-            android:textSize="20sp" />
+            android:layout_height="2dp"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_states"></ProgressBar>
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
 
     </LinearLayout>
 

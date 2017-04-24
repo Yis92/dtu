@@ -99,7 +99,6 @@ public class ControlPointTaskActivity extends BaseActivity {
         });
     }
 
-
     /**
      * 查看分组数据
      */

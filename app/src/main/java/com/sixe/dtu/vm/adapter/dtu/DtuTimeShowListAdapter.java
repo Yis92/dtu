@@ -43,12 +43,17 @@ public class DtuTimeShowListAdapter extends CommonAdapter<List<String>> {
         tvValue.setText(list.get(position).get(1));
         tvState.setText(list.get(position).get(2));
 
-        if (position % 2 == 0) {
+//        if (position % 2 == 0) {
+//            llContent.setBackgroundResource(R.color.color_f5f5f5);
+//        } else {
+//            llContent.setBackgroundResource(R.color.color_d9f3d8);
+//        }
+
+        if (list.get(position).get(4).equals("0")) {
             llContent.setBackgroundResource(R.color.color_f5f5f5);
-        } else {
+        }else {
             llContent.setBackgroundResource(R.color.color_d9f3d8);
         }
-
         return convertView;
     }
 }

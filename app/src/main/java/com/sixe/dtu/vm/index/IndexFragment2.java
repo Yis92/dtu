@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,7 +25,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
@@ -47,7 +45,7 @@ import java.util.Map;
  * Created by liu on 17/2/25.
  */
 
-public class IndexFragment extends BaseFragment {
+public class IndexFragment2 extends BaseFragment {
 
     private ProgressBar progressBar;
     private WebView webView;//展示公司信息
@@ -110,6 +108,13 @@ public class IndexFragment extends BaseFragment {
         //加载菜单栏
         loadMenu(userLoginResp);
 
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 2000);
+
         llCompanyDetail.setVisibility(View.VISIBLE);
         llDtuDetail.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
@@ -143,7 +148,7 @@ public class IndexFragment extends BaseFragment {
             }
 
         });
-        webView.loadUrl("http://139.129.239.172:7710/appindex.html");
+        webView.loadUrl("http://www.dihuitech.net/productID/intro.html");
     }
 
     @Override
@@ -231,7 +236,7 @@ public class IndexFragment extends BaseFragment {
                     IndexMenu chileMenu = new IndexMenu();
 
                     //dtu信息
-//                    List<UserLoginResp.Company.DtuName> dtuNames = company.get(i).getDtu();
+                    List<UserLoginResp.Company.DtuName> dtuNames = company.get(i).getDtu();
 
                     List<String> childName = new ArrayList<>();//子菜单名字
                     List<String> childId = new ArrayList<>();//子菜单id
@@ -247,17 +252,17 @@ public class IndexFragment extends BaseFragment {
                         childId.add(unit_no);
                     }
 
-//                    childName.add("dtu维护");
-//                    childId.add(unit_no);
+                    childName.add("dtu维护");
+                    childId.add(unit_no);
 
-//                    childName.add("全部dtu信息");
-//                    childId.add(unit_no);
+                    childName.add("全部dtu信息");
+                    childId.add(unit_no);
 
                     //循环遍历出子菜单中dtu的名字与编号
-//                    for (int j = 0; j < dtuNames.size(); j++) {
-//                        childName.add(dtuNames.get(j).getDtu_name());
-//                        childId.add(dtuNames.get(j).getDtu_sn());
-//                    }
+                    for (int j = 0; j < dtuNames.size(); j++) {
+                        childName.add(dtuNames.get(j).getDtu_name());
+                        childId.add(dtuNames.get(j).getDtu_sn());
+                    }
 
                     chileMenu.setName(childName);//公司名称
                     chileMenu.setId(childId);//公司编号
@@ -305,7 +310,7 @@ public class IndexFragment extends BaseFragment {
             dataShowFragment.setArguments(bundle6);
             fragments.add(dataShowFragment);
 
-            //dtu信息 改为dtu状态
+            //dtu信息
             IndexDtuInfoFragment indexDtuInfoFragment = new IndexDtuInfoFragment();
             Bundle bundle = new Bundle();
             bundle.putString(Constant.DTU_SN, dtu_sn);
@@ -342,7 +347,7 @@ public class IndexFragment extends BaseFragment {
 
             List<String> tabNames = new ArrayList<>();
             tabNames.add("数据显示");
-            tabNames.add("dtu状态");
+            tabNames.add("dtu信息");
             tabNames.add("传感器节点信息");
             tabNames.add("控制节点信息");
             tabNames.add("报警信息");
@@ -360,6 +365,6 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     public Class<?> getClazz() {
-        return IndexFragment.class;
+        return IndexFragment2.class;
     }
 }

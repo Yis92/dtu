@@ -135,10 +135,10 @@
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_45"
+        android:layout_height="@dimen/dimen_40"
         android:layout_marginBottom="@dimen/dimen_10"
-        android:layout_marginLeft="@dimen/dimen_10"
-        android:layout_marginRight="@dimen/dimen_10"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
         android:layout_marginTop="@dimen/dimen_20"
         android:background="@drawable/selector_bg_green"
         android:text="登录"

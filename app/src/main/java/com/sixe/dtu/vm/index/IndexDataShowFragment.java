@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,7 +35,6 @@ import java.util.List;
 public class IndexDataShowFragment extends BaseFragment {
 
     private TextView tvTime;
-    private TextView tvStatus;
     private SuperRefreshLayout mRefreshLayout;
     private ListView listView;
     private Button btnGroup;//分组数据展示
@@ -60,7 +60,6 @@ public class IndexDataShowFragment extends BaseFragment {
     @Override
     public void initViews() {
         tvTime = findView(R.id.tv_time);
-        tvStatus = findView(R.id.tv_status);
         mRefreshLayout = findView(R.id.superRefreshLayout);
         listView = findView(R.id.listView);
         btnGroup = findView(R.id.btn_group);
@@ -82,15 +81,6 @@ public class IndexDataShowFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
-        //dtu状态
-        tvStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("dtu_sn",dtu_sn);
-                startActivity(DtuStatusActivity.class,bundle);
-            }
-        });
         tvTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
