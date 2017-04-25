@@ -51,7 +51,7 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void initData(Bundle bundle) {
-        tbTitle.inflateMenu(R.menu.userinfo);
+//        tbTitle.inflateMenu(R.menu.userinfo);
 
         UserLoginResp userLoginResp = (UserLoginResp) bundle.getSerializable(Constant.USER_INFO);
         UserHomeListAdapter adapter = new UserHomeListAdapter(activity, userLoginResp.getResult().getUnits());
@@ -60,20 +60,20 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
-        tbTitle.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.update_data:
-                        ToastUtils.show(activity, "修改资料");
-                        break;
-                    case R.id.update_password:
-                        ToastUtils.show(activity, "修改密码");
-                        break;
-                }
-                return true;
-            }
-        });
+//        tbTitle.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.update_data:
+//                        ToastUtils.show(activity, "修改资料");
+//                        break;
+//                    case R.id.update_password:
+//                        ToastUtils.show(activity, "修改密码");
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
     }
 
     @Override

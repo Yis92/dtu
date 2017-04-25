@@ -70,10 +70,10 @@ public class AlarmInfoActivity extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sn);
-                bundle.putSerializable(Constant.ALARM_INFO, dataList.get(i));
-                startActivity(UpdateAlarmInfoActivity.class, bundle, 100);
+//                Bundle bundle = new Bundle();
+//                bundle.putString(Constant.DTU_SN, dtu_sn);
+//                bundle.putSerializable(Constant.ALARM_INFO, dataList.get(i));
+//                startActivity(UpdateAlarmInfoActivity.class, bundle, 100);
             }
         });
     }

@@ -137,11 +137,11 @@ public class UserDtuInfoActivity extends BaseActivity {
             fragments.add(indexDtuInfoFragment);
 
             //传感器节点信息
-            IndexSensorInfoFragment sensorInfoFragment = new IndexSensorInfoFragment();
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(Constant.DTU_SN, dtu_sn);
-            sensorInfoFragment.setArguments(bundle2);
-            fragments.add(sensorInfoFragment);
+//            IndexSensorInfoFragment sensorInfoFragment = new IndexSensorInfoFragment();
+//            Bundle bundle2 = new Bundle();
+//            bundle2.putString(Constant.DTU_SN, dtu_sn);
+//            sensorInfoFragment.setArguments(bundle2);
+//            fragments.add(sensorInfoFragment);
 
             //控制节点信息
             IndexControlPointFragment controlPointFragment = new IndexControlPointFragment();
@@ -159,8 +159,8 @@ public class UserDtuInfoActivity extends BaseActivity {
 
             List<String> tabNames = new ArrayList<>();
             tabNames.add("数据显示");
-            tabNames.add("dtu信息");
-            tabNames.add("传感器节点信息");
+            tabNames.add("dtu状态");
+//            tabNames.add("传感器节点信息");
             tabNames.add("控制节点信息");
             tabNames.add("报警信息");
 

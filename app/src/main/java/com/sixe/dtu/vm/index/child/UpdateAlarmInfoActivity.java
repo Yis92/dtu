@@ -9,10 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
-import com.sixe.dtu.http.entity.index.IndexAlarmInfoResp;
+import com.sixe.dtu.http.entity.index.child.QueryAlarmInfoResp;
 import com.sixe.dtu.http.util.CommonResponse;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
@@ -42,6 +43,8 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
     private String data_no;
     private String dtu_sn;
 
+    private HttpLoadingDialog httpLoadingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_update_alarm_info);
@@ -49,7 +52,7 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
 
     @Override
     public void initBoot() {
-
+        httpLoadingDialog = new HttpLoadingDialog(activity);
     }
 
     @Override
@@ -70,25 +73,8 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
 
         Bundle bundle = intent.getExtras();
         dtu_sn = bundle.getString(Constant.DTU_SN);
-        IndexAlarmInfoResp resp = (IndexAlarmInfoResp) bundle.getSerializable(Constant.ALARM_INFO);
-
-        data_no = resp.getData_no();
-
-        up.setText(resp.getUp());
-        low.setText(resp.getLow());
-        lasting.setText(resp.getLasting());
-        interval.setText(resp.getInterval());
-
-        String[] list = {"否", "是"};
-        UserStaffSpinnerAdapter adapter = new UserStaffSpinnerAdapter(activity, list);
-        enable.setAdapter(adapter);
-        if (resp.getEnable().equals("0")) {
-            isSelector = "0";
-            enable.setSelection(0);
-        } else {
-            isSelector = "1";
-            enable.setSelection(1);
-        }
+        data_no = bundle.getString("data_no");
+        queryAlarmInfo();
     }
 
     @Override
@@ -123,6 +109,52 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
                 updateAlarmInfo();
             }
         });
+    }
+
+    /**
+     * 查询报警信息
+     */
+    public void queryAlarmInfo() {
+        if (hasNetWork()) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("dtu_sn", dtu_sn);
+            map.put("data_no", data_no);
+
+            httpLoadingDialog.visible("加载中...");
+
+            HttpManager.postAsyn(HttpConstant.QUERRY_DTU_SENSOR_WARNING_INFO2, new HttpManager.ResultCallback<QueryAlarmInfoResp>() {
+                @Override
+                public void onError(Request request, Exception e) {
+                    httpLoadingDialog.dismiss();
+                }
+
+                @Override
+                public void onResponse(QueryAlarmInfoResp response) {
+                    if (response != null && response.getState() == 200) {
+//        IndexAlarmInfoResp resp = (IndexAlarmInfoResp) bundle.getSerializable(Constant.ALARM_INFO);
+
+//        data_no = resp.getData_no();
+
+                        up.setText(response.getResult().getUp());
+                        low.setText(response.getResult().getLow());
+                        lasting.setText(response.getResult().getLasting());
+                        interval.setText(response.getResult().getInterval());
+
+                        String[] list = {"否", "是"};
+                        UserStaffSpinnerAdapter adapter = new UserStaffSpinnerAdapter(activity, list);
+                        enable.setAdapter(adapter);
+                        if (response.getResult().getEnable().equals("0")) {
+                            isSelector = "0";
+                            enable.setSelection(0);
+                        } else {
+                            isSelector = "1";
+                            enable.setSelection(1);
+                        }
+                    }
+                    httpLoadingDialog.dismiss();
+                }
+            }, map);
+        }
     }
 
     /**

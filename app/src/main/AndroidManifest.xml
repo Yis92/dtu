@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.sixe.dtu">
 
     <!-- 允许程序访问网络连接，可能产生GPRS流量 -->
@@ -9,13 +10,17 @@
     <!-- 允许程序获取当前WiFi接入的状态以及WLAN热点的信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+
+    <!--AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性
+    （例如默认生成的android:icon和android:theme），则此时会合并失败，并会报错。-->
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/dtu_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
 
         <activity
             android:name=".MainActivity"

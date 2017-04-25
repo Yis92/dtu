@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import com.sixe.dtu.vm.dtu.info.DtuStatusActivity;
 import com.sixe.dtu.vm.index.child.GroupShowActivity;
 import com.sixe.dtu.vm.index.child.HistoryDataActivity;
 import com.sixe.dtu.vm.index.child.LineChartActivity;
+import com.sixe.dtu.vm.index.child.UpdateAlarmInfoActivity;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
@@ -148,10 +150,19 @@ public class IndexDataShowFragment extends BaseFragment {
                                 dataList = response.getResult();
                                 adapter = new DtuTimeShowListAdapter(activity, dataList);
                                 listView.setAdapter(adapter);
-//                                Snackbar snackbar = Snackbar.make(view, "已经是最新数据了哦~~~", Snackbar.LENGTH_SHORT);
-//
-//                                snackbar.getView().setBackgroundResource(R.color.swiperefresh_color3);
-//                                snackbar.show();
+                            }
+                            //管理员才可以修改
+                            int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
+                            if (user_level != 12) {
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("data_no", dataList.get(i).get(3));
+                                        bundle.putString(Constant.DTU_SN, dtu_sn);
+                                        startActivity(UpdateAlarmInfoActivity.class, bundle);
+                                    }
+                                });
                             }
                         }
                         mRefreshLayout.onLoadComplete();

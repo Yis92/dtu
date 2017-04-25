@@ -143,7 +143,7 @@ public class IndexFragment extends BaseFragment {
             }
 
         });
-        webView.loadUrl("http://139.129.239.172:7710/appindex.html");
+        webView.loadUrl("http://139.129.239.172:7710/appindex/appindex.html");
     }
 
     @Override

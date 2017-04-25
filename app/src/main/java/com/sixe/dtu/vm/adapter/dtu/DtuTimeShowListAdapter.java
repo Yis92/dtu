@@ -1,12 +1,14 @@
 package com.sixe.dtu.vm.adapter.dtu;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sixe.dtu.R;
+import com.sixe.dtu.vm.index.child.UpdateAlarmInfoActivity;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class DtuTimeShowListAdapter extends CommonAdapter<List<String>> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.adapter_dtu_time_show_lv_item, parent, false);
         }
@@ -43,17 +45,12 @@ public class DtuTimeShowListAdapter extends CommonAdapter<List<String>> {
         tvValue.setText(list.get(position).get(1));
         tvState.setText(list.get(position).get(2));
 
-//        if (position % 2 == 0) {
-//            llContent.setBackgroundResource(R.color.color_f5f5f5);
-//        } else {
-//            llContent.setBackgroundResource(R.color.color_d9f3d8);
-//        }
-
         if (list.get(position).get(4).equals("0")) {
             llContent.setBackgroundResource(R.color.color_f5f5f5);
-        }else {
+        } else {
             llContent.setBackgroundResource(R.color.color_d9f3d8);
         }
+
         return convertView;
     }
 }

@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\warning_sigh.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\warning_sigh.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\error_circle.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\error_circle.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\gray_button_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\gray_button_background.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\success_bow.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\success_bow.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\shape_cancel.xml",
+        "source": "D:\\dtu\\library\\build\\intermediates\\bundles\\debug\\res\\drawable\\shape_cancel.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\dialog_background.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\blue_button_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\blue_button_background.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\warning_circle.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\warning_circle.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\shape_download.xml",
+        "source": "D:\\dtu\\library\\build\\intermediates\\bundles\\debug\\res\\drawable\\shape_download.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\success_circle.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\success_circle.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\red_button_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\red_button_background.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\error_center_x.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\a5dfbd99eed9cfd54640d71fac6a3f7d4482a063\\output\\res\\drawable\\error_center_x.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "D:\\dtu\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\4d6a28bd87bf8b922a3f7ca604a9365160288a04\\output\\res\\drawable\\abc_btn_check_material.xml"
+    }
+]

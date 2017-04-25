@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:24.1.1'
@@ -63,4 +63,7 @@ dependencies {
     //曲线展示
     compile 'com.github.Idtk:SmallChart:v0.1.1'
     compile 'com.github.lecho:hellocharts-android:v1.5.8'
+    //圆形图片
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile project(':library')
 }

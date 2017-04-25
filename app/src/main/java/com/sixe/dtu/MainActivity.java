@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.loveplusplus.update.UpdateChecker;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
@@ -72,6 +73,8 @@ public class MainActivity extends BaseActivity {
 
         show(tvIndex, 0);
 
+        //APP更新
+//        UpdateChecker.checkForDialog(MainActivity.this, tvIndex);
     }
 
     @Override

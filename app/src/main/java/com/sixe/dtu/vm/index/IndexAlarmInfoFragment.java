@@ -28,7 +28,7 @@ import java.util.List;
 
 public class IndexAlarmInfoFragment extends BaseFragment {
 
-    private Button btnSet;//报警信息
+//    private Button btnSet;//报警信息
     private ListView listView;
     private AlarmInfoListAdapter adapter;
     private List<AlarmInfoResp> dataList;
@@ -47,7 +47,7 @@ public class IndexAlarmInfoFragment extends BaseFragment {
 
     @Override
     public void initViews() {
-        btnSet = findView(R.id.btn_set);
+//        btnSet = findView(R.id.btn_set);
         listView = findView(R.id.listView);
     }
 
@@ -56,10 +56,10 @@ public class IndexAlarmInfoFragment extends BaseFragment {
         dtu_sn = bundle.getString(Constant.DTU_SN);
 
         //普通用户不可以修改dtu信息
-        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
-        if (user_level != 12) {
-            btnSet.setVisibility(View.VISIBLE);
-        }
+//        int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
+//        if (user_level != 12) {
+//            btnSet.setVisibility(View.VISIBLE);
+//        }
 
         queryAlarmInfo();
     }
@@ -67,14 +67,14 @@ public class IndexAlarmInfoFragment extends BaseFragment {
     @Override
     public void initEvents() {
         //报警信息
-        btnSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString(Constant.DTU_SN, dtu_sn);
-                startActivity(AlarmInfoActivity.class, bundle);
-            }
-        });
+//        btnSet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Bundle bundle = new Bundle();
+//                bundle.putString(Constant.DTU_SN, dtu_sn);
+//                startActivity(AlarmInfoActivity.class, bundle);
+//            }
+//        });
     }
 
     /**

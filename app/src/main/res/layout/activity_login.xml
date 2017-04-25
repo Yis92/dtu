@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/layout_public_title" />
+
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+    <!--android:id="@+id/profile_image"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginTop="@dimen/dimen_40"-->
+    <!--android:src="@mipmap/dihui" />-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_40"
+        android:src="@mipmap/dihui" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -113,8 +129,8 @@
 
         <CheckBox
             android:id="@+id/cb_agree"
-            android:layout_width="@dimen/dimen_15"
-            android:layout_height="@dimen/dimen_15"
+            android:layout_width="@dimen/dimen_25"
+            android:layout_height="@dimen/dimen_25"
             android:layout_centerVertical="true"
             android:background="@drawable/selector_agree_checkbox"
             android:button="@null" />
@@ -123,12 +139,13 @@
             android:id="@+id/tv_agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen_10"
             android:layout_toRightOf="@+id/cb_agree"
             android:clickable="true"
             android:text="记住用户名密码"
             android:textColor="@color/color_323232"
-            android:textSize="@dimen/text_size_small" />
+            android:textSize="@dimen/text_size_14" />
 
     </RelativeLayout>
 
