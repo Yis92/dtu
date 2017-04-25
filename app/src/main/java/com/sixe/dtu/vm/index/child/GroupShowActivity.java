@@ -118,6 +118,27 @@ public class GroupShowActivity extends BaseActivity {
                 }
             }
         });
+        //
+        llOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(HistoryDataActivity.class);
+            }
+        });
+        //
+        llTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(HistoryDataActivity.class);
+            }
+        });
+        //
+        llThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(HistoryDataActivity.class);
+            }
+        });
     }
 
 
@@ -194,7 +215,6 @@ public class GroupShowActivity extends BaseActivity {
                                 groupDatas.add(datas.get(i));
                             }
 
-//                                adapter.notifyDataSetChanged();
                             if (adapter == null) {
                                 adapter = new DtuGroupShowListAdapter(activity, groupDatas);
                                 lvContent.setAdapter(adapter);
