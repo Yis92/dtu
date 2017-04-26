@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
         show(tvIndex, 0);
 
         //APP更新
-//        UpdateChecker.checkForDialog(MainActivity.this, tvIndex);
+        UpdateChecker.checkForDialog(MainActivity.this, tvIndex);
     }
 
     @Override

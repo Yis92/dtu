@@ -143,8 +143,7 @@ public class IndexFragment extends BaseFragment {
             }
 
         });
-        webView.loadUrl("http://load.huolan.net/help.html");
-//        webView.loadUrl("http://139.129.239.172:7710/appindex/appindex.html");
+        webView.loadUrl("http://139.129.239.172:7710/appindex/appindex.html");
     }
 
     @Override

@@ -28,6 +28,14 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_bar_states"></ProgressBar>
 
     <WebView
         android:id="@+id/web_view"

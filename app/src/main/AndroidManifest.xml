@@ -170,7 +170,8 @@
         <activity
             android:name=".vm.index.child.HistoryDataActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:theme="@style/ColorTranslucentTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".vm.index.child.LineChartActivity"
             android:screenOrientation="landscape"

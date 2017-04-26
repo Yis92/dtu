@@ -3,13 +3,15 @@ package com.sixe.dtu.vm.index.child;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sixe.dtu.R;
-import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.base.BaseActivity2;
 
 
@@ -23,6 +25,7 @@ public class HistoryDataActivity extends BaseActivity2 {
     private TextView tvTitle;
     private Toolbar toolbar;
     private WebView webView;
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +43,17 @@ public class HistoryDataActivity extends BaseActivity2 {
         tvTitle = findView(R.id.tv_title);
         toolbar = findView(R.id.tool_bar);
         webView = findView(R.id.web_view);
+        pb = findView(R.id.pb);
+        pb.setMax(100);
     }
 
     @Override
     public void initData(Intent intent) {
+
+        Bundle bundle = intent.getExtras();
+        String group_id = bundle.getString("group_id");
+        String data_id = bundle.getString("data_id");
+
         tvTitle.requestFocus();
         toolbar.setNavigationIcon(R.mipmap.white_back);
 
@@ -61,7 +71,21 @@ public class HistoryDataActivity extends BaseActivity2 {
         // 设置WebView支持运行普通的Javascript
         webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.loadUrl("http://139.129.239.172:8080/comSys/dtuHome/goHisPage?nodeId=1512110003000001&pId=2");
+        // 设置WebChromeClient，以支持运行特殊的Javascript
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                pb.setProgress(newProgress);
+                if (newProgress == 100) {
+                    pb.setVisibility(View.GONE);
+                }
+                super.onProgressChanged(view, newProgress);
+            }
+
+        });
+
+        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
+        Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
     }
 
     @Override

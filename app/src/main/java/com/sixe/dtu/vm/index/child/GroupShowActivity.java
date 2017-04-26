@@ -2,11 +2,9 @@ package com.sixe.dtu.vm.index.child;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
-import com.sixe.dtu.base.BaseFragment;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.dtu.DtuGroupShowResp;
 import com.sixe.dtu.http.util.HttpConstant;
@@ -60,6 +57,8 @@ public class GroupShowActivity extends BaseActivity {
 
     private int groupId = 0;
     private String dtu_sh;//dtu编号
+
+    private List<DtuGroupShowResp.GroupData> datas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,27 +117,6 @@ public class GroupShowActivity extends BaseActivity {
                 }
             }
         });
-        //
-        llOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(HistoryDataActivity.class);
-            }
-        });
-        //
-        llTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(HistoryDataActivity.class);
-            }
-        });
-        //
-        llThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(HistoryDataActivity.class);
-            }
-        });
     }
 
 
@@ -169,7 +147,7 @@ public class GroupShowActivity extends BaseActivity {
 
                         tvTime.setText("观测时间:" + response.getDt());
 
-                        List<DtuGroupShowResp.GroupData> datas = response.getResult().getGroupdata();
+                        datas = response.getResult().getGroupdata();
 
                         if (datas.size() == 1) {
                             llOne.setVisibility(View.VISIBLE);
@@ -221,10 +199,46 @@ public class GroupShowActivity extends BaseActivity {
                             } else {
                                 adapter.notifyDataSetChanged();
                             }
-
                         }
-
-                        showToastResult(tvTime, "已经是最新数据了哦~~~");
+                        //
+                        llOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(0).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        //
+                        llTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(1).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        //
+                        llThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(2).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", groupDatas.get(i).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
                     }
                     httpLoadingDialog.dismiss();
                 }
@@ -269,7 +283,7 @@ public class GroupShowActivity extends BaseActivity {
                         });
 
                         //分组数据
-                        List<DtuGroupShowResp.GroupData> datas = response.getResult().getGroupdata();
+                        final List<DtuGroupShowResp.GroupData> datas = response.getResult().getGroupdata();
 
                         groupDatas = new ArrayList<>();
 
@@ -309,6 +323,46 @@ public class GroupShowActivity extends BaseActivity {
                             adapter = new DtuGroupShowListAdapter(activity, groupDatas);
                             lvContent.setAdapter(adapter);
                         }
+
+                        //
+                        llOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(0).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        //
+                        llTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(1).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        //
+                        llThree.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", datas.get(2).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
+                        lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Bundle bundle = new Bundle();
+                                bundle.putString("group_id", groupId + "");
+                                bundle.putString("data_id", groupDatas.get(i).getId());
+                                startActivity(HistoryDataActivity.class,bundle);
+                            }
+                        });
                     }
                 }
             }, map);
