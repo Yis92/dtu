@@ -27,179 +27,247 @@
 
     </android.support.v7.widget.Toolbar>
 
-        <!--报警上限-->
-        <LinearLayout
-            android:background="@color/color_d5edf8"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--名称-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_d5edf8"
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="报警上限"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="名称"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
 
-            <EditText
-                android:id="@+id/up"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--报警下限-->
-        <LinearLayout
-            android:background="@color/color_f5f5f5"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--说明-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_f5f5f5"
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="报警下限"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="说明"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
 
-            <EditText
-                android:id="@+id/low"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/describ"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--持续时间-->
-        <LinearLayout
-            android:background="@color/color_d5edf8"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--报警上限-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_d5edf8"
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="持续时间"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="报警上限"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
 
-            <EditText
-                android:id="@+id/lasting"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <EditText
+            android:id="@+id/up"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--报警间隔-->
-        <LinearLayout
-            android:background="@color/color_f5f5f5"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--报警下限-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_f5f5f5"
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="报警间隔"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="报警下限"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
 
-            <EditText
-                android:id="@+id/interval"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_et_bg"
-                android:gravity="center"
-                android:singleLine="true"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <EditText
+            android:id="@+id/low"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <!--是否报警-->
-        <LinearLayout
-            android:background="@color/color_d5edf8"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+    <!--持续时间-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_d5edf8"
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="是否报警"
-                android:textColor="@color/color_666666"
-                android:textSize="14sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="持续时间"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
 
-            <View
-                android:layout_width="0.5dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"></View>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
+
+        <EditText
+            android:id="@+id/lasting"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!--报警间隔-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_f5f5f5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="报警间隔"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
+
+        <EditText
+            android:id="@+id/interval"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!--是否报警-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_d5edf8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="是否报警"
+            android:textColor="@color/color_666666"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"></View>
 
 
-            <Spinner
-                android:foregroundGravity="center"
-                android:id="@+id/enable"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:gravity="center" />
+        <Spinner
+            android:id="@+id/enable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:gravity="center" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_submit"

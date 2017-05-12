@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
 import com.sixe.dtu.R;
@@ -31,6 +32,8 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
 
     private Toolbar toolbar;
 
+    private TextView name;//名称
+    private TextView describ;//说明
     private EditText up;//报警上限
     private EditText low;//报警下限
     private EditText lasting;//持续时间
@@ -58,6 +61,8 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
     @Override
     public void initViews() {
         toolbar = findView(R.id.tool_bar);
+        name = findView(R.id.name);
+        describ = findView(R.id.describ);
         up = findView(R.id.up);
         low = findView(R.id.low);
         lasting = findView(R.id.lasting);
@@ -135,6 +140,9 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
 
 //        data_no = resp.getData_no();
 
+
+                        name.setText(response.getResult().getName());
+                        describ.setText(response.getResult().getDescrib());
                         up.setText(response.getResult().getUp());
                         low.setText(response.getResult().getLow());
                         lasting.setText(response.getResult().getLasting());
@@ -163,6 +171,16 @@ public class UpdateAlarmInfoActivity extends BaseActivity {
     public void updateAlarmInfo() {
         if (hasNetWork()) {
             //表单空验证
+
+            if (isEmpty(name)) {
+                showToast("请输入名称");
+                return;
+            }
+
+            if (isEmpty(describ)) {
+                showToast("请输入说明");
+                return;
+            }
 
             if (isEmpty(up)) {
                 showToast("请输入报警上限");

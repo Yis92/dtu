@@ -97,6 +97,8 @@ public class IndexControlPointFragment extends BaseFragment {
                         dataList = response.getResult();
                         adapter = new IndexControlPointListAdapter(activity, dataList);
                         listView.setAdapter(adapter);
+                    }else {
+                        showToast(response.getMessage());
                     }
                 }
             }, map);

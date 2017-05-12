@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -212,9 +213,9 @@ public class CustomDialog extends Dialog {
             } else if (contentView != null) {
                 // if no message set
                 // add the contentView to the dialog body
-                ((FrameLayout) layout.findViewById(R.id.fl_content))
+                ((LinearLayout) layout.findViewById(R.id.fl_content))
                         .removeAllViews();
-                ((FrameLayout) layout.findViewById(R.id.fl_content)).addView(
+                ((LinearLayout) layout.findViewById(R.id.fl_content)).addView(
                         contentView, new LayoutParams(
                                 LayoutParams.MATCH_PARENT,
                                 LayoutParams.MATCH_PARENT));

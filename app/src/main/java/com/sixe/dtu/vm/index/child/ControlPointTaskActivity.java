@@ -138,6 +138,8 @@ public class ControlPointTaskActivity extends BaseActivity {
                         dataList = response.getResult().getTskinfo().getTsk();
                         adapter = new ControlPointTaskListAdapter(activity, dataList);
                         listView.setAdapter(adapter);
+                    }else {
+                        showToast(response.getMessage());
                     }
                 }
             }, map);

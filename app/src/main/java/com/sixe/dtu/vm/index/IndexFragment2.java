@@ -353,7 +353,6 @@ public class IndexFragment2 extends BaseFragment {
             tabNames.add("报警信息");
 //            tabNames.add("分组信息");
 
-
             FragmentManager fragmentManager = getFragmentManager();
 
             DtuDataInfoTabLayoutAdapter adapter = new DtuDataInfoTabLayoutAdapter(fragmentManager, fragments, tabNames);
