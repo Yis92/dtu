@@ -26,6 +26,7 @@ public class HistoryDataActivity extends BaseActivity2 {
     private Toolbar toolbar;
     private WebView webView;
     private ProgressBar pb;
+    private String dtu_sn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class HistoryDataActivity extends BaseActivity2 {
         Bundle bundle = intent.getExtras();
         String group_id = bundle.getString("group_id");
         String data_id = bundle.getString("data_id");
+        dtu_sn = bundle.getString("dtu_sn");
 
         tvTitle.requestFocus();
         toolbar.setNavigationIcon(R.mipmap.white_back);
@@ -84,8 +86,9 @@ public class HistoryDataActivity extends BaseActivity2 {
 
         });
 
-        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
-        Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
+//        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
+        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + dtu_sn + "&mType=APP");
+//        Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
     }
 
     @Override

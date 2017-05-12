@@ -207,7 +207,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(0).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         //
@@ -217,7 +217,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(1).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         //
@@ -227,7 +227,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(2).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -236,7 +236,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", groupDatas.get(i).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                     }
@@ -331,7 +331,8 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(0).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                bundle.putString("dtu_sn", dtu_sh);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         //
@@ -341,7 +342,8 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(1).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                bundle.putString("dtu_sn", dtu_sh);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         //
@@ -351,7 +353,8 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(2).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                bundle.putString("dtu_sn", dtu_sh);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                         lvContent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -360,7 +363,8 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", groupDatas.get(i).getId());
-                                startActivity(HistoryDataActivity.class,bundle);
+                                bundle.putString("dtu_sn", dtu_sh);
+                                startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
                     }
