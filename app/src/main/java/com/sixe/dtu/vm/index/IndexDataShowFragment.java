@@ -1,13 +1,20 @@
 package com.sixe.dtu.vm.index;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
@@ -17,6 +24,7 @@ import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.dtu.DtuTimeShowResp;
 import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
+import com.sixe.dtu.utils.ShareWeChatUtils;
 import com.sixe.dtu.vm.adapter.dtu.DtuTimeShowListAdapter;
 import com.sixe.dtu.vm.dtu.info.DtuStatusActivity;
 import com.sixe.dtu.vm.index.child.GroupShowActivity;
@@ -26,8 +34,12 @@ import com.sixe.dtu.vm.index.child.UpdateAlarmInfoActivity;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import cn.trinea.android.common.util.ToastUtils;
 
 /**
  * 数据显示
@@ -37,6 +49,7 @@ import java.util.List;
 public class IndexDataShowFragment extends BaseFragment {
 
     private TextView tvTime;
+    private TextView tvShare;
     private SuperRefreshLayout mRefreshLayout;
     private ListView listView;
     private Button btnGroup;//分组数据展示
@@ -44,6 +57,8 @@ public class IndexDataShowFragment extends BaseFragment {
     private List<List<String>> dataList;
 
     private String dtu_sn;//dtu编号
+    private String dtu_name;//dtu名称
+    private String unit_name;//公司名称
 
     private HttpLoadingDialog httpLoadingDialog;
 
@@ -62,6 +77,7 @@ public class IndexDataShowFragment extends BaseFragment {
     @Override
     public void initViews() {
         tvTime = findView(R.id.tv_time);
+        tvShare = findView(R.id.tv_share);
         mRefreshLayout = findView(R.id.superRefreshLayout);
         listView = findView(R.id.listView);
         btnGroup = findView(R.id.btn_group);
@@ -71,6 +87,8 @@ public class IndexDataShowFragment extends BaseFragment {
     @Override
     public void initData(Bundle bundle) {
         dtu_sn = bundle.getString(Constant.DTU_SN);
+        dtu_name = bundle.getString(Constant.DTU_NAME);
+        unit_name = bundle.getString("unit_name");
 
         mRefreshLayout.setColorSchemeResources(
                 R.color.swiperefresh_color1, R.color.swiperefresh_color2,
@@ -83,10 +101,11 @@ public class IndexDataShowFragment extends BaseFragment {
 
     @Override
     public void initEvents() {
-        tvTime.setOnClickListener(new View.OnClickListener() {
+        //分享
+        tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(LineChartActivity.class);
+                sharePop();
             }
         });
         //监听上下拉加载
@@ -172,6 +191,67 @@ public class IndexDataShowFragment extends BaseFragment {
             }
         }
     }
+
+    /**
+     * 分享
+     */
+    public void sharePop() {
+        View view = activity.getLayoutInflater().inflate(R.layout.pop_share_my_money, null);
+        final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+        popupWindow.setContentView(view);
+        popupWindow.setFocusable(true);
+        //外部是否可以点击
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setOutsideTouchable(true);
+
+        LinearLayout llMain = (LinearLayout) view.findViewById(R.id.ll_main);
+        TextView tvWeixin = (TextView) view.findViewById(R.id.tv_weixin);
+        TextView tvPengyouquan = (TextView) view.findViewById(R.id.tv_pengyouquan);
+        TextView tvCancel = (TextView) view.findViewById(R.id.tv_cancel);
+
+        //取消pop
+        llMain.getBackground().setAlpha(150);
+        llMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        //取消pop
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+
+        //微信好友
+        tvWeixin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //intent分享
+                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, null,unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
+
+                shareWeChatUtils.shareWeChat("");
+            }
+        });
+
+        //微信朋友圈
+        tvPengyouquan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //intent分享
+                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, null,unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
+
+                //intent分享
+                shareWeChatUtils.shareLocalImg();
+            }
+        });
+
+        //显示PopupWindow
+        popupWindow.showAtLocation(tvShare, Gravity.CENTER, 0, 0);
+    }
+
 
     @Override
     public Class<?> getClazz() {

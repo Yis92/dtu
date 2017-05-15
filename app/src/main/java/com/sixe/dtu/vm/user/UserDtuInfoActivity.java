@@ -41,6 +41,8 @@ public class UserDtuInfoActivity extends BaseActivity {
     private ViewPager mViewPager;
 
     private String dtu_sn;
+    private String unit_name;
+    private String dtu_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +67,10 @@ public class UserDtuInfoActivity extends BaseActivity {
     @Override
     public void initData(Intent intent) {
         Bundle bundle = intent.getExtras();
+        dtu_name = bundle.getString(Constant.DTU_NAME);
+        unit_name = bundle.getString("unit_name");
         if (bundle != null) {
-            tvTitle.setText(bundle.getString(Constant.DTU_NAME));
+            tvTitle.setText(dtu_name);
 
             dtu_sn = bundle.getString(Constant.DTU_SN);
             loadCompanyDtu();
@@ -126,6 +130,8 @@ public class UserDtuInfoActivity extends BaseActivity {
             IndexDataShowFragment dataShowFragment = new IndexDataShowFragment();
             Bundle bundle6 = new Bundle();
             bundle6.putString(Constant.DTU_SN, dtu_sn);
+            bundle6.putString(Constant.DTU_NAME, dtu_name);
+            bundle6.putString("unit_name", unit_name);
             dataShowFragment.setArguments(bundle6);
             fragments.add(dataShowFragment);
 
@@ -133,6 +139,8 @@ public class UserDtuInfoActivity extends BaseActivity {
             IndexDtuInfoFragment indexDtuInfoFragment = new IndexDtuInfoFragment();
             Bundle bundle = new Bundle();
             bundle.putString(Constant.DTU_SN, dtu_sn);
+            bundle.putString(Constant.DTU_NAME, dtu_name);
+            bundle.putString("unit_name", unit_name);
             indexDtuInfoFragment.setArguments(bundle);
             fragments.add(indexDtuInfoFragment);
 
@@ -147,6 +155,8 @@ public class UserDtuInfoActivity extends BaseActivity {
             IndexControlPointFragment controlPointFragment = new IndexControlPointFragment();
             Bundle bundle3 = new Bundle();
             bundle3.putString(Constant.DTU_SN, dtu_sn);
+            bundle3.putString(Constant.DTU_NAME, dtu_name);
+            bundle3.putString("unit_name", unit_name);
             controlPointFragment.setArguments(bundle3);
             fragments.add(controlPointFragment);
 
@@ -154,6 +164,8 @@ public class UserDtuInfoActivity extends BaseActivity {
             IndexAlarmInfoFragment alarmInfoFragment = new IndexAlarmInfoFragment();
             Bundle bundle4 = new Bundle();
             bundle4.putString(Constant.DTU_SN, dtu_sn);
+            bundle4.putString(Constant.DTU_NAME, dtu_name);
+            bundle4.putString("unit_name", unit_name);
             alarmInfoFragment.setArguments(bundle4);
             fragments.add(alarmInfoFragment);
 

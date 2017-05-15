@@ -24,9 +24,11 @@ public class UserHomeGridAdapter extends CommonAdapter<UserLoginResp.Company.Dtu
 
     private TextView tvDtuName;
     private LinearLayout llContent;
+    private String unit_name;//单位名称
 
-    public UserHomeGridAdapter(Activity activity, List<UserLoginResp.Company.DtuName> list) {
+    public UserHomeGridAdapter(Activity activity, List<UserLoginResp.Company.DtuName> list,String unit_name) {
         super(activity, list);
+        this.unit_name = unit_name;
     }
 
     @Override
@@ -46,6 +48,7 @@ public class UserHomeGridAdapter extends CommonAdapter<UserLoginResp.Company.Dtu
                 Bundle bundle = new Bundle();
                 bundle.putString(Constant.DTU_SN, list.get(i).getDtu_sn());
                 bundle.putString(Constant.DTU_NAME, list.get(i).getDtu_name());
+                bundle.putString("unit_name", unit_name);
                 startActivity(UserDtuInfoActivity.class, bundle);
             }
         });

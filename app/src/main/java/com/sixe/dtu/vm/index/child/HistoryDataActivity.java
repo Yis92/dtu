@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sixe.dtu.R;
+import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.base.BaseActivity2;
 
 
@@ -20,7 +21,7 @@ import com.sixe.dtu.base.BaseActivity2;
  * Created by Administrator on 2017/4/1.
  */
 
-public class HistoryDataActivity extends BaseActivity2 {
+public class HistoryDataActivity extends BaseActivity {
 
     private TextView tvTitle;
     private Toolbar toolbar;

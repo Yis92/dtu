@@ -70,8 +70,6 @@ public class IndexFragment extends BaseFragment {
 
     private String dtu_sn;//dtu编号
 
-    private Handler handler = new Handler();
-
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         return layoutInflater.inflate(R.layout.fragment_index, viewGroup, false);

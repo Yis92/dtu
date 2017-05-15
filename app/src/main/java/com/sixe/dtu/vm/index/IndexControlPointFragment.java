@@ -34,6 +34,8 @@ public class IndexControlPointFragment extends BaseFragment {
 
     private String dtu_sn;
 
+    private boolean isNull;//是否有返回
+
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         return layoutInflater.inflate(R.layout.fragment_index_control_point, viewGroup, false);
@@ -61,6 +63,15 @@ public class IndexControlPointFragment extends BaseFragment {
         }
 
         queryControlPointInfo();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser) {
+            if (isNull) {
+                showToast("暂无数据..");
+            }
+        }
     }
 
     @Override
@@ -94,10 +105,15 @@ public class IndexControlPointFragment extends BaseFragment {
                 @Override
                 public void onResponse(IndexControlPointResp response) {
                     if (response != null && response.getState() == 200) {
-                        dataList = response.getResult();
-                        adapter = new IndexControlPointListAdapter(activity, dataList);
-                        listView.setAdapter(adapter);
-                    }else {
+                        if (response.getResult().size() > 0) {
+                            isNull = false;
+                            dataList = response.getResult();
+                            adapter = new IndexControlPointListAdapter(activity, dataList);
+                            listView.setAdapter(adapter);
+                        } else {
+                            isNull = true;
+                        }
+                    } else {
                         showToast(response.getMessage());
                     }
                 }

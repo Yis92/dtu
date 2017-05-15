@@ -36,7 +36,7 @@ public class UserHomeListAdapter extends CommonAdapter<UserLoginResp.Company> {
         sgvDtu = get(view, R.id.sgv_dtu);
 
         tvCompanyName.setText("  "+list.get(i).getUnit_name());
-        UserHomeGridAdapter adapter = new UserHomeGridAdapter(activity, list.get(i).getDtu());
+        UserHomeGridAdapter adapter = new UserHomeGridAdapter(activity, list.get(i).getDtu(),list.get(i).getUnit_name());
         sgvDtu.setAdapter(adapter);
 
         return view;
