@@ -75,7 +75,7 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
         Gson gson = new Gson();
         UpdateResp updateResp = gson.fromJson(result, UpdateResp.class);
         Log.i("qqq", result);
-        String updateMessage = updateResp.getMessage();
+        String updateMessage = updateResp.getVerMessage();
         String apkUrl = updateResp.getAppUrl();
         int apkCode = updateResp.getVerCode();
 //        int force = updateResp.getData().getForce();

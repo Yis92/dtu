@@ -5,18 +5,18 @@ package com.loveplusplus.update;
  */
 public class UpdateResp {
 
-    private String message;
+    private String verMessage;
     private String appUrl;
     private int verCode;
 //        private int force;//是否强制更新,1:强制更新
 
 
-    public String getMessage() {
-        return message;
+    public String getVerMessage() {
+        return verMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setVerMessage(String verMessage) {
+        this.verMessage = verMessage;
     }
 
     public String getAppUrl() {

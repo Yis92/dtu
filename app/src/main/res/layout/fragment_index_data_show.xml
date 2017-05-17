@@ -29,7 +29,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dimen_10"
                 android:text="分享"
-                android:textColor="@color/color_e54048" />
+                android:textColor="@color/color_1196db" />
 
         </RelativeLayout>
 

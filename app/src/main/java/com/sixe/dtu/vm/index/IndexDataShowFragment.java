@@ -1,9 +1,6 @@
 package com.sixe.dtu.vm.index;
 
-import android.content.ComponentName;
-import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -26,20 +22,13 @@ import com.sixe.dtu.http.util.HttpConstant;
 import com.sixe.dtu.http.util.HttpManager;
 import com.sixe.dtu.utils.ShareWeChatUtils;
 import com.sixe.dtu.vm.adapter.dtu.DtuTimeShowListAdapter;
-import com.sixe.dtu.vm.dtu.info.DtuStatusActivity;
 import com.sixe.dtu.vm.index.child.GroupShowActivity;
-import com.sixe.dtu.vm.index.child.HistoryDataActivity;
-import com.sixe.dtu.vm.index.child.LineChartActivity;
 import com.sixe.dtu.vm.index.child.UpdateAlarmInfoActivity;
 import com.sixe.dtu.widget.SuperRefreshLayout;
 import com.squareup.okhttp.Request;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import cn.trinea.android.common.util.ToastUtils;
 
 /**
  * 数据显示
