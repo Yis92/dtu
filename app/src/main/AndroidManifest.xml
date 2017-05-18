@@ -196,6 +196,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme" />
 
+        <!--app自动更新-->
+        <service
+            android:name="com.loveplusplus.update.DownloadService"
+            android:exported="true" />
+
     </application>
 
     <!--允许程序写入外部存储,如SD卡上写文件-->
