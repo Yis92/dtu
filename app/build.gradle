@@ -19,17 +19,32 @@ allprojects {
 android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
+
+    signingConfigs {
+        release {
+            keyAlias 'dihui_dtu'
+            keyPassword '123456'
+            storeFile file('C:/Users/Administrator/Desktop/dihui_dtu.jks')
+            storePassword '123456'
+        }
+    }
+
     defaultConfig {
         applicationId "com.sixe.dtu"
-        minSdkVersion 19
+        minSdkVersion 15
         targetSdkVersion 24
-        versionCode 2
-        versionName "2.0"
+        versionCode 4
+        versionName "4.0"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            signingConfig signingConfigs.release
         }
     }
     //解决AndroidStudio在打包应用时总是出错，运行时没有错
@@ -60,9 +75,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //gif图片加载
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.15'
-    //曲线展示
-    compile 'com.github.Idtk:SmallChart:v0.1.1'
-    compile 'com.github.lecho:hellocharts-android:v1.5.8'
     //圆形图片
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile project(':library')

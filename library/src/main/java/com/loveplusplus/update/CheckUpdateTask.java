@@ -83,6 +83,9 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
 
         int versionCode = AppUtils.getVersionCode(mContext);
 
+        Log.i("http","versionCode==============="+versionCode);
+        Log.i("http","apkCode==============="+apkCode);
+
         if (apkCode > versionCode) {
             if (mType == Constants.TYPE_NOTIFICATION) {
                 showNotification(mContext, updateMessage, apkUrl);
