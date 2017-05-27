@@ -219,7 +219,7 @@ public class IndexDataShowFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //intent分享
-                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, null,unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
+                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, null, unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
 
                 shareWeChatUtils.shareWeChat("");
             }
@@ -230,10 +230,11 @@ public class IndexDataShowFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //intent分享
-                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, null,unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
+                final ShareWeChatUtils shareWeChatUtils = new ShareWeChatUtils(activity, new String[]{"http://asdasd.png"}, unit_name + dtu_name + "\nhttp://139.129.239.172:8080/comSys/dtuShare/goDataPage?nodeId=" + dtu_sn, 0);
 
                 //intent分享
-                shareWeChatUtils.shareLocalImg();
+//                shareWeChatUtils.shareLocalImg();
+                shareWeChatUtils.share();
             }
         });
 

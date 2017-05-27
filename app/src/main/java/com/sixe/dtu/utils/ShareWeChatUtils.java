@@ -110,7 +110,7 @@ public class ShareWeChatUtils {
                 if (uris.isEmpty()) {
 //                Toast.makeText(context, "请先下载图片", Toast.LENGTH_SHORT).show();
                     //如果图片下载不下来  默认给了一张知晓logo的图片作为分享的图片
-                    Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.dihui);
+                    Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.dihui_logo);
                     Uri uri2 = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), bmp, null, null));
 
                     ArrayList<Uri> uris2 = new ArrayList<>();
@@ -121,7 +121,7 @@ public class ShareWeChatUtils {
                     shareToTimeLine(title, uris);
                 }
             } else {
-                Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.dihui);
+                Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.dihui_logo);
                 Uri uri2 = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), bmp, null, null));
 
                 ArrayList<Uri> uris2 = new ArrayList<>();

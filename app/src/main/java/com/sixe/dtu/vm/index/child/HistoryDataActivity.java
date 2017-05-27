@@ -53,8 +53,6 @@ public class HistoryDataActivity extends BaseActivity {
     public void initData(Intent intent) {
 
         Bundle bundle = intent.getExtras();
-        String group_id = bundle.getString("group_id");
-        String data_id = bundle.getString("data_id");
         dtu_sn = bundle.getString("dtu_sn");
 
         tvTitle.requestFocus();
@@ -89,7 +87,7 @@ public class HistoryDataActivity extends BaseActivity {
 
 //        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
         webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + dtu_sn + "&mType=APP");
-//        Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
+        Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + dtu_sn + "&mType=APP");
     }
 
     @Override

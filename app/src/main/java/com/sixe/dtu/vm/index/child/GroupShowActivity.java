@@ -207,6 +207,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(0).getId());
+                                bundle.putString(Constant.DTU_SN,dtu_sh);
                                 startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
@@ -217,6 +218,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(1).getId());
+                                bundle.putString(Constant.DTU_SN,dtu_sh);
                                 startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
@@ -227,6 +229,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", datas.get(2).getId());
+                                bundle.putString(Constant.DTU_SN,dtu_sh);
                                 startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
@@ -236,6 +239,7 @@ public class GroupShowActivity extends BaseActivity {
                                 Bundle bundle = new Bundle();
                                 bundle.putString("group_id", groupId + "");
                                 bundle.putString("data_id", groupDatas.get(i).getId());
+                                bundle.putString(Constant.DTU_SN,dtu_sh);
                                 startActivity(HistoryDataActivity.class, bundle);
                             }
                         });
