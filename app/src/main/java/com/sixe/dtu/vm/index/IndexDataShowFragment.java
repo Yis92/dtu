@@ -52,6 +52,9 @@ public class IndexDataShowFragment extends BaseFragment {
     private HttpLoadingDialog httpLoadingDialog;
 
     private boolean isRefresh;//是否是下拉刷新操作
+    private boolean isFirstLoad;//是否第一次加载
+
+    private int page = 1;
 
     @Override
     public View bootView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
@@ -83,7 +86,7 @@ public class IndexDataShowFragment extends BaseFragment {
                 R.color.swiperefresh_color1, R.color.swiperefresh_color2,
                 R.color.swiperefresh_color3, R.color.swiperefresh_color4);
 
-//        mRefreshLayout.setCanLoadMore(listView);//是否可以加载更多
+        mRefreshLayout.setCanLoadMore(listView);//是否可以加载更多
 
         queryTimeData();
     }
@@ -102,6 +105,7 @@ public class IndexDataShowFragment extends BaseFragment {
             @Override
             public void onRefreshing() {
                 //下拉刷新
+                page = 1;
                 isRefresh = true;
                 queryTimeData();
             }
@@ -109,6 +113,9 @@ public class IndexDataShowFragment extends BaseFragment {
             @Override
             public void onLoadMore() {
                 //上拉加载更多
+                page++;
+                isRefresh = false;
+                queryTimeData();
             }
         });
         //分组数据展示
@@ -132,6 +139,7 @@ public class IndexDataShowFragment extends BaseFragment {
 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("dtu_sn", dtu_sn);
+                map.put("index", page + "");
 
                 if (!isRefresh) {
                     httpLoadingDialog.visible();
@@ -151,13 +159,20 @@ public class IndexDataShowFragment extends BaseFragment {
                             tvTime.setText("观测时间:" + response.getDt());
 
                             if (!isRefresh) {
-                                dataList = response.getResult();
-                                adapter = new DtuTimeShowListAdapter(activity, dataList);
-                                listView.setAdapter(adapter);
+                                if (!isFirstLoad) {
+                                    dataList = response.getResult();
+                                    adapter = new DtuTimeShowListAdapter(activity, dataList);
+                                    listView.setAdapter(adapter);
+                                    isFirstLoad = true;
+                                } else {
+                                    dataList.clear();
+                                    dataList = response.getResult();
+                                    showToast(dataList.size() + ":::");
+                                    adapter.notifyDataSetChanged();
+                                }
                             } else {
-                                dataList = response.getResult();
-                                adapter = new DtuTimeShowListAdapter(activity, dataList);
-                                listView.setAdapter(adapter);
+                                dataList.addAll(response.getResult());
+                                adapter.notifyDataSetChanged();
                             }
                             //管理员才可以修改
                             int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);

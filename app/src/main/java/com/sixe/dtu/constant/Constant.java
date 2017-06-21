@@ -6,6 +6,9 @@ package com.sixe.dtu.constant;
 
 public class Constant {
 
+    //启动图
+    public static final String XINWEN_START_URL =  "start_url";
+
     //shared
     public static final String DTU_PRE_NAME = "dtu";
 
@@ -38,5 +41,6 @@ public class Constant {
     //用户名 密码
     public static final String USER_NAME= "user_name";
     public static final String PASSWORD = "password";
+
 
 }

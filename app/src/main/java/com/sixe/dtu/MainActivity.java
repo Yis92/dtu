@@ -10,10 +10,13 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.igexin.sdk.PushManager;
 import com.loveplusplus.update.UpdateChecker;
 import com.sixe.dtu.base.BaseActivity;
 import com.sixe.dtu.constant.Constant;
 import com.sixe.dtu.http.entity.user.UserLoginResp;
+import com.sixe.dtu.service.DemoIntentService;
+import com.sixe.dtu.service.DemoPushService;
 import com.sixe.dtu.utils.RuntimeHelper;
 import com.sixe.dtu.vm.index.IndexFragment;
 import com.sixe.dtu.vm.user.UserFragment;
@@ -54,6 +57,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData(Intent intent) {
+
+        PushManager.getInstance().initialize(this.getApplicationContext(), DemoPushService.class);
+
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(),  DemoIntentService.class);
+
         fragments = new ArrayList<>();
         indexFragment = new IndexFragment();
         Bundle bundle = new Bundle();

@@ -35,6 +35,17 @@ android {
         targetSdkVersion 24
         versionCode 4
         versionName "4.0"
+
+        //个推
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86_64"
+        }
+
+        manifestPlaceholders = [
+                GETUI_APP_ID : "uUU9Gelx0d9CwyDNupb8s1",
+                GETUI_APP_KEY : "Qmqn2XUldF8EbibUOHzsC6",
+                GETUI_APP_SECRET : "4LZLfLjX8B8FLxuBeYm5i6"
+        ]
     }
     buildTypes {
         release {
@@ -78,4 +89,6 @@ dependencies {
     //圆形图片
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile project(':library')
+    //个推
+    compile 'com.getui:sdk:2.10.2.0'
 }

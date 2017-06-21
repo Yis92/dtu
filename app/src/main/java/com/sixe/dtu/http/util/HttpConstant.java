@@ -153,5 +153,15 @@ public class HttpConstant {
      */
     public static final String UPDATE_DTU_CTRL_NODE_TASK = BASE_URL + "/php/update_dtu_ctrl_node_task.php";
 
+    /**
+     * 30. 设置控制节点的任务状态
+     */
+    public static final String UPDATE_USER_GETUI_ID = BASE_URL + "/php/update_user_getui_id.php";
+
+    /**
+     * 30. 启动获取图片
+     */
+    public static final String QUERRY_LOGIN_BG_PNG = BASE_URL + "/php/querry_login_bg_png.php";
+
 
 }
