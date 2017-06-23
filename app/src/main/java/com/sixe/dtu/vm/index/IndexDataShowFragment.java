@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mirror.common.commondialog.httploadingdialog.HttpLoadingDialog;
@@ -86,7 +87,7 @@ public class IndexDataShowFragment extends BaseFragment {
                 R.color.swiperefresh_color1, R.color.swiperefresh_color2,
                 R.color.swiperefresh_color3, R.color.swiperefresh_color4);
 
-        mRefreshLayout.setCanLoadMore(listView);//是否可以加载更多
+//        mRefreshLayout.setCanLoadMore(listView);//是否可以加载更多
 
         queryTimeData();
     }
@@ -106,7 +107,7 @@ public class IndexDataShowFragment extends BaseFragment {
             public void onRefreshing() {
                 //下拉刷新
                 page = 1;
-                isRefresh = true;
+                isRefresh = false;
                 queryTimeData();
             }
 
@@ -114,7 +115,7 @@ public class IndexDataShowFragment extends BaseFragment {
             public void onLoadMore() {
                 //上拉加载更多
                 page++;
-                isRefresh = false;
+                isRefresh = true;
                 queryTimeData();
             }
         });
@@ -127,6 +128,7 @@ public class IndexDataShowFragment extends BaseFragment {
                 startActivity(GroupShowActivity.class, bundle);
             }
         });
+
     }
 
     /**
@@ -164,15 +166,25 @@ public class IndexDataShowFragment extends BaseFragment {
                                     adapter = new DtuTimeShowListAdapter(activity, dataList);
                                     listView.setAdapter(adapter);
                                     isFirstLoad = true;
+
+//                                    mRefreshLayout.setFooterType(5);
+                                    View mFooterView = LayoutInflater.from(getContext()).inflate(R.layout.layout_list_view_footer, null);
+                                    TextView mFooterText = (TextView) mFooterView.findViewById(R.id.tv_footer);
+                                    ProgressBar mFooterProgressBar = (ProgressBar) mFooterView.findViewById(R.id.pb_footer);
+                                    mFooterText.setText("点击加载下一条...");
+                                    mFooterProgressBar.setVisibility(View.GONE);
+                                    listView.addFooterView(mFooterView);
                                 } else {
                                     dataList.clear();
-                                    dataList = response.getResult();
-                                    showToast(dataList.size() + ":::");
+                                    dataList.addAll(response.getResult());
                                     adapter.notifyDataSetChanged();
+                                    showToastResult("已是最新数据...");
                                 }
                             } else {
+                                dataList.clear();
                                 dataList.addAll(response.getResult());
                                 adapter.notifyDataSetChanged();
+                                showToastResult("加载成功...");
                             }
                             //管理员才可以修改
                             int user_level = getPreferenceHelper().getInt(Constant.USER_LEVEL, 12);
@@ -180,10 +192,16 @@ public class IndexDataShowFragment extends BaseFragment {
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("data_no", dataList.get(i).get(3));
-                                        bundle.putString(Constant.DTU_SN, dtu_sn);
-                                        startActivity(UpdateAlarmInfoActivity.class, bundle);
+                                        if (i == dataList.size()) {
+                                            page++;
+                                            isRefresh = true;
+                                            queryTimeData();
+                                        } else {
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("data_no", dataList.get(i).get(3));
+                                            bundle.putString(Constant.DTU_SN, dtu_sn);
+                                            startActivity(UpdateAlarmInfoActivity.class, bundle);
+                                        }
                                     }
                                 });
                             }

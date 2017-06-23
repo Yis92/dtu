@@ -130,7 +130,6 @@ public class GroupShowActivity extends BaseActivity {
 
             HashMap<String, String> map = new HashMap<>();
             map.put("dtu_sn", dtu_sh);
-//            map.put("dtu_sn", "1512110003000001");
             map.put("group_id", "" + group_id);
 
             httpLoadingDialog.visible();

@@ -243,6 +243,10 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
                     mFooterText.setText(getResources().getString(R.string.footer_type_not_more));
                     mFooterProgressBar.setVisibility(View.GONE);
                     break;
+                case 5:
+                    mFooterText.setText("点击加载下一条...");
+                    mFooterProgressBar.setVisibility(View.GONE);
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

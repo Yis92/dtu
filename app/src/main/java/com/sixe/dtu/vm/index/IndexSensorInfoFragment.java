@@ -112,7 +112,7 @@ public class IndexSensorInfoFragment extends BaseFragment {
                             dataList = response.getResult();
                             adapter.notifyDataSetInvalidated();
                             mRefreshLayout.onLoadComplete();
-                            showRefreshResult();
+//                            showRefreshResult();
                         }
 
                     }
