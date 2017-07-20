@@ -92,6 +92,14 @@ public class IndexDataShowFragment extends BaseFragment {
         queryTimeData();
     }
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (!isVisibleToUser) {
+            isFirstLoad = false;
+        }
+    }
+
     @Override
     public void initEvents() {
         //分享

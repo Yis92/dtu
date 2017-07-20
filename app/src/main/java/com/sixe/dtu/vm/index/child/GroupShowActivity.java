@@ -312,6 +312,9 @@ public class GroupShowActivity extends BaseActivity {
                             tvNameThree.setText(datas.get(2).getName());
                             tvValueThree.setText(datas.get(2).getValue() + datas.get(2).getUnit());
                         } else {
+                            llOne.setVisibility(View.VISIBLE);
+                            llTwo.setVisibility(View.VISIBLE);
+                            llThree.setVisibility(View.VISIBLE);
                             tvNameOne.setText(datas.get(0).getName());
                             tvValueOne.setText(datas.get(0).getValue() + datas.get(0).getUnit());
                             tvNameTwo.setText(datas.get(1).getName());

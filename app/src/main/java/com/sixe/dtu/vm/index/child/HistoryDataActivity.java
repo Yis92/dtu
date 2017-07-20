@@ -6,21 +6,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.sixe.dtu.R;
 import com.sixe.dtu.base.BaseActivity;
-import com.sixe.dtu.base.BaseActivity2;
-
 
 /**
  * 历史数据曲线展示
  * Created by Administrator on 2017/4/1.
  */
-
 public class HistoryDataActivity extends BaseActivity {
 
     private TextView tvTitle;
@@ -34,7 +31,6 @@ public class HistoryDataActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_history_data);
     }
-
 
     @Override
     public void initBoot() {
@@ -65,14 +61,15 @@ public class HistoryDataActivity extends BaseActivity {
         // 设置出现缩放工具
 //        webView.getSettings().setBuiltInZoomControls(true);
         //自适应屏幕-在展示视频时,红米1s中无法展示,故此去掉
-//        mWeb.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        mWeb.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setLoadWithOverviewMode(true);
         //设置此属性，可任意比例缩放。
-        //mWeb.getSettings().setUseWideViewPort(true);
+//        webView.getSettings().setUseWideViewPort(true);
         // 设置WebViewClient，保证新的链接地址不打开系统的浏览器窗口
         webView.setWebViewClient(new WebViewClient());
         // 设置WebView支持运行普通的Javascript
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.setInitialScale(160);//放大一倍
 
         // 设置WebChromeClient，以支持运行特殊的Javascript
         webView.setWebChromeClient(new WebChromeClient() {
@@ -84,13 +81,13 @@ public class HistoryDataActivity extends BaseActivity {
                 }
                 super.onProgressChanged(view, newProgress);
             }
-
         });
 
-//        webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
+//      webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + data_id + "&pId=" + group_id);
         webView.loadUrl("http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + dtu_sn + "&mType=APP&groupId=" + group_id);
         Log.i("http", "历史数据请求的url：：：：http://139.129.239.172:8080/comSys/home/goHisPage?nodeId=" + dtu_sn + "&mType=APP");
     }
+
 
     @Override
     public void initEvents() {
